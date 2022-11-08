@@ -1,8 +1,6 @@
 """
 Created on Wed Apr 22 15:21:11 2015
 
-@author: rkp
-
 Code to compute spike-triggered average.
 """
 
@@ -20,7 +18,7 @@ def compute_sta(stim, rho, num_timesteps):
         num_timesteps: how many timesteps to use in STA
         
     Returns:
-        spike-triggered average for specified number of timesteps before spike"""
+        spike-triggered average for num_timesteps timesteps before spike"""
     
     sta = np.zeros((num_timesteps,))
 

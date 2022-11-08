@@ -1,8 +1,6 @@
 """
 Created on Wed Apr 22 15:15:16 2015
 
-@author: rkp
-
 Quiz 2 code.
 """
 
@@ -19,10 +17,10 @@ FILENAME = 'c1p8.pickle'
 
 with open(FILENAME, 'rb') as f:
     data = pickle.load(f)
-    
+
 stim = data['stim']
 rho = data['rho']
-    
+
 
 # Fill in these values
 sampling_period = # in ms
