@@ -8,7 +8,6 @@ Code to compute spike-triggered average.
 from __future__ import division
 from numpy      import zeros
 
-TBD=0
 def compute_sta(stim, rho, num_timesteps):
     """Compute the spike-triggered average from a stimulus and spike-train.
 
@@ -28,7 +27,7 @@ def compute_sta(stim, rho, num_timesteps):
 
     # Fill in this value. Note that you should not count spikes that occur
     # before 300 ms into the recording.
-    num_spikes = TBD
+    num_spikes = len(spike_times)
 
     # Compute the spike-triggered average of the spikes found.
     # To do this, compute the average of all of the vectors
@@ -38,6 +37,6 @@ def compute_sta(stim, rho, num_timesteps):
     # spike. The average of these vectors should be completed in an
     # element-wise manner.
     #
-    # Your code goes here.
+    # Your code goes here. TBP
 
     return sta
