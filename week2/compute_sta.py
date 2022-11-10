@@ -24,7 +24,6 @@ def compute_sta(stim, rho, num_timesteps):
     # This command finds the indices of all of the spikes that occur
     # after 300 ms into the recording.
     spike_times = rho[num_timesteps:].nonzero()[0] + num_timesteps
-    print (spike_times[0:10])
     # Fill in this value. Note that you should not count spikes that occur
     # before 300 ms into the recording.
     num_spikes = len(spike_times)
