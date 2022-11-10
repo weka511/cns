@@ -18,9 +18,12 @@ def get_data(file_name = 'c1p8.pickle'):
         data = load(f)
         return data['stim'], data['rho']
 
-stim, rho       = get_data()
+sampling_rate   = 500 # Hz
 sampling_period = 2 # in ms
+assert sampling_rate*sampling_period == 1000,'period times rathe should be 1000 msec'
 num_timesteps   = 148
+stim, rho       = get_data()
+
 sta             = compute_sta(stim, rho, num_timesteps)
 time            = (arange(-num_timesteps, 0) + 1) * sampling_period
 
