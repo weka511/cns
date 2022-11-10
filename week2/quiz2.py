@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-"""
+'''
 Created on Wed Apr 22 15:15:16 2015
 
 Quiz 2 code.
-"""
+'''
 
 from __future__        import division
 from numpy             import arange
