@@ -37,7 +37,10 @@
 	name={maximum a posteriori},
 	description={Choose estimator $s^*$ to maximize $p[s \vert r]$
 }}
-	
+
+\newglossaryentry{gls:rf}{
+	name={Receptive Field},
+	description={Specific properties of a sensory stimulus that generate a strong response from the cell}}	
 \maketitle
 
 \begin{abstract}
@@ -48,8 +51,95 @@ My notes from Computational Neuroscience course
 \listoffigures
 \section{Introduction and Basic Neurobiology}
 
-\section{What do Neurons Encode?}
+\subsection{Course Introduction}
+\begin{figure}[H]
+	\caption{Our Universes}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{According to Physicists}
+		\includegraphics[width=\textwidth]{universe1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{According to us}
+		\includegraphics[width=\textwidth]{universe2}
+	\end{subfigure}
+\end{figure}
+\subsubsection{Understanding the Brain using Computational Models}
+\begin{itemize}
+	\item Descriptive Models of the Brain
+	\begin{itemize}
+		\item How do neurons respond to external stimuli and how do we
+		describe this quantitatively with a neural encoding model?
+		\item How can we extract information from neurons (decoding)?
+	\end{itemize}
+    \item Mechanistic Models of Brain Cells and Networks
+	\begin{itemize}
+		\item     How can we simulate the behavior of a single neuron on a
+	    computer?
+	    \item How do we simulate a network of neurons?
+	\end{itemize}
+	\item  Interpretive (or Normative) Models of the Brain
+	\begin{itemize}
+		\item 	Why do brain circuits operate the way they do?
+		\item What are the computational principles underlying their
+		operation?
+	\end{itemize}
+\end{itemize}
 
+\subsubsection{Course Goals: What you can expect to learn}
+At the end of the course, you will be able to:
+\begin{itemize}
+	\item  Quantitatively describe what a biological neuron or
+network of neurons is doing given experimental data
+ \item Simulate on a computer the behavior of neurons and
+networks
+ \item Formulate computational principles underlying the
+operation of neurons and networks in the brain
+\end{itemize}
+
+\subsection{Computational Neuroscience - Descriptive Models}
+
+\begin{figure}[H]
+	\caption{Cortical Receptive Fields}
+	\includegraphics[width=\textwidth]{CorticalReceptive Fields}
+\end{figure}
+
+\subsection{Computational Neuroscience Mechanistic and Interpretive Models}
+
+\subsection{The Electrical Personality of Neurons}
+
+\subsection{Making Connections - Synapses}
+
+\subsection{Time to Network - Brain Areas and their Function}
+
+\begin{figure}[H]
+	\caption{Brain Regions}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{Hind Brain. \emph{Medulla Oblongata} controls breathing, muscle tone and blood pressure.
+			\emph{Pons} connected to the cerebellum \& involved in sleep and arousal.
+			\emph{Cerebellum} Coordination and timing of voluntary movements, sense of equilibrium, language, attention}
+		\includegraphics[width=\textwidth]{hindbrain}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{\emph{Midbrain} Eye movements, visual and auditory reflexes.
+			\emph{Reticular Formation} 	Modulates muscle reflexes, breathing \& pain perception. Also regulates sleep, 			wakefulness \& 	arousal.}
+		\includegraphics[width=\textwidth]{midbrain}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{\emph{Thalamus} Relay station for all 	sensory info (except 	smell) to the cortex, regulates sleep/wakefulness.
+		\emph{Hypothalamus} Regulates basic needs: 	Fighting, Fleeing, 	Feeding, and Mating.}
+		\includegraphics[width=\textwidth]{thalamus}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{ Consists of: Cerebral cortex, basal ganglia, 			hippocampus, and amygdala
+		Involved in perception 	and motor control, 	cognitive functions,	emotion, memory, and learning}
+		\includegraphics[width=\textwidth]{Cerebrum}
+	\end{subfigure}
+\end{figure}
+\section{What do Neurons Encode?}
+\subsection{What is the Neural Code}
+\subsection{Neural Encoding - Simple Models}
+\subsection{Neural Encoding - Feature Selection}
+\subsection{Neural Encoding - Variability}
 \section{Extracting Information from Neurons}
 
 \subsection{Neural Decoding and Signal Detecion Theory}
@@ -117,6 +207,18 @@ Hence the \gls{gls:mlm} is given by:
 	s^*  =& \frac{\sum_{a=1}^{N}   \frac{s_a r_a}{\sigma_a^2}}{\sum_{a=1}^{N} \frac{ r_a }{\sigma_a^2}}	\\
 	=& \frac{\sum_{a=1}^{N}   p_a s_a r_a}{\sum_{a=1}^{N} p_a r_a} \text{, where the precision $p_a=\sigma_a^{-2}$}\\
 	=& \frac{\sum_{a=1}^{N}   s_a r_a}{\sum_{a=1}^{N} r_a} \text{, if all the $s_a$ are equal}
+\end{align*}
+
+For the \gls{gls:MAP} estimate, Bayes rule gives:
+\begin{align*}
+	\ln p[s|r] =& \ln p[r|s] + \ln p[s] - \ln p[r]\\
+	=& T \sum_{a=1}^{N}r_a \ln f_a(s) + \ln p[s] + C \text{, where $C$ does not depend on $s_a$}
+\end{align*}
+
+So the \gls{gls:MAP} estimator satisfies:
+\begin{align*}
+	\sum_{a=1}^{N} r_a \frac{f^\prime(a^*)}{f(a^*)} + \frac{p^\prime(s)}{p(s)}=&0\\
+	s^*  =& \frac{\sum_{a=1}^{N}   \frac{s_a r_a}{\sigma_a^2}+\frac{s_{prior}}{\sigma_{prior}^2}}{\sum_{a=1}^{N} \frac{ r_a }{\sigma_a^2}+\frac{1}{\sigma_{prior}^2}}
 \end{align*}
 \subsection{Reading Minds - Stimulus Reconstruction}
 We want an estimator, $S_{Bayes}$ that gives the "best" estimate of $s$ given $r$.
