@@ -12,7 +12,7 @@
 \usepackage{tocloft}
 \usepackage{cancel}
 \usepackage{thmtools}
-\usepackage[toc,nonumberlist]{glossaries}
+\usepackage[toc,nonumberlist,acronym]{glossaries}
 \usepackage{glossaries-extra}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newtheorem{defn}{Definition}
@@ -27,8 +27,10 @@
 \author{Simon Crase}
 
 \begin{document}
-\newacronym{gls:ML}{ML}{Maximum Likelihood}
-\newacronym{gls:MAP}{MAP}{Maximum A Posteriori}
+\newacronym{gls:ML}{ML\glsadd{gls:mlm}}{\Gls{gls:mlm}}
+
+\newacronym{gls:MAP}{MAP\glsadd{gls:mpm}}{\Gls{gls:mpm}}
+
 \newglossaryentry{gls:mlm}{
 	name={maximum likelihood},
 	description={Choose estimator $s^*$ to maximize $p[r\vert s]$
@@ -98,6 +100,7 @@ operation of neurons and networks in the brain
 
 \subsection{Computational Neuroscience - Descriptive Models}
 
+
 \begin{figure}[H]
 	\caption{Cortical Receptive Fields}
 	\includegraphics[width=\textwidth]{CorticalReceptive Fields}
@@ -142,7 +145,13 @@ operation of neurons and networks in the brain
 \subsection{Neural Encoding - Variability}
 \section{Extracting Information from Neurons}
 
-\subsection{Neural Decoding and Signal Detecion Theory}
+\subsection{Neural Decoding and Signal Detection Theory}
+
+\begin{figure}[H]
+		\caption{This value of threshold maximizes probability of calling correctly.
+			$p[+]p[r\ge z\vert +] + p[-] (1-p[r\ge z\vert -])$}
+		\includegraphics[width=\textwidth]{signal-detection1}
+\end{figure}
 \subsection{Population Coding and Bayesian Estimating}
 
 \begin{align*}
@@ -183,11 +192,14 @@ From assumption \ref{item:poisson}, spikes are produced randomly and independent
 	=& \prod_{a=1}^{N} \frac{(f_a(s)T)^{r_aT} \exp (-f_a(s)T)}{r_aT!}
 \end{align*}
 
-We want the \gls{gls:mlm} for $s$.
+We want the \gls{gls:ML} for $s$.
 \begin{align*}
 	\ln P[\vec{r}\vert s] =& \sum_{a=1}^{N} \big[r_aT \ln (f_a(s)T) -f_a(s)T - \ln (r_aT!) \big] \text{, so we need}\\
-	\partial_s \ln P[\vec{r}\vert s] =& 0	\\
-	\partial_s \ln P[\vec{r}\vert s] = & \partial_a \sum_{a=1}^{N}  r_aT \ln (f_a(s)T) -\underbrace{\partial_a \sum_{a=1}^{N} f_a(s)T}_{=0 \text { from ]\eqref{eq:good:coverage}}} - \underbrace{\partial_a \sum_{a=1}^{N} \ln (r_aT!)}_{=0} 
+	\nabla_a \ln P[\vec{r}\vert s] =& 0	
+\end{align*}
+ where  $\nabla_a$ denotes the operator $\frac{\partial}{\partial_{s_a}}$. Now
+\begin{align*}
+	\nabla_a \ln P[\vec{r}\vert s] = & \partial_a \sum_{a=1}^{N}  r_aT \ln (f_a(s)T) -\underbrace{\partial_a \sum_{a=1}^{N} f_a(s)T}_{=0 \text { from ]\eqref{eq:good:coverage}}} - \underbrace{\partial_a \sum_{a=1}^{N} \ln (r_aT!)}_{=0} 
 \end{align*}
 Hence the \gls{gls:mlm} is given by:
 \begin{align*}
