@@ -280,6 +280,11 @@ Mutual Information: total entropy - average noise entropy.
 
 \subsection{Calculating Information in Spike Trains}
 
+What information is carried by patterns of spikes?\cite{strong1998entropy}
+
+\begin{align*}
+	I(S;R) =& H[R] - \sum_s P[s] H[R\vert s]
+\end{align*}
 \begin{figure}[H]
 	\caption[Calculating Information in Spike Patterns]{Calculating Information in Spike Patterns. Divide into words of length $T$, e.g. $w_1=[1,0,1,0,1,1,0]$. Information is difference between total variability driven by stimuli and that dues to noise, averaged over stimuli.}
 	\includegraphics*[width=\textwidth]{calculatingInformationInSpikePatterns}
@@ -289,5 +294,11 @@ Mutual Information: total entropy - average noise entropy.
 \appendix
 
 \printglossaries
+
+% bibliography goes here
+
+\bibliographystyle{unsrt}
+\addcontentsline{toc}{section}{Bibliography}
+\bibliography{cns}
 
 \end{document}
