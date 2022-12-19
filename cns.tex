@@ -280,16 +280,80 @@ Mutual Information: total entropy - average noise entropy.
 
 \subsection{Calculating Information in Spike Trains}
 
-What information is carried by patterns of spikes?\cite{strong1998entropy}
+What information is carried by patterns of spikes?
 
+Mutual  information  is  the  difference  between  
+the  total  response  entropy  and   the  mean  noise  entropy.
 \begin{align*}
 	I(S;R) =& H[R] - \sum_s P[s] H[R\vert s]
 \end{align*}
 \begin{figure}[H]
-	\caption[Calculating Information in Spike Patterns]{Calculating Information in Spike Patterns. Divide into words of length $T$, e.g. $w_1=[1,0,1,0,1,1,0]$. Information is difference between total variability driven by stimuli and that dues to noise, averaged over stimuli.}
-	\includegraphics*[width=\textwidth]{calculatingInformationInSpikePatterns}
+	\begin{center}
+			\caption[Calculating Information in Spike Patterns]{Calculating Information in Spike Patterns. Divide into words of length $T$, e.g. $w_1=[1,0,1,0,1,1,0]$. Information is difference between total variability driven by stimuli and that dues to noise, averaged over stimuli.\cite{strong1998entropy}}
+		\includegraphics[width=\textwidth]{calculatingInformationInSpikePatterns}
+	\end{center}
 \end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+		\caption[Entropy for chunked words]{Entropy for chunked words. The most common pattern is all zeroes, then a single bit, etc. nformation  :   
+			difference  between  the  total  
+			variability   driven  by  stimuli  
+			and  that  due  to   noise,  averaged  
+			over  stimuli. \cite{strong1998entropy,reinagel2000temporal}}
+		\includegraphics[width=\textwidth]{info-spike-trains}
+	\end{center}
+\end{figure}
+\subsection{Coding Principles}
+\begin{itemize}
+	\item What are the challenges posed by natural stimuli?
+	\item What do information theoretic concepts suggest that neural systems should do?
+	\item What principle seems to be at work shaping the neuarl code?
+\end{itemize}
+
+Photo - have to change F-stop repeatedly in order to capture details of scene inside and outside; the eye does this effortlessly. Natural stimuli:
+\begin{enumerate}
+	\item Have a wide dynamic range: variations over many orders of magnitude;
+	\item dynamic scaling.
+\end{enumerate}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Power Law]{Power Law: there are similar structures at very different length scales.}
+		\begin{subfigure}[b]{0.45\textwidth}
+			\caption{Structures}
+			\includegraphics[width=0.9\textwidth]{power-law-graph}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.45\textwidth}
+			\caption{Power Spectrum: there is no characteristic scale for image.}
+			\includegraphics[width=0.9\textwidth]{power-law-shapes}
+		\end{subfigure}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Efficient Coding]{Efficient Coding: In order to have maximum entropy output, a good encoder should match its outputs to the distribution of its inputs. Try to use all symbols equally often. (cumulative probability)}
+		\includegraphics[width=0.8\textwidth]{efficient-coding}
+	\end{center}
+\end{figure}
+
+Contract varies widely in time. Should neural system optimize locally or over evolutionary time?
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{What have we left out}
+		\includegraphics[width=0.8\textwidth]{4-big-picture}
+	\end{center}
+\end{figure}
+
+\section{Computing in Carbon}
+
+\section{Computing with Networks}
+
+\section{Networks that Learn}
+
+\section{Learning from Supervision \& Rewards}
 
 \appendix
 
