@@ -21,6 +21,8 @@
 \graphicspath{{figs/}}
 \widowpenalty10000
 \clubpenalty10000
+\setcounter{tocdepth}{2}
+
 \makeglossaries
 %opening
 \title{Computational Neuroscience Notes}
@@ -42,7 +44,8 @@
 
 \newglossaryentry{gls:rf}{
 	name={Receptive Field},
-	description={Specific properties of a sensory stimulus that generate a strong response from the cell}}	
+	description={Specific properties of a sensory stimulus that generate a strong response from the cell}}
+	
 \maketitle
 
 \begin{abstract}
@@ -148,7 +151,7 @@ operation of neurons and networks in the brain
 \subsection{Neural Decoding and Signal Detection Theory}
 
 \begin{figure}[H]
-		\caption{This value of threshold maximizes probability of calling correctly.
+		\caption[Value of threshold that maximizes probability of correct call]{This value of threshold maximizes probability of calling correctly.
 			$p[+]p[r\ge z\vert +] + p[-] (1-p[r\ge z\vert -])$}
 		\includegraphics[width=\textwidth]{signal-detection1}
 \end{figure}
@@ -235,6 +238,52 @@ So the \gls{gls:MAP} estimator satisfies:
 \subsection{Reading Minds - Stimulus Reconstruction}
 We want an estimator, $S_{Bayes}$ that gives the "best" estimate of $s$ given $r$.
 
+\section{Entropy \& Spike Trains}
+
+\subsection{Information \& Entropy}
+
+Entropy measures surprise.
+\begin{align*}
+	H =& - \sum_{i} p_i \log_2 p_i
+\end{align*}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{How about the stimulus?}
+		\includegraphics[width=0.8\textwidth]{how}\label{fig:how:about:the:stimulus}
+	\end{center}
+\end{figure}
+
+In Figure \ref{fig:how:about:the:stimulus}, suppose the probability of error is a constant.
+\begin{align*}
+	P[r_-\vert +] =& q\\
+	P[r_+\vert +] =& 1-q\\
+	P[r_+\vert -] =& q\\
+	P[r_-\vert -] =& 1-q
+\end{align*}
+\begin{align*}
+	H[R] =& -P[r_+] \log P[r_+] - P[r_-] \log P[r_-] \text{, total entropy}\\
+	H[R\vert +] =& -q \log q - (1-q) \log (1-q) \text{, noise entropy}
+\end{align*}
+
+
+Mutual Information: total entropy - average noise entropy.
+
+\begin{align*}
+	I(R,S) =& -\sum_r p[r] \log p[r] - \sum_s p(s)\big[- \sum_r p[r \vert s] \log p[r \vert s]\big]\\
+	=& H[R] - \sum_s p(s) H[R\vert s]\\
+\end{align*}
+\begin{align*}
+	I[S,R] \triangleq D_{KL}&\big[P(R,S),P(R)P(S)\big]\\
+	=&H[R]-\sum_s P(s) H[R\vert s]
+\end{align*}
+
+\subsection{Calculating Information in Spike Trains}
+
+\begin{figure}[H]
+	\caption[Calculating Information in Spike Patterns]{Calculating Information in Spike Patterns. Divide into words of length $T$, e.g. $w_1=[1,0,1,0,1,1,0]$. Information is difference between total variability driven by stimuli and that dues to noise, averaged over stimuli.}
+	\includegraphics*[width=\textwidth]{calculatingInformationInSpikePatterns}
+\end{figure}
 
 
 \appendix
