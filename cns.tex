@@ -178,15 +178,64 @@ During this course, we will talk about:
 		\includegraphics[width=0.9\textwidth]{electrode-arrays2}
 	\end{subfigure}
 	\begin{subfigure}[b]{\textwidth}
-	\caption{}\label{fig:rb6}
-	\includegraphics[width=0.9\textwidth]{calcium-imaging}
-\end{subfigure}
+		\caption{}\label{fig:rb6}
+		\includegraphics[width=0.9\textwidth]{calcium-imaging}
+	\end{subfigure}
 \end{figure}
-
 
 \begin{figure}[H]
 	\begin{center}
-		\caption{Gaussian tuning curve of a cortical (V1) neuron}
+		\caption[Looking inside a single cell]{Looking inside a single cell. The experimenter clamps a patch electron onto the cell membrane}
+		\includegraphics[width=0.9\textwidth]{looking-inside}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{What is the neural code?}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Human eye, without output to optic nerve}
+			\includegraphics[width=\textwidth]{human-eye}
+		\end{subfigure}
+		\begin{subfigure}[to]{0.45\textwidth}
+			\caption{Experiment. Play movie while section of retina is connected to electrode array--Figures \ref{fig:rb4} \& \ref{fig:rb5}}
+			\includegraphics[width=\textwidth]{human-eye-experiment}
+		\end{subfigure}
+		\begin{subfigure}[to]{0.45\textwidth}
+			\caption{Repeat experiment: red dots represent firings (action potentials). Notice that many times the firings are in almost the same place.}
+			\includegraphics[width=\textwidth]{movie-firings}
+		\end{subfigure}
+		\begin{subfigure}[to]{0.45\textwidth}
+			\caption{Look at 20 retinal ganglion cells. Each cell is reasonably consistent in time. Each cell is responsible for encoding some set of features, and different neurons encode different features. R \& P have some features in common.}
+			\includegraphics[width=\textwidth]{movie-firings-20}
+		\end{subfigure}
+	\end{center}
+\end{figure}
+
+\begin{itemize}
+	\item Encoding: how does a stimulus cause a pattern of responses?
+	\item\begin{itemize}
+		\item  Building quasi mechanistic models
+	\end{itemize}
+	\item Decoding: what do these responses tell us about the stimulus?
+	\item \begin{itemize}
+		\item how can we reconstruct what the brain is doing?
+	\end{itemize}
+\end{itemize}
+
+\begin{align*}
+	P(response\vert stimulus)&\text{, encoding}\\
+	P(stimulus\vert response)&\text{, decoding}
+\end{align*}
+
+\begin{itemize}
+	\item What is the stimulus--$s$?
+	\item What is the response--$r$?
+	\item what is the relation between them?
+\end{itemize}
+\begin{figure}[H]
+	\begin{center}
+		\caption{Gaussian tuning curve of a cortical (V1) neuron. These neurons repond to oriented bars.}
 		\includegraphics[width=0.9\textwidth]{tuning-curves}
 	\end{center}
 \end{figure}
@@ -197,6 +246,28 @@ During this course, we will talk about:
 		\includegraphics[width=0.9\textwidth]{tuning-curves1}
 	\end{center}
 \end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Feature Map in Primary Visual Cortex}
+		\includegraphics[width=0.9\textwidth]{feature-map}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Higher order features in temporal lobe}
+		\includegraphics[width=0.9\textwidth]{higher-order-features}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Building up more complex features]{Building up more complex features. Notice feed-forward and feed-back.}
+		\includegraphics[width=0.9\textwidth]{build}
+	\end{center}
+\end{figure}
+
 \subsection{Neural Encoding - Simple Models}
 \subsection{Neural Encoding - Feature Selection}
 \subsection{Neural Encoding - Variability}
