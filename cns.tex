@@ -14,6 +14,8 @@
 \usepackage{thmtools}
 \usepackage[toc,nonumberlist,acronym]{glossaries}
 \usepackage{glossaries-extra}
+\usepackage{relsize}
+
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newtheorem{defn}{Definition}
 \newtheorem{thm}{Theorem}
@@ -54,7 +56,7 @@ My notes from Computational Neuroscience course
 
 \tableofcontents
 \listoffigures
-\section{Introduction and Basic Neurobiology}
+\section{Introduction and Basic Neurobiology}\label{sec:week1}
 
 \subsection{Course Introduction}
 \begin{figure}[H]
@@ -136,17 +138,69 @@ operation of neurons and networks in the brain
 		\includegraphics[width=\textwidth]{thalamus}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
-		\caption{ Consists of: Cerebral cortex, basal ganglia, 			hippocampus, and amygdala
+		\caption{ Consists of: Cerebral cortex, basal ganglia, 	hippocampus, and amygdala
 		Involved in perception 	and motor control, 	cognitive functions,	emotion, memory, and learning}
 		\includegraphics[width=\textwidth]{Cerebrum}
 	\end{subfigure}
 \end{figure}
-\section{What do Neurons Encode?}
+\section{What do Neurons Encode?}\label{sec:week2}
 \subsection{What is the Neural Code}
+During this course, we will talk about:
+\begin{itemize}
+	\item techniques for recording from the brain--Figure \ref{fig:recording};
+	\item  tools for discovering how the brain represents information;
+	\item models that express our understanding of this representation;
+	\item  some methods for inferring what the brain is doing based on its activity--Section \ref{sec:week3};
+	\item  using information theory to quantify neural representations--Section \ref{sec:week4};
+	\item the biophysical basis of how the brain processes inputs and performs complex computations--Section \ref{sec:week5}.
+\end{itemize}
+
+\begin{figure}[H]
+	\caption[Recording from the Brain]{Recording from the Brain. (\subref{fig:rb1}) \& (\subref{fig:rb2}) fMRI: resolution $1\;mm^3$; response is averaged over many neurons, and is slow. (\subref{fig:rb3}) EEG: response is averaged over many neurons; EEG is faster than fMRI, but noisy. (\subref{fig:rb4}) \& (\subref{fig:rb5}) Electrode Arrays: good if we have access to tissue directly} \label{fig:recording} (\subref{fig:rb6} Calcium Imaging. Cells have markers that change the colour of fluorescence as calcium levels change in response to neural activity.)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{}\label{fig:rb1}
+		\includegraphics[width=0.9\textwidth]{fMRI}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{}\label{fig:rb2}
+		\includegraphics[width=0.9\textwidth]{fMRI2}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{}\label{fig:rb3}
+		\includegraphics[width=0.9\textwidth]{EEG}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{}\label{fig:rb4}
+		\includegraphics[width=0.9\textwidth]{electrode-arrays}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{}\label{fig:rb5}
+		\includegraphics[width=0.9\textwidth]{electrode-arrays2}
+	\end{subfigure}
+	\begin{subfigure}[b]{\textwidth}
+	\caption{}\label{fig:rb6}
+	\includegraphics[width=0.9\textwidth]{calcium-imaging}
+\end{subfigure}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Gaussian tuning curve of a cortical (V1) neuron}
+		\includegraphics[width=0.9\textwidth]{tuning-curves}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Cosine tuning curve of a motor cortical neuron}
+		\includegraphics[width=0.9\textwidth]{tuning-curves1}
+	\end{center}
+\end{figure}
 \subsection{Neural Encoding - Simple Models}
 \subsection{Neural Encoding - Feature Selection}
 \subsection{Neural Encoding - Variability}
-\section{Extracting Information from Neurons}
+\section{Extracting Information from Neurons}\label{sec:week3}
 
 \subsection{Neural Decoding and Signal Detection Theory}
 
@@ -238,7 +292,7 @@ So the \gls{gls:MAP} estimator satisfies:
 \subsection{Reading Minds - Stimulus Reconstruction}
 We want an estimator, $S_{Bayes}$ that gives the "best" estimate of $s$ given $r$.
 
-\section{Entropy \& Spike Trains}
+\section{Entropy \& Spike Trains}\label{sec:week4}
 
 \subsection{Information \& Entropy}
 
@@ -338,7 +392,7 @@ Photo - have to change F-stop repeatedly in order to capture details of scene in
 	\end{center}
 \end{figure}
 
-Contract varies widely in time. Should neural system optimize locally or over evolutionary time?
+Contrast varies widely in time. Should neural system optimize locally or over evolutionary time?
 
 \begin{figure}[H]
 	\begin{center}
@@ -347,13 +401,23 @@ Contract varies widely in time. Should neural system optimize locally or over ev
 	\end{center}
 \end{figure}
 
-\section{Computing in Carbon}
+Make sure we have covered
+\begin{enumerate}
+	\item Efficient coding
+	\item Sparse Coding
+\end{enumerate}
 
-\section{Computing with Networks}
+\begin{align*}
+	I(\vec{x}) =& \sum_{i}a_i \phi_i(\vec{x}) + \epsilon(\vec{x})\\
+	E =& \mathlarger \sum_{\vec{x}}\big[I(\vec{x})-\sum_{i}a_i \phi_i(\vec{x})\big]^2 + \lambda \sum_{i}C(a_i)
+\end{align*}
+\section{Computing in Carbon}\label{sec:week5}
 
-\section{Networks that Learn}
+\section{Computing with Networks}\label{sec:week6}
 
-\section{Learning from Supervision \& Rewards}
+\section{Networks that Learn}\label{sec:week7}
+
+\section{Learning from Supervision \& Rewards}\label{sec:week8}
 
 \appendix
 
