@@ -224,8 +224,8 @@ During this course, we will talk about:
 \end{itemize}
 
 \begin{align*}
-	P(response\vert stimulus)&\text{, encoding}\\
-	P(stimulus\vert response)&\text{, decoding}
+	P(response\vert stimulus)&\text{, encoding} \numberthis \label{eq:p_r_s}\\
+	P(stimulus\vert response)&\text{, decoding}  \numberthis \label{eq:p_s_r}
 \end{align*}
 
 \begin{itemize}
@@ -235,7 +235,7 @@ During this course, we will talk about:
 \end{itemize}
 \begin{figure}[H]
 	\begin{center}
-		\caption{Gaussian tuning curve of a cortical (V1) neuron. These neurons repond to oriented bars.}
+		\caption[Gaussian tuning curve of a cortical (V1) neuron]{Gaussian tuning curve of a cortical (V1) neuron. These neurons respond to oriented bars.}
 		\includegraphics[width=0.9\textwidth]{tuning-curves}
 	\end{center}
 \end{figure}
@@ -268,7 +268,66 @@ During this course, we will talk about:
 	\end{center}
 \end{figure}
 
-\subsection{Neural Encoding - Simple Models}
+\subsection{Neural Encoding - Simple Models}e firing rate, 
+
+We  consider the case where a response is a single spike. We want to determine $P(R\vert S) \rightarrow r(t)$, where $r(t)$ is the firing rate, given a stimulus $s$.
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Simplest possible model: $r(t) = \phi s(t-\tau)$)}
+		\includegraphics[width=0.9\textwidth]{simplest-model}
+	\end{center}
+\end{figure}
+
+What about a linear filter?
+
+\begin{align*}
+	r(t) =& \sum_{i=1}^{n} s_{t-i} f_i \text{, or spatial filtering} \numberthis \label{eq:linear:filter}\\
+	r(x,y) =& \sum_{x^\prime=-n,y^\prime=-n}^{n,n}s_{x-x^\prime,y-y^\prime} f_{x^\prime,y^\prime} \text{, as in Figure \ref{fig:rf1}}
+\end{align*}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Receptive Field]{Receptive Field: (\subref{fig:rf1}) is a cartoon view, (\subref{fig:rf2}) shows the filter as a difference between two Gaussians; (\subref{fig:rf4}) shows the effect of applying the filter to (\subref{fig:rf3}.)}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Cartoon}\label{fig:rf1}
+			\includegraphics[width=0.9\textwidth]{receptive-field1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Detailed view}\label{fig:rf2}
+			\includegraphics[width=0.9\textwidth]{receptive-field2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Taj Mahal}\label{fig:rf3}
+			\includegraphics[width=0.9\textwidth]{receptive-field3}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Filtered Taj Mahal, showing edges only}\label{fig:rf4}
+			\includegraphics[width=0.9\textwidth]{receptive-field4}
+		\end{subfigure}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Spatiotemporal filtering]{Spatiotemporal filtering. $r_{x,y}(t)=\int dx^\prime dy^\prime d\tau f(x^\prime,y^\prime,\tau) s((x-x^\prime,y-y^\prime,t-\tau)$}
+	\includegraphics[width=0.9\textwidth]{spatio--temporal-filtering}
+\end{figure}
+
+Linear filters cannot be the full picture, however, as they have a few limitations:
+\begin{itemize}
+	\item they can give rise to a negative firing rate!
+	\item they can increase indefinitely!
+\end{itemize} 
+We need to impose a non-linearity, so \eqref{eq:linear:filter} becomes:
+\begin{align*}
+	r(t) =& g\big(\sum_{i=1}^{n} s_{t-i} f_i\big) 
+\end{align*}
+
+\begin{figure}[H]
+	\caption{Filter showing effect of saturating non-linearity}
+	\includegraphics[width=0.9\textwidth]{saturated}
+\end{figure}
+
 \subsection{Neural Encoding - Feature Selection}
 \subsection{Neural Encoding - Variability}
 \section{Extracting Information from Neurons}\label{sec:week3}
