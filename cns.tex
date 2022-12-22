@@ -51,7 +51,7 @@
 \maketitle
 
 \begin{abstract}
-My notes from Computational Neuroscience course
+My notes from Computational Neuroscience course\cite{coursera2017cns}, which provides an introduction to basic computational methods for understanding what nervous systems do and for determining how they function.
 \end{abstract}
 
 \tableofcontents
@@ -206,7 +206,7 @@ During this course, we will talk about:
 			\includegraphics[width=\textwidth]{movie-firings}
 		\end{subfigure}
 		\begin{subfigure}[to]{0.45\textwidth}
-			\caption{Look at 20 retinal ganglion cells. Each cell is reasonably consistent in time. Each cell is responsible for encoding some set of features, and different neurons encode different features. R \& P have some features in common.}
+			\caption{Look at 20 retinal ganglion cells. Each cell is reasonably consistent in time. Each cell is responsible for encoding some set of features, and different neurons encode different features. R \& P have some features in common.}\label{fig:movie-firings-20}
 			\includegraphics[width=\textwidth]{movie-firings-20}
 		\end{subfigure}
 	\end{center}
@@ -405,6 +405,9 @@ We select some subset of features that are relevant to a decision: $r(t)=g(f_1*s
 \end{figure}
 
 \subsection{Neural Encoding - Variability}
+
+There are a couple of things in Figure \ref{fig:movie-firings-20} that we still need to address: we modeled only a time varying firing rate, so thee are hidden assumptions about the rates at which signals and responses vary. There appears to be some fins structure that we have missed.
+
 \section{Extracting Information from Neurons}\label{sec:week3}
 
 \subsection{Neural Decoding and Signal Detection Theory}
