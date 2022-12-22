@@ -31,9 +31,22 @@
 \author{Simon Crase}
 
 \begin{document}
-\newacronym{gls:ML}{ML\glsadd{gls:mlm}}{\Gls{gls:mlm}}
+	
+\newacronym{gls:EEG}{EEG\glsadd{gls:eeg}}{\Gls{gls:eeg}}
+
+\newacronym{gls:fMRI}{fMRI\glsadd{gls:fmri}}{\Gls{gls:fmri}}
 
 \newacronym{gls:MAP}{MAP\glsadd{gls:mpm}}{\Gls{gls:mpm}}
+
+\newacronym{gls:ML}{ML\glsadd{gls:mlm}}{\Gls{gls:mlm}}
+
+\newglossaryentry{gls:eeg}{
+	name={Electroencephalography},
+	description={a method to record an electrogram of the spontaneous electrical activity of the brain. The biosignals detected by EEG have been shown to represent the postsynaptic potentials of pyramidal neurons in the neocortex and allocortex.[1] It is typically non-invasive, with the EEG electrodes placed along the scalp (commonly called "scalp EEG") using the International 10-20 system, or variations of it. Electrocorticography, involving surgical placement of electrodes, is sometimes called "intracranial EEG". Clinical interpretation of EEG recordings is most often performed by visual inspection of the tracing or quantitative EEG analysis.\cite{enwiki:1128901597}}}
+
+\newglossaryentry{gls:fmri}{
+	name={Functional magnetic resonance imaging},
+	description={Functional magnetic resonance imaging or functional MRI (fMRI) measures brain activity by detecting changes associated with blood flow. This technique relies on the fact that cerebral blood flow and neuronal activation are coupled. When an area of the brain is in use, blood flow to that region also increases\cite{enwiki:1124875371}}}
 
 \newglossaryentry{gls:mlm}{
 	name={maximum likelihood},
@@ -47,7 +60,8 @@
 \newglossaryentry{gls:rf}{
 	name={Receptive Field},
 	description={Specific properties of a sensory stimulus that generate a strong response from the cell}}
-	
+
+
 \maketitle
 
 \begin{abstract}
@@ -112,11 +126,11 @@ operation of neurons and networks in the brain
 \end{figure}
 
 \subsection{Computational Neuroscience Mechanistic and Interpretive Models}
-
+TBP
 \subsection{The Electrical Personality of Neurons}
-
+TBP
 \subsection{Making Connections - Synapses}
-
+TBP
 \subsection{Time to Network - Brain Areas and their Function}
 
 \begin{figure}[H]
@@ -156,7 +170,7 @@ During this course, we will talk about:
 \end{itemize}
 
 \begin{figure}[H]
-	\caption[Recording from the Brain]{Recording from the Brain. (\subref{fig:rb1}) \& (\subref{fig:rb2}) fMRI: resolution $1\;mm^3$; response is averaged over many neurons, and is slow. (\subref{fig:rb3}) EEG: response is averaged over many neurons; EEG is faster than fMRI, but noisy. (\subref{fig:rb4}) \& (\subref{fig:rb5}) Electrode Arrays: good if we have access to tissue directly} \label{fig:recording} (\subref{fig:rb6} Calcium Imaging. Cells have markers that change the colour of fluorescence as calcium levels change in response to neural activity.)
+	\caption[Recording from the Brain]{Recording from the Brain. (\subref{fig:rb1}) \& (\subref{fig:rb2}) \gls{gls:fMRI}: resolution $1\;mm^3$; response is averaged over many neurons, and is slow. (\subref{fig:rb3}) \gls{gls:EEG}: response is averaged over many neurons; EEG is faster than fMRI, but noisy. (\subref{fig:rb4}) \& (\subref{fig:rb5}) Electrode Arrays: good if we have access to tissue directly} \label{fig:recording} (\subref{fig:rb6} Calcium Imaging. Cells have markers that change the colour of fluorescence as calcium levels change in response to neural activity.)
 	\begin{subfigure}[b]{0.3\textwidth}
 		\caption{}\label{fig:rb1}
 		\includegraphics[width=0.9\textwidth]{fMRI}
@@ -692,13 +706,54 @@ Make sure we have covered
 	I(\vec{x}) =& \sum_{i}a_i \phi_i(\vec{x}) + \epsilon(\vec{x})\\
 	E =& \mathlarger \sum_{\vec{x}}\big[I(\vec{x})-\sum_{i}a_i \phi_i(\vec{x})\big]^2 + \lambda \sum_{i}C(a_i)
 \end{align*}
+
+
 \section{Computing in Carbon}\label{sec:week5}
+
+\subsection{Modeling Neurons}
+TBP
+
+\subsection{Spikes}
+TBP
+
+\subsection{Simplified Model Neurons}
+TBP
+
+\subsection{A Forest of Dendrites}
+TBP
 
 \section{Computing with Networks}\label{sec:week6}
 
+\subsection{Making Connections between Neurons}
+TBP
+
+\subsection{Introduction to Network Models}
+TBP
+
+\subsection{Recurrent Networks}
+TBP
+
 \section{Networks that Learn}\label{sec:week7}
 
+\subsection{Synaptic Plasticity, Hebb's Rule, and Statistical Learning}
+TBP
+
+\subsection{Introduction to Unsupervised Learning}
+TBP
+
+\subsection{Sparse Coding \& Predictive Coding}
+TBP
+
 \section{Learning from Supervision \& Rewards}\label{sec:week8}
+
+\subsection{Neurons as Classifiers and Supervised Learning}
+TBP
+
+\subsection{Reinforcement Learning: Predicting Rewards}
+TBP
+
+\subsection{Reinforcement Learning: Time for Action!}
+TBP
 
 \appendix
 
