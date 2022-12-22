@@ -376,7 +376,7 @@ In each of these cases we have a vector that represents a feature, and we projec
 
 
 \begin{figure}[H]
-	\caption[Examples of IO curves]{Examples of IO curves. The left hand curve shows no impact from the stimulus; either there is none, or we have chosen the wrong vector.}
+	\caption[Examples of IO curves]{Examples of IO curves. The left hand curve shows no impact from the stimulus; either there is none, or we have chosen the wrong vector.}\label{fig:sample-io-curves}
 	\includegraphics[width=0.9\textwidth]{sample-io-curves}
 \end{figure}
 
@@ -407,6 +407,79 @@ We select some subset of features that are relevant to a decision: $r(t)=g(f_1*s
 \subsection{Neural Encoding - Variability}
 
 There are a couple of things in Figure \ref{fig:movie-firings-20} that we still need to address: we modeled only a time varying firing rate, so thee are hidden assumptions about the rates at which signals and responses vary. There appears to be some fins structure that we have missed.
+
+When have you found a good feature or features?
+\begin{itemize}
+	\item When the input/output curve over your variable is interesting
+	\item How to quantify interesting?
+\end{itemize}
+
+\subsubsection{Quantifying Interesting}
+In Figure \ref{fig:sample-io-curves}, the left hand curve is boring, the right interesting. Can we exploit the tuning curve and find a $f$ that maximizes the difference between the prior and posterior?
+
+\begin{align*}
+	P(spike\vert s_f) =&\frac{ P(s_f\vert spike) P_({spike})}{P(s_f)}
+\end{align*}
+ We introduce the Kullback-Leibler divergence
+\begin{align*}
+		D_{KL}(P(s),Q(s))\triangleq&\mathbb{E}_{P(s)} \Big(\log_2 \frac{P(s)}{Q(s)}\Big) \text{, and maximize}\\
+		D_{KL}(P(s_f|spike),P(s_f))
+\end{align*}
+
+\begin{figure}[H]
+	\caption[Maximally Informative Dimensions]{Maximally Informative Dimensions: choose filter to maximize $K_{DL}$ between spike-conditioned and prior distributions. This turns out to be equivalent to maximizing mutual information-\eqref{eq:mutual:information}. Notice that the stimulus is not necessarily Gaussian.}
+	\includegraphics[width=0.9\textwidth]{maximally-informative-dimensions}
+\end{figure}
+This technique:
+\begin{itemize}
+	\item does not depend on white noise inputs;
+	\item can be used for deriving models from natural stimuli;
+	\item but is not guaranteed to give rise to a unique maximum.
+\end{itemize}
+
+Summary--finding relevant features:
+\begin{enumerate}
+	\item single filter determined by the conditional average;
+	\item  a family of filters derived using PCA;
+	\item information theoretic methods use the whole distribution.
+\end{enumerate}
+
+\subsubsection{Modelling the noise}
+
+We can model spikes that may or may not occur with a series of time bins, each of which may or may not contain a spike. In the limit where there are many bons we can use the Poisson distribution.
+
+\begin{align*}
+	P_T(k) =& (rT)^k\frac{\exp(-rT)}{k!}\\
+	<k> =& rT\\
+	var(k) =& rT\\
+	F =& 1 \text{, Fano factor}\\
+	P(T)=&r \exp(-rT)
+\end{align*}
+
+\begin{figure}[H]
+	\caption[Poisson or not?]{Poisson or not? Monkey is watching a movie. Rate is variable. Split time into bins and plot mean number of spikes and variance in each bin. Firing rate changes, but Fano remains close to 1.}
+	\includegraphics[width=0.9\textwidth]{poisson-or-not}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Interspike Interval Distributions]{Interspike Interval Distributions. A typical cortical neuron is connected to 10,000 others: average input may be zero, but there will be some jitter. Right hand image zooms in on short intervals, which are no longer Poisson for a good reason: a neuron's firing rate is limited by physics.}
+	\includegraphics[width=0.9\textwidth]{interspike-intervals}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Generalized Linear Model]{Generalized Linear Model\cite{pillow2008spatio}. $P(spike\;at\;t) \propto \exp(f_1*s + h_1*r)$. The exponential nonlinearity allows all parameters to be determined using an optimization scheme that is globally convergent.}
+	\includegraphics[width=0.9\textwidth]{generalized-linear-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Coupled Spiking Model]{Coupled Spiking Model\cite{pillow2008spatio}. $P(spike\;at\;t) \propto \exp(f_1*s + h_1*r_1+h_2*r_2)$.}
+	\includegraphics[width=0.9\textwidth]{coupled-spiking-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Time Rescaling Theorem]{The Time Rescaling Theorem\cite{brown2002time} allows us to determine whether we have captured everything we can from the inputs to out model. Scale output time intervals by firing rate that model predicted. If predicted rate accounts for all the influences on the firing, then scaled intervals should be distributed like a pure Poisson process with an effective rate of 1.} 
+	\includegraphics[width=0.9\textwidth]{time-rescaling-thorem}
+\end{figure}
 
 \section{Extracting Information from Neurons}\label{sec:week3}
 
@@ -533,7 +606,7 @@ Mutual Information: total entropy - average noise entropy.
 
 \begin{align*}
 	I(R,S) =& -\sum_r p[r] \log p[r] - \sum_s p(s)\big[- \sum_r p[r \vert s] \log p[r \vert s]\big]\\
-	=& H[R] - \sum_s p(s) H[R\vert s]\\
+	=& H[R] - \sum_s p(s) H[R\vert s] \numberthis \label{eq:mutual:information}\\
 \end{align*}
 \begin{align*}
 	I[S,R] \triangleq D_{KL}&\big[P(R,S),P(R)P(S)\big]\\
