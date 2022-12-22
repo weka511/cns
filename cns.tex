@@ -268,7 +268,7 @@ During this course, we will talk about:
 	\end{center}
 \end{figure}
 
-\subsection{Neural Encoding - Simple Models}e firing rate, 
+\subsection{Neural Encoding - Simple Models}
 
 We  consider the case where a response is a single spike. We want to determine $P(R\vert S) \rightarrow r(t)$, where $r(t)$ is the firing rate, given a stimulus $s$.
 
@@ -279,7 +279,7 @@ We  consider the case where a response is a single spike. We want to determine $
 	\end{center}
 \end{figure}
 
-What about a linear filter?
+\subsubsection{What about a linear filter?}
 
 \begin{align*}
 	r(t) =& \sum_{i=1}^{n} s_{t-i} f_i \text{, or spatial filtering} \numberthis \label{eq:linear:filter}\\
@@ -313,14 +313,17 @@ What about a linear filter?
 	\includegraphics[width=0.9\textwidth]{spatio--temporal-filtering}
 \end{figure}
 
-Linear filters cannot be the full picture, however, as they have a few limitations:
+\subsubsection{Linear filters cannot be the full picture}
+
+Linear filters have a few limitations:
 \begin{itemize}
 	\item they can give rise to a negative firing rate!
 	\item they can increase indefinitely!
 \end{itemize} 
+
 We need to impose a non-linearity, so \eqref{eq:linear:filter} becomes:
 \begin{align*}
-	r(t) =& g\big(\sum_{i=1}^{n} s_{t-i} f_i\big) 
+	r(t) =& g\big(\sum_{i=1}^{n} s_{t-i} f_i\big) \numberthis \label{eq:non-linearity}
 \end{align*}
 
 \begin{figure}[H]
@@ -329,6 +332,78 @@ We need to impose a non-linearity, so \eqref{eq:linear:filter} becomes:
 \end{figure}
 
 \subsection{Neural Encoding - Feature Selection}
+How to find the components of \eqref{eq:non-linearity}? Our problem is dimensionality! We want to sample the responses of the system to many stimuli, so we can characterize what it is about the input that drives responses. We will start with a very high dimensional description and pick out a small set of relevant dimensions.
+
+\begin{figure}[H]
+	\caption[Dimensionality Reduction]{Dimensionality Reduction: $P(response|stimulus)\rightarrow P(response\vert s_1,s_2,...s_n)$}
+	\includegraphics[width=0.9\textwidth]{dimenionality-reduction}
+\end{figure}
+
+Gaussian white noise is a useful method.
+
+\begin{figure}[H]
+	\caption[Determining multiple features from white noise]{Determining multiple features from white noise. This allows us to create a Gaussian prior. This will be a multivariate Gaussian, no matter which axes we use.}\label{fig:determining-multiple-features}
+	\includegraphics[width=0.9\textwidth]{white-noise}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Spike Conditioned Distribution]{Spike Conditioned Distribution. We project onto a vector representing mean of spike-conditioned points}\label{fig:spike:conditioned}
+	\includegraphics[width=0.9\textwidth]{spike-conditioned-distribution}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Reverse Correlation: the spike triggered average]{Reverse Correlation: the spike triggered average. Every time there is a spike, grab the portion of signal that preceded it, forming an ensemble, which we average. This represents what is common to stimuli that triggered response.}
+	\includegraphics[width=0.9\textwidth]{reverse-correlation}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Spike Triggered average for vector]{Spike Triggered average for vector, maybe in image that has been turned into a single vector}
+	\includegraphics[width=0.9\textwidth]{sta-image}
+\end{figure}
+
+In each of these cases we have a vector that represents a feature, and we project the stimulus onto this unit vector. How do we compute the input-output curve, the function $g$ from \eqref{eq:non-linearity}? 
+
+\begin{align*}
+	P(spike\vert stimulus) \rightarrow& P(spike\vert s_1) \text{. This can be found using Bayes' rule.}\\
+	 P(spike\vert s_1) =& \frac{\overbrace{P(s_1\vert spike)}^\text{Factor from Figure \ref{fig:factors:bayes}} \cdot \overbrace{P(spike)}^\text{Prior from Figure \ref{fig:determining-multiple-features}}}{\underbrace{P(s_1)}_\text{Factor from Figure \ref{fig:factors:bayes}}}
+\end{align*}
+
+
+\begin{figure}[H]
+	\caption[Factors used in Bayes Rule]{Factors used in Bayes Rule}\label{fig:factors:bayes}
+	\includegraphics[width=0.9\textwidth]{compondents-of bayes}
+\end{figure}
+
+
+\begin{figure}[H]
+	\caption[Examples of IO curves]{Examples of IO curves. The left hand curve shows no impact from the stimulus; either there is none, or we have chosen the wrong vector.}
+	\includegraphics[width=0.9\textwidth]{sample-io-curves}
+\end{figure}
+
+\subsubsection{High-dimensional Feature Selection}
+
+We select some subset of features that are relevant to a decision: $r(t)=g(f_1*s, f_2*x,...)$. How can we extract more information from Figure \ref{fig:spike:conditioned}?
+
+\begin{figure}[H]
+	\caption[High-dimensional Feature Selection]{High-dimensional Feature Selection. We could extract higher order moments, or the covariance. Can use PCA to reduce dimensionality.}
+	\includegraphics[width=0.9\textwidth]{spike-conditioned-distribution-covariance}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Most faces can be reconstructed from a set of 7-8 eigenfaces]{Although it takes a lot of pixels to represent a face, there is a lot structure, and most faces can be reconstructed from a set of 7-8 principle components, known as ``eigenfaces''.}
+	\includegraphics[width=0.9\textwidth]{eigenfaces}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Use of PCA to sort out spikes]{Use of PCA to sort out spikes from two or more neurons recorded from a single electrode}
+	\includegraphics[width=0.9\textwidth]{pca-spike-sorting}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Finding Interesting Features in the Retina using PCA]{Finding Interesting Features in the Retina using PCA. Each blue dot represents 100 steps of a white-noise flicker. Spike triggered average is zero: we have two features, one which recognizes light turning on, the other off.}
+	\includegraphics[width=0.9\textwidth]{finding-interestimg-features}
+\end{figure}
+
 \subsection{Neural Encoding - Variability}
 \section{Extracting Information from Neurons}\label{sec:week3}
 
