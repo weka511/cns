@@ -40,6 +40,8 @@
 
 \newacronym{gls:ML}{ML\glsadd{gls:mlm}}{\Gls{gls:mlm}}
 
+\newacronym{gls:EPSP}{EPSP}{Excitatory Post Synaptic Potential}
+
 \newglossaryentry{gls:eeg}{
 	name={Electroencephalography},
 	description={a method to record an electrogram of the spontaneous electrical activity of the brain. The biosignals detected by EEG have been shown to represent the postsynaptic potentials of pyramidal neurons in the neocortex and allocortex.[1] It is typically non-invasive, with the EEG electrodes placed along the scalp (commonly called "scalp EEG") using the International 10-20 system, or variations of it. Electrocorticography, involving surgical placement of electrodes, is sometimes called "intracranial EEG". Clinical interpretation of EEG recordings is most often performed by visual inspection of the tracing or quantitative EEG analysis.\cite{enwiki:1128901597}}}
@@ -227,15 +229,19 @@ What are the $RF_i$ that minimize the total squared pixelwise errors between $I$
 
 \subsection{The Electrical Personality of Neurons}
 
-The neuron doctrine:
+Originally there were two competing hypothesis:
 \begin{itemize}
-	\item the neuron is the fundamental structural \& functional unit of the brain;
-	\item neurons are discrete cells and not continuous with other cells;
-	\item information flows from the dendrites to the axon via the cell body.
+	\item the reticular hypothesis supposed that the brain was a continuous network;
+	\item the \emph{neuron doctrine}:
+	\begin{itemize}
+		\item the neuron is the fundamental structural \& functional unit of the brain;
+		\item neurons are discrete cells and not continuous with other cells;
+		\item information flows from the dendrites to the axon via the cell body.
+	\end{itemize}
 \end{itemize}
 
 \begin{figure}[H]
-	\caption[The idealized Neuron]{The idealized Neuron}
+	\caption[The idealized Neuron]{The idealized Neuron. The \gls{gls:EPSP}s are summed: if the sum reaches a threshold, we get an action potential, also known as a spike.}
 	\includegraphics[width=0.9\textwidth]{idealized-neuron}
 \end{figure}
 
@@ -245,7 +251,7 @@ The neuron doctrine:
 \end{figure}
 
 \begin{itemize}
-	\item  A “leaky bag of charged liquid”
+	\item  A ``leaky bag of charged liquid''
 	\item Contents of the neuron enclosed within a cell membrane
 	\item Cell membrane is a lipid bilayer
 	\begin{itemize}
@@ -260,62 +266,57 @@ The neuron doctrine:
 \end{figure}
 
 \begin{itemize}
-	\item Each neuron maintains a potential difference across its membrane
-	\item Inside is about –70 mV relative to outside
-	\item $Na^+$ \& $Cl^-$ higher outside;
-	$K^+$ and organic anions $A^-$	higher inside
-	\item Ionic pump maintains -70 mV difference by expelling $Na^+$ out
-	and allowing$K^+$ ions in
+	\item Each neuron maintains a potential difference across its membrane;
+	\item Inside is about –70 mV relative to outside;
+	\begin{itemize}
+		\item sodium and chloride higher outside
+		\item potassium and organic anions [$A^-$] higher inside
+	\end{itemize}
+	\item Ionic pump maintains -70 mV difference by expelling [$Na^+$] 
+	and allowing [$K^+$] ions in. A lot of the energy that we consume is used to operate ionic pump.
 \end{itemize}
 
 How can the electrical potential be changed in local regions of a neuron?
 
+\begin{figure}[H]
+	\caption[Ionic Channels: the Gate Keepers]{Ionic Channels: the Gate Keepers.  Ionic channels  are selective and 	allow only specific ions to pass through}\label{fig:ionic-channel}
+	\includegraphics[width=0.9\textwidth]{ionic-channel}
+\end{figure}
+
 \begin{itemize}
-	\item Ionic channels in membranes are 	proteins that are selective and
-	allow only specific ions to pass 	through
-	\item E.g. Pass Na + but not K + or Cl -
+	\item Ionic channels in membranes are proteins that are selective and allow only specific ions to pass through--Figure \ref{fig:ionic-channel}
+	\item E.g. Pass $Na^+$ but not $K^+$ or $Cl^-$.
 	\item Ionic channels are gated
 	\begin{itemize}
-		\item 	Voltage-gated: Probability of 	opening depends on membrane voltage
-		\item Chemically-gated: Binding to a 	chemical causes channel to open
+		\item 	Voltage-gated: Probability of opening depends on membrane voltage
+		\item Chemically-gated: Binding to a chemical causes channel to open--Figure \ref{fig:signalling}
 		\item Mechanically-gated: Sensitive to 	pressure or stretch
 	\end{itemize}
 \end{itemize}
 
 \begin{figure}[H]
-	\caption[Gated Channels allow Neuronal Signaling]{Gated Channels allow Neuronal Signaling}
+	\caption[Gated Channels allow Neuronal Signaling]{Gated Channels allow Neuronal Signaling. The junctions between neurons are known as ``synapses''}\label{fig:signalling}
 	\includegraphics[width=0.9\textwidth]{signalling}
 \end{figure}
 
 \begin{itemize}
-	\item Inputs from other neurons $\rightarrow$
-	chemically-gated channels (at
-	“synapses”) open  $\rightarrow$ Changes in
-	local membrane potential
-	\item This in turn causes opening/closing
-	of voltage-gated channels in
-	dendrites, body, and axon, resulting
-	in depolarization (positive change
-	in voltage) or hyperpolarization
-	(negative change in voltage)
-	\item Strong enough depolarization
-	causes a spike or “action potential”
+	\item Inputs from other neurons $\rightarrow$ 	chemically-gated channels (at
+	``synapse'') open  $\rightarrow$ Changes in local membrane potential
+	\item This in turn causes opening/closing 	of voltage-gated channels in 	dendrites, body, and axon, resulting 	in depolarization (positive change 	in voltage) or hyperpolarization	(negative change in voltage)
+	\item Strong enough depolarization	causes a spike or “action potential”
 \end{itemize}
+
 \begin{figure}[H]
-	\caption[The Output of a Neuron: Action Potential (Spike)]{The Output of a Neuron: Action Potential (Spike). Voltage-gated channels cause action potentials (spikes) Strong depolarization opens Na + channels, causing rapid
-		Na + influx and more channels to open, until they inactivate. K + outflux restores membrane potential}
-	\includegraphics[width=0.9\textwidth]{action-potential}
+	\caption[The Output of a Neuron: Action Potential (Spike)]{The Output of a Neuron: Action Potential (Spike). Voltage-gated channels cause action potentials (spikes) Strong depolarization opens $Na^+$ channels, causing rapid $Na^+$ influx and more channels to open, until they inactivate; $K^+$ outflux restores membrane potential. The shape of the action potential is stereotypical, so no information is propagated by the shape.}
+	\includegraphics[width=0.7\textwidth]{action-potential}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[Propagation of a Spike along an Axon]{Propagation of a Spike along an Axon}
-	\includegraphics[width=0.9\textwidth]{propagation1}
+	\caption[Propagation of a Spike along an Axon]{Propagation of a Spike along an Axon. At each point, the $Na^+$ rushes in first, followed by the $K^+$ rushing out\cite{krantz2000PsychScholar}}
+	\includegraphics[width=0.7\textwidth]{propagation1}
 \end{figure}
 
-\begin{figure}[H]
-	\caption[Receptive Fields: a Mechanistic Model]{Receptive Fields: a Mechanistic Model}
-	\includegraphics[width=0.9\textwidth]{mech-rf}
-\end{figure}
+
 
 \begin{figure}[H]
 	\caption[Active Wiring: Myelination of Axons]{Active Wiring: Myelination of Axons. Myelin due to oligodendrocytes (glial cells) wrap axons and
@@ -351,16 +352,13 @@ How can the electrical potential be changed in local regions of a neuron?
 
 \begin{figure}[H]
 	\caption[An Excitatory Synapse]{An Excitatory Synapse. Input spike  $\rightarrow$
-		Neurotransmitter
-		release (e.g.,
+		Neurotransmitter 	release (e.g.,
 		Glutamate)  $\rightarrow$
 		Binds to ion channel
 		receptors $\rightarrow$
 		Ion channels open $\rightarrow$
 		Na+ influx  $\rightarrow$
-		Depolarization due to
-		EPSP (excitatory
-		postsynaptic potential)}
+		Depolarization due to \gls{gls:EPSP}}
 	\includegraphics[width=0.9\textwidth]{synapse4}
 \end{figure}
 
