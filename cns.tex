@@ -130,7 +130,7 @@ operation of neurons and networks in the brain
 	\includegraphics[width=\textwidth]{receptive-field-cat-bars}
 \end{figure}
 
-\subsubsection{Receptive Fields: Descriptive Models}
+\subsubsection{Receptive Fields: a Descriptive Model}
 
 \begin{figure}[H]
 	\caption{Receptive Fields in the Retina}
@@ -153,12 +153,68 @@ operation of neurons and networks in the brain
 \end{figure}
 
 \begin{figure}[H]
-	\caption[How are these oriented receptive fields obtained?]{How are these oriented receptive fields obtained from center-surround receptive fields?}
+	\caption[How are these oriented receptive fields obtained?]{How are these oriented receptive fields obtained from center-surround receptive fields?}\label{fig:rf-shape}
 	\includegraphics[width=\textwidth]{orientation-preference2}
 \end{figure}
 
 \subsection{Computational Neuroscience Mechanistic and Interpretive Models}
+
+\subsubsection{Receptive Fields: a Mechanistic Model}
 TBP
+
+\subsubsection{Receptive Fields: an Interpretive Model}
+Why are receptive fields in V1 shaped as in Figure \ref{fig:rf-shape}?
+
+\begin{figure}[H]
+	\caption[Efficient Coding Hypothesis]{Efficient Coding Hypothesis: suppose the
+		goal is to represent images as faithfully and efficiently as possible using neurons with receptive fields $RF_1, RF_2$, etc}
+	\begin{subfigure}[t]{0.2\textwidth}
+		\caption{$RF_1$}
+		\includegraphics[width=0.7\textwidth]{rf1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.2\textwidth}
+		\caption{$RF_2$}
+		\includegraphics[width=\textwidth]{rf2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.2\textwidth}
+		\caption{$RF_3$}
+		\includegraphics[width=\textwidth]{rf3}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.2\textwidth}
+		\caption{$RF_4$}
+		\includegraphics[width=0.5\textwidth]{rf4}
+	\end{subfigure}
+\end{figure}
+
+Given image $I$, we can reconstruct it using neural responses $\{r_i\}$.
+\begin{align*}
+	\hat{I} =& \sum RF_i r_i
+\end{align*}
+
+What are the $RF_i$ that minimize the total squared pixelwise errors between $I$ and $\hat{I}$ and are as independent as possible?
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Interpretive Model of Receptive Fields]{Interpretive Model of Receptive Fields: start out with random $RF_i$ and run your efficient coding algorithm on natural image patches}
+		\begin{subfigure}[t]{0.9\textwidth}
+			\begin{center}
+				\caption{Natural Images}
+				\includegraphics[width=0.7\textwidth]{natural-image}
+			\end{center}
+		\end{subfigure}
+		\begin{subfigure}[t]{\textwidth}
+			\caption{Receptive Fields from Natural Images}
+			\includegraphics[width=\textwidth]{rf-natural}
+		\end{subfigure}
+		\begin{subfigure}[t]{\textwidth}
+			\caption{Receptive Fields from V1, after Figure \ref{fig:rf-shape}}
+			\includegraphics[width=\textwidth]{orientation-preference2}
+		\end{subfigure}
+	\end{center}
+\end{figure}
+
+ The brain may be trying to find faithful and efficient representations of an animal’s natural environment\cite{olshausen1997sparse,bell1997independent,rao1999predictive}
+
 \subsection{The Electrical Personality of Neurons}
 TBP
 \subsection{Making Connections - Synapses}
