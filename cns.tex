@@ -32,15 +32,24 @@
 
 \begin{document}
 	
+
+
 \newacronym{gls:EEG}{EEG\glsadd{gls:eeg}}{\Gls{gls:eeg}}
 
+\newacronym{gls:EPSP}{EPSP}{Excitatory Post Synaptic Potential}
+
 \newacronym{gls:fMRI}{fMRI\glsadd{gls:fmri}}{\Gls{gls:fmri}}
+
+\newacronym{gls:LTD}{LTD\glsadd{gls:ltd}}{\Gls{gls:ltd}}
+
+\newacronym{gls:LTP}{LTP\glsadd{gls:ltp}}{\Gls{gls:ltp}}
 
 \newacronym{gls:MAP}{MAP\glsadd{gls:mpm}}{\Gls{gls:mpm}}
 
 \newacronym{gls:ML}{ML\glsadd{gls:mlm}}{\Gls{gls:mlm}}
 
-\newacronym{gls:EPSP}{EPSP}{Excitatory Post Synaptic Potential}
+\newacronym{gls:STDP}{STDP}{Spike-Timing Dependent Plasticity}
+
 
 \newglossaryentry{gls:eeg}{
 	name={Electroencephalography},
@@ -49,6 +58,15 @@
 \newglossaryentry{gls:fmri}{
 	name={Functional magnetic resonance imaging},
 	description={Functional magnetic resonance imaging or functional MRI (fMRI) measures brain activity by detecting changes associated with blood flow. This technique relies on the fact that cerebral blood flow and neuronal activation are coupled. When an area of the brain is in use, blood flow to that region also increases\cite{enwiki:1124875371}}}
+
+\newglossaryentry{gls:ltd}{
+	name={Long Term Depression},
+	description={Experimentally observed decrease in synaptic strength that lasts for hours or days}}
+
+\newglossaryentry{gls:ltp}{
+	name={Long Term Potentiation},
+	description={Experimentally observed increase in synaptic strength that lasts for hours or days}
+}
 
 \newglossaryentry{gls:mlm}{
 	name={maximum likelihood},
@@ -332,7 +350,7 @@ How can the electrical potential be changed in local regions of a neuron?
 \subsection{Making Connections - Synapses}
 \begin{figure}[H]
 	\caption[Enter the Synapse]{What happens to the spike 	(action potential) when	it reaches the 	end of an axon?	Enter the Synapse}
-	\includegraphics[width=0.9\textwidth]{mech-rf}
+	\includegraphics[width=0.9\textwidth]{enter-synapse}
 \end{figure}
 
 \begin{figure}[H]
@@ -340,6 +358,7 @@ How can the electrical potential be changed in local regions of a neuron?
 	\includegraphics[width=0.9\textwidth]{synapse1}
 \end{figure}
 
+Why two mechanisms? Why would we evolve slow chemical synapses in addition to fast electrical ones? One possible answer is that we can adjust strength of coupling by changing the number of vesicles; it has been suggested that chemical synapses are the basis for learning and memory.
 \begin{figure}[H]
 	\caption[Distribution of synapses on a real neuron]{Distribution of synapses on a real neuron}
 	\includegraphics[width=0.9\textwidth]{synapse2}
@@ -352,28 +371,31 @@ How can the electrical potential be changed in local regions of a neuron?
 
 \begin{figure}[H]
 	\caption[An Excitatory Synapse]{An Excitatory Synapse. Input spike  $\rightarrow$
-		Neurotransmitter 	release (e.g.,
-		Glutamate)  $\rightarrow$
-		Binds to ion channel
-		receptors $\rightarrow$
-		Ion channels open $\rightarrow$
-		Na+ influx  $\rightarrow$
-		Depolarization due to \gls{gls:EPSP}}
+		Neurotransmitter 	release (e.g., Glutamate)  $\rightarrow$ Binds to ion channel receptors $\rightarrow$ Ion channels open $\rightarrow$ $Na^+$ influx  $\rightarrow$ 	Depolarization due to \gls{gls:EPSP}}
 	\includegraphics[width=0.9\textwidth]{synapse4}
 \end{figure}
 
 \begin{itemize}
 	\item The Synapse Doctrine: Synapses are the basis for memory and learning
-	\item Hebbian Plasticity: If neuron A repeatedly takes part in firing neuron B, then the synapse from A to B is strengthened
-	\item Neurons that fire together wire together!
-	\item Long Term Potentiation (LTP):  Experimentally observed increase in synaptic strength
-	that lasts for hours or days
-	\item Long Term Depression (LTD): Experimentally observed decrease in synaptic strength
-	that lasts for hours or days
+	\item Hebbian Plasticity--Figure \ref{fig:hebbian-plasticity}
+	\item \acrfull{gls:LTP}:  \glsdesc{gls:ltp}
+	\item \acrfull{gls:LTD}:  \glsdesc{gls:ltd}
 \end{itemize}
 
+\glsdesc{gls:ltd}
+
 \begin{figure}[H]
-	\caption[Spike-Timing Dependent Plasticity (STDP)]{Spike-Timing Dependent Plasticity (STDP)}
+	\caption[Hebbian Plasticity]{Hebbian Plasticity: if neuron A repeatedly takes part in firing neuron B, then the synapse from A to B is strengthened; neurons that fire together wire together!.}\label{fig:hebbian-plasticity}
+	\includegraphics[width=0.9\textwidth]{hebbian-plasticity}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Synaptic Plasticity depends on Spike Timing]{Synaptic Plasticity depends on Spike Timing. LTP/LTD depends on relative timing of input \& output spikes.}
+	\includegraphics[width=0.9\textwidth]{ltp-ltd}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[\acrfull{gls:STDP}]{\acrfull{gls:STDP})\cite{bi2001synaptic}}
 	\includegraphics[width=0.9\textwidth]{stdp}
 \end{figure}
 
