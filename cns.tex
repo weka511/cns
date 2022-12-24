@@ -981,7 +981,74 @@ Make sure we have covered
 \section{Computing in Carbon}\label{sec:week5}
 
 \subsection{Modeling Neurons}
-TBP
+
+\begin{figure}[H]
+	\caption[Equivalent Circuit Model]{Equivalent Circuit Model: our goal is to develop a circuit diagram that models a neuron, using Kirchhoff's laws}
+	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Membrane Patch]{Membrane Patch}
+	\includegraphics[width=0.9\textwidth]{membrane-patch}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[The passive membrane]{The passive membrane}
+	\includegraphics[width=0.9\textwidth]{passive-membrane}
+\end{figure}
+
+\begin{align*}
+	I_R + I_C + I_{ext} =& 0 \text{, Kirchhoff's Law}\\
+	V =& I_R R \text{, Ohm's Law}\\
+	I_C =& C \frac{dV}{dt} \text{, lipid bilayer asks as capacitor, plus allows a current to flow.}\\
+	F\frac{dV}{dt} =& -\frac{V}{R} + I_{ext}
+\end{align*}
+\begin{figure}[H]
+	\caption[The Cell has a battery]{The Cell has a battery}
+	\includegraphics[width=0.9\textwidth]{cell-has-battery}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[The cell's battery: the equilibrium potential]{The cell's battery: the equilibrium potential}
+	\includegraphics[width=0.9\textwidth]{equilibrium-potential}
+\end{figure}
+
+Equilibrum is determined by the Nernst potential:
+\begin{align*}
+	E =& \frac{k_B T}{zq}\ln \frac{[inside]}{[outside]} \\
+	F\frac{dV}{dt} =& -\frac{(-V_V_{rest})}{R} + I_{ext}
+	
+\end{align*}
+
+\begin{figure}[H]
+	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
+	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
+	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
+	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
+	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
+	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
+	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+\end{figure}
 
 \subsection{Spikes}
 TBP
