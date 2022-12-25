@@ -1001,8 +1001,9 @@ Make sure we have covered
 	I_R + I_C + I_{ext} =& 0 \text{, Kirchhoff's Law}\\
 	V =& I_R R \text{, Ohm's Law}\\
 	I_C =& C \frac{dV}{dt} \text{, lipid bilayer asks as capacitor, plus allows a current to flow.}\\
-	F\frac{dV}{dt} =& -\frac{V}{R} + I_{ext}
+	F\frac{dV}{dt} =& -\frac{V}{R} + I_{ext} \numberthis \label{eq:1st:neuron:eq}
 \end{align*}
+
 \begin{figure}[H]
 	\caption[The Cell has a battery]{The Cell has a battery}
 	\includegraphics[width=0.9\textwidth]{cell-has-battery}
@@ -1013,42 +1014,62 @@ Make sure we have covered
 	\includegraphics[width=0.9\textwidth]{equilibrium-potential}
 \end{figure}
 
-Equilibrum is determined by the Nernst potential:
+Equilibrium is determined by the Nernst potential:
 \begin{align*}
-	E =& \frac{k_B T}{zq}\ln \frac{[inside]}{[outside]} \\
-	F\frac{dV}{dt} =& -\frac{(-V_V_{rest})}{R} + I_{ext}
-	
+	E =& \frac{k_B T}{zq}\ln \frac{[inside]}{[outside]} \text{, so \eqref{eq:1st:neuron:eq} becomes}\\
+	C\frac{dV}{dt} =& -\frac{(-V-V_{rest})}{R} + I_{ext} \text{, or}\\
+	\tau \frac{dV}{dt} =& -V + V_\infty \text{, where}\\
+	\tau =& R C \text{, and} \\
+	V_\infty \text{ represents the steady state}
 \end{align*}
 
 \begin{figure}[H]
-	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
-	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+	\caption[Example Solution]{Example Solution}
+	\includegraphics[width=0.9\textwidth]{neuron-solution}
 \end{figure}
 
-\begin{figure}[H]
-	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
-	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
-\end{figure}
+
+
+
 
 \begin{figure}[H]
-	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
-	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+	\caption[Currents through Ion Channels]{Currents through Ion channels. }\label{eg:ion-channels}
+	\includegraphics[width=0.9\textwidth]{ion-channels}
 \end{figure}
 
-\begin{figure}[H]
-	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
-	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
-\end{figure}
+Figure \ref{eg:ion-channels} depicts ion channels. There are different types: \begin{itemize}
+	\item voltage dependent; 
+	\item transmitter dependent (synaptic); 
+	\item Ca dependent; 
+	\item mechanosensitive;
+	\item heat sensitive.
+\end{itemize}
+We will focus on voltage sensitivity, and will consider the current through one channel, $I=Vg$, where $g=\frac{1}{R}$ is the conductance of the channel. Different ion channels have different conductances; a given conductance tends to move the membrane potential towards the equilibrium potential for that ion.
+\begin{table}[H]
+	\begin{center}
+		\caption{Examples of equilibrium potentials. Notice that sodium tends to depolarize, and potassium to polarize.}
+		\begin{tabular}{|l|r|} \hline
+			$E_{Na}$&50mV \\ \hline
+			$E_{Ca}$&150mV \\ \hline
+			$E_{K}$&-80mV \\ \hline
+			$E_{Cl}$&-60mV \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
 
 \begin{figure}[H]
-	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
-	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+	\caption[Current through ion channel]{Current through ion channel}
+	\includegraphics[width=0.9\textwidth]{ion-channels3}
 \end{figure}
 
+
 \begin{figure}[H]
-	\caption[Equivalent Circuit Model]{Equivalent Circuit Model}
-	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
+	\caption[What makes a neuron compute?]{What makes a neuron compute? So far everything we have seen is linear. But this figure shows that something else is happening...}
+	\includegraphics[width=0.9\textwidth]{what-makes-neuron-compute}
 \end{figure}
+
+
+
 
 \subsection{Spikes}
 TBP
