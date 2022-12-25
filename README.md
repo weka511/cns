@@ -15,3 +15,6 @@ week3|quiz1.py|Question 1
 week4|tuning.pickle|Data file for assignment
 &nbsp;|quiz4.py|Questions 1, 2
 &nbsp;|poisson.py|Questions 7,8,9
+week5|intfire.py|Questions 16 & 17
+&nbsp;|intfire_noise.py|Question 18
+&nbsp;|membrane.py|Questions 11-15
