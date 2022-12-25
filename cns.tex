@@ -1073,17 +1073,19 @@ We will focus on voltage sensitivity, and will consider the current through one 
 \subsection{Spikes}
 
 \begin{figure}[H]
-	\caption[Excitability arises from non-linearity]{Excitability arises from non-linearity: the conductances depend on the voltage, which gives rise to non-linearity.}
+	\caption[Excitability arises from non-linearity]{Excitability arises from non-linearity. The equivalent circuit depicts the sodium and potassium currents, together with $g_L$, the \emph{leakage current} through the bilayer. If all conductances were constant we'd still have a linear response; the conductances depend on the voltage, however, which gives rise to non-linearity}
 	\includegraphics[width=0.9\textwidth]{excitability-arises-from-non-linearity}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[The ion channel is an elaborate molecular machine]{The ion channel is an elaborate molecular machine. It contains a gate that prevents ions from entering, which is controlled by a sensor. The sensor for the potassium subchannel contains 4 subunits, so the probability of it being open is $P_k \propto n^4$. This probability increases when depolarized.}
-	\includegraphics[width=0.9\textwidth]{ion-channel-as-molecular-machine}
+	\begin{center}
+		\caption[The ion channel is an elaborate molecular machine]{The ion channel is an elaborate molecular machine. It contains a gate that prevents ions from entering, which is controlled by a sensor. The sensor for the potassium subchannel contains 4 subunits, so the probability of it being open is $P_k \propto n^4$ (The lower panel in Figure \ref{fig:ion-channels} depicts the flow when all 4 gates are open, vs the flow when at least one is closed). This probability increases when depolarized.}
+	\includegraphics[width=0.6\textwidth]{ion-channel-as-molecular-machine}
+	\end{center}
 \end{figure}
-
+Stats transitions occur at voltage dependent rates.
 \begin{align*}
-	\frac{dn}{dt} =& \alpha_n(V)(1-n) - \beta(V)n\\
+	\frac{dn}{dt} =& \alpha_n(V)(1-n) - \beta(V)n \numberthis \label{eq:n}\\
 	\tau_n(V) \frac{dn}{dt} =&n_\infty(V)-n\text{, where}\\
 	\tau_n(V) =& \frac{1}{\alpha_n(V) + \beta_n(V)}\\
 	n_\infty(V) =&  \frac{\alpha_n(V)}{\alpha_n(V) + \beta_n(V)}
@@ -1091,12 +1093,33 @@ We will focus on voltage sensitivity, and will consider the current through one 
 
 
 \begin{figure}[H]
-	\caption[The sodium channel]{The sodium channel has 3 subunits, similar to those for potassium, plus an inactivation gate that can block the channel when open. $P_{Na}\propto m^3 h$. Voltage increases $m$ and decreases $h$, so there is a voltage window in which sodium is able to flow: sodium is transient or self limiting. This is one of the mechanisms that switches off the spike.}
-	\includegraphics[width=0.9\textwidth]{na-channel}
+	\begin{center}
+		\caption[The sodium channel]{The sodium channel has 3 subunits, similar to those for potassium, plus an inactivation gate that can block the channel when open. $P_{Na}\propto m^3 h$. Voltage increases $m$ and decreases $h$, so there is a voltage window in which sodium is able to flow: sodium is transient or self limiting. This is one of the mechanisms that switches off the spike.}
+	\includegraphics[width=0.6\textwidth]{na-channel}
+	\end{center}
 \end{figure}
 
+\begin{align*}
+	\frac{dm}{dt} =& \alpha_m(V)(1-m) - \beta(V)m \numberthis \label{eq:m}\\
+	\frac{dh}{dt} =& \alpha_h(V)(1-h) - \beta(V)h\numberthis \label{eq:h} \\
+	g_k(V) =& \bar{g_k} n^4\\
+	g_{Na}(V)=& \bar{g_{Na}}m^3h
+\end{align*}
+
 \begin{figure}[H]
-	\caption[Dynamics of Activation Inactivation]{[Dynamics of Activation Inactivation}
+	\caption[Putting it together]{Putting it together}
+	\includegraphics[width=0.9\textwidth]{putting-it-together}
+\end{figure}
+
+\begin{align*}
+	V =& IR\\
+	C_m\frac{dV}{dt}=&-\sum_{i}g_i(V-E_i) + I_e\\
+	-C_m\frac{dV}{dt}=&g_L(V-E_L)+\bar{g_k}n^4(V-E_K)+\bar{g_{Na}}m^3h(V-E_{Na})-I_e\numberthis\label{eq:hodgkin:huxley}
+\end{align*}
+Equations \eqref{eq:hodgkin:huxley}, \eqref{eq:n}, \eqref{eq:m}, and \eqref{eq:h} are known as the Hodgkin-Huxley equations \cite{hodgkin1952currents}.
+
+\begin{figure}[H]
+	\caption[Dynamics of Activation Inactivation]{Dynamics of Activation Inactivation. The right hand curves shows how quickly each variable responds to a change in voltage.}
 	\includegraphics[width=0.9\textwidth]{dynamics-activation-inactivation}
 \end{figure}
 
