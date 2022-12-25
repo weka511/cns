@@ -90,6 +90,7 @@ My notes from Computational Neuroscience course\cite{coursera2017cns}, which pro
 
 \tableofcontents
 \listoffigures
+\listoftables
 \section{Introduction and Basic Neurobiology}\label{sec:week1}
 
 \subsection{Course Introduction}
@@ -1033,7 +1034,7 @@ Equilibrium is determined by the Nernst potential:
 
 
 \begin{figure}[H]
-	\caption[Currents through Ion Channels]{Currents through Ion channels. }\label{eg:ion-channels}
+	\caption[Currents through Ion Channels]{Currents through Ion channels. }\label{eg:ion-channels}\label{fig:ion-channels}
 	\includegraphics[width=0.9\textwidth]{ion-channels}
 \end{figure}
 
@@ -1047,7 +1048,7 @@ Figure \ref{eg:ion-channels} depicts ion channels. There are different types: \b
 We will focus on voltage sensitivity, and will consider the current through one channel, $I=Vg$, where $g=\frac{1}{R}$ is the conductance of the channel. Different ion channels have different conductances; a given conductance tends to move the membrane potential towards the equilibrium potential for that ion.
 \begin{table}[H]
 	\begin{center}
-		\caption{Examples of equilibrium potentials. Notice that sodium tends to depolarize, and potassium to polarize.}
+		\caption[Examples of equilibrium potentials]{Examples of equilibrium potentials. Notice that sodium tends to depolarize, and potassium to polarize.}
 		\begin{tabular}{|l|r|} \hline
 			$E_{Na}$&50mV \\ \hline
 			$E_{Ca}$&150mV \\ \hline
@@ -1064,20 +1065,62 @@ We will focus on voltage sensitivity, and will consider the current through one 
 
 
 \begin{figure}[H]
-	\caption[What makes a neuron compute?]{What makes a neuron compute? So far everything we have seen is linear. But this figure shows that something else is happening...}
+	\caption[What makes a neuron compute?]{What makes a neuron compute? So far everything we have seen is linear. But this figure shows that something else is happening...Excitability}
 	\includegraphics[width=0.9\textwidth]{what-makes-neuron-compute}
 \end{figure}
 
 
-
-
 \subsection{Spikes}
+
+\begin{figure}[H]
+	\caption[Excitability arises from non-linearity]{Excitability arises from non-linearity: the conductances depend on the voltage, which gives rise to non-linearity.}
+	\includegraphics[width=0.9\textwidth]{excitability-arises-from-non-linearity}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[The ion channel is an elaborate molecular machine]{The ion channel is an elaborate molecular machine. It contains a gate that prevents ions from entering, which is controlled by a sensor. The sensor for the potassium subchannel contains 4 subunits, so the probability of it being open is $P_k \propto n^4$. This probability increases when depolarized.}
+	\includegraphics[width=0.9\textwidth]{ion-channel-as-molecular-machine}
+\end{figure}
+
+\begin{align*}
+	\frac{dn}{dt} =& \alpha_n(V)(1-n) - \beta(V)n\\
+	\tau_n(V) \frac{dn}{dt} =&n_\infty(V)-n\text{, where}\\
+	\tau_n(V) =& \frac{1}{\alpha_n(V) + \beta_n(V)}\\
+	n_\infty(V) =&  \frac{\alpha_n(V)}{\alpha_n(V) + \beta_n(V)}
+\end{align*}
+
+
+\begin{figure}[H]
+	\caption[The sodium channel]{The sodium channel has 3 subunits, similar to those for potassium, plus an inactivation gate that can block the channel when open. $P_{Na}\propto m^3 h$. Voltage increases $m$ and decreases $h$, so there is a voltage window in which sodium is able to flow: sodium is transient or self limiting. This is one of the mechanisms that switches off the spike.}
+	\includegraphics[width=0.9\textwidth]{na-channel}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Dynamics of Activation Inactivation]{[Dynamics of Activation Inactivation}
+	\includegraphics[width=0.9\textwidth]{dynamics-activation-inactivation}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[What makes a neuron compute?]{What makes a neuron compute? So far everything we have seen is linear. But this figure shows that something else is happening...}
+	\includegraphics[width=0.9\textwidth]{what-makes-neuron-compute}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Anatomy of a Spike]{Anatomy of a Spike}
+	\includegraphics[width=0.9\textwidth]{anatomy-of-a-spike}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Where to from here? Simplification or Realism?]{Where to from here? We can simplify, Section \ref{sec:simplified:model_neurons} or complexify, Section \ref{sec:a:forest:of:neurons}}
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
+
+
+
+\subsection{Simplified Model Neurons}\label{sec:simplified:model_neurons}
 TBP
 
-\subsection{Simplified Model Neurons}
-TBP
-
-\subsection{A Forest of Dendrites}
+\subsection{A Forest of Dendrites}\label{sec:a:forest:of:neurons}
 TBP
 
 \section{Computing with Networks}\label{sec:week6}
