@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from matplotlib.pyplot import figure, show
 from numpy             import array, mean, var
 from pickle            import load
