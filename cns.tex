@@ -1146,8 +1146,6 @@ Equations \eqref{eq:hodgkin:huxley}, \eqref{eq:n}, \eqref{eq:m}, and \eqref{eq:h
 	\includegraphics[width=0.9\textwidth]{where-to-from-here}
 \end{figure}
 
-
-
 \subsection{Simplified Model Neurons}\label{sec:simplified:model_neurons}
 Can we build a simpler model that captures the relevant dynamics?
 
@@ -1208,8 +1206,8 @@ So neurons are capable of firing in many different ways, and we'd like out simpl
 \end{figure}
 
 \begin{align*}
-	\frac{dV}{dt} =& f(V) + l(t) \text{, what if we try a linear $f$}\\
-	=&-a(V-V_0) + l(t)
+	\frac{dV}{dt} =& f(V) + I(t) \text{, what if we try a linear $f$}\\
+	=&-a(V-V_0) + I(t)
 \end{align*}
 This has a stable fixed point.
 
@@ -1236,43 +1234,53 @@ This has a stable fixed point.
 \end{figure}
 
 \begin{figure}[H]
-	\caption[Exponential integrate and fire ]{Exponential integrate and fire: $f(V)=-a(V-V_0) + \exp\big[\frac{V-V_{th}}{\Delta}\big]$}
+	\caption[Exponential integrate and fire]{Exponential integrate and fire\cite{fourcaud2003spike}: $f(V)=-a(V-V_0) + \exp\big[\frac{V-V_{th}}{\Delta}\big]$ Once again we have to add a fire and reset.}
 	\includegraphics[width=0.9\textwidth]{exponential-integrate-and-fire}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[The $\theta$ neuron]{The $\theta$ neuron: $\frac{d\theta}{dt}=1-\cos\theta + (1+\cos\theta)l(t)$}
+	\caption[The $\theta$ neuron]{The $\theta$ neuron\cite{ermentrout1986parabolic}: $\frac{d\theta}{dt}=1-\cos\theta + (1+\cos\theta)I(t)$. There is no need for an explicit reset.}
 	\includegraphics[width=0.9\textwidth]{theta-neuron}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[An additional fixed point]{An additional fixed point}
+	\caption[An additional fixed point]{An additional fixed pointy the new stable fixed point: we still need a reset. Now the system is trapped b}
 	\includegraphics[width=0.9\textwidth]{3fp}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[A 2d model]{A 2d model}
+	\caption[In order to escape from the fixed point, try a 2-dimensional model]{In order to escape from the fixed point, we try a 2-dimensional model. This is inspired by the Hodgkin-Huxley model. where two things happen: the $Na$ channel switches off, and the $K$ channel switched on. This figure shows the nullclines.}
 	\includegraphics[width=0.9\textwidth]{2d}
 \end{figure}
 
+\begin{align*}
+	\frac{dV}{dt} =& F(V) + G(U) +I(t)\\
+	\frac{dU}{dt} =& -U + H(V)
+\end{align*}
+
 \begin{figure}[H]
-	\caption[A 2d spiking  model]{A 2d spiking model}
-	\includegraphics[width=0.9\textwidth]{2d-spike}
-\end{figure}
-\begin{figure}[H]
-	\caption[A 2d spiking  model]{A 2d spiking model}
+	\caption[Trajectory of 2d spiking  model]{Trajectory of  2d spiking model}
 	\includegraphics[width=0.9\textwidth]{2d-spike}
 \end{figure}
 
+Figure \ref{fig:simple:model} depicts the  Simple Model \cite{izhikevich2003simple} specified by \eqref{eq:simple1} and \eqref{eq:simple2}.
+\begin{align*}
+	\frac{dV}{dt} =& \alpha V + \beta V^2 - u +I(t)\numberthis \label{eq:simple1}\\
+	\frac{du}{dt} =& a(bV-u)\numberthis \label{eq:simple2}
+\end{align*}
+
 \begin{figure}[H]
-	\caption[simple-model]{simple-model}
+	\caption[The Simple Model]{The Simple Model\cite{izhikevich2003simple}. Electronic version of the figure and reproduction permissions are freely available at \url{www.izhikevich.com}}\label{fig:simple:model}
 	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{Phase Plane}
 		\includegraphics[width=0.9\textwidth]{simple-model}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{Example}
 		\includegraphics[width=0.9\textwidth]{simple1}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.9\textwidth}
+		\caption{Model fits to real neurons}
 		\includegraphics[width=0.9\textwidth]{simple2}
 	\end{subfigure}
 \end{figure}
