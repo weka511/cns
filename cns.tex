@@ -1121,7 +1121,7 @@ State transitions occur at voltage dependent rates.
 
 \begin{align*}
 	V =& IR\\
-	C_m\frac{dV}{dt}=&-\sum_{i}g_i(V-E_i) + I_e\\
+	C_m\frac{dV}{dt}=&-\sum_{i}g_i(V-E_i) + I_e\numberthis\label{eq:hodgkin:huxley:precursor}\\
 	-C_m\frac{dV}{dt}=&g_L(V-E_L)+\bar{g_k}n^4(V-E_K)+\bar{g_{Na}}m^3h(V-E_{Na})-I_e\numberthis\label{eq:hodgkin:huxley}
 \end{align*}
 Equations \eqref{eq:hodgkin:huxley}, \eqref{eq:n}, \eqref{eq:m}, and \eqref{eq:h} are known as the Hodgkin-Huxley equations \cite{hodgkin1952currents}.
@@ -1186,48 +1186,63 @@ Can we build a simpler model that captures the relevant dynamics?
 		So, we might imagine that these little changes in local frequency and code
 		stimulus information, may be like frequency modulator or FM signals.}
 	\includegraphics[width=0.9\textwidth]{what3}
-\end{subfigure}
+	\end{subfigure}
 	\begin{subfigure}[b]{\textwidth}
 	\caption{In the next case here, the main firing rate might still be important.
 		But there's so much variability in timing that, that suggests that precise spiked times might mean something distinct about the input.}
 	\includegraphics[width=0.9\textwidth]{what4}
-\end{subfigure}
+	\end{subfigure}
 	\begin{subfigure}[b]{\textwidth}
 	\caption{What about this final case? Here now you see that there are perhaps
 		two distinct symbols in the code. This looks like the bursting that we saw
 		in this thalamic neuron, are these single spikes signalling something different 	than these, than these groups of spikes, or these bursts.}
 	\includegraphics[width=0.9\textwidth]{what5}
-\end{subfigure}
+	\end{subfigure}
+\end{figure}
+
+So neurons are capable of firing in many different ways, and we'd like out simplified model to be able to account for this.
+
+\begin{figure}[H]
+	\caption[Capturing the Basic Dynamics of Neurons]{Capturing the Basic Dynamics of Neurons.}
+	\includegraphics[width=0.9\textwidth]{capturing-basic-dynamics}
+\end{figure}
+
+\begin{align*}
+	\frac{dV}{dt} =& f(V) + l(t) \text{, what if we try a linear $f$}\\
+	=&-a(V-V_0) + l(t)
+\end{align*}
+This has a stable fixed point.
+
+\begin{figure}[H]
+	\caption[Make it spike]{Make it spike. We want to spike when the voltage reached the threshold, $V_{th}$, then reset to $V_{reset}$}\label{fig:make_it_spike}
+	\includegraphics[width=0.9\textwidth]{make-it-spike}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[ ]{ }
-	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+	\caption[The integrate and fire neuron]{The integrate and fire neuron. This is essentially \eqref{eq:hodgkin:huxley:precursor} plus the threshold and reset behaviour of Figure \ref{fig:make_it_spike}: $V\rightarrow V_{th}$ fires spike then resets $V\rightarrow V_{reset}$.}
+	\includegraphics[width=0.9\textwidth]{integrate-and-fire}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[ ]{ }
-	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+	\caption[How to make it excitable?]{How to make it excitable? Add an unstable fixed point.}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{Use $V_{max}$ of Figure \ref{fig:make_it_spike}}
+		\includegraphics[width=0.9\textwidth]{how-excitable}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\caption{Reset}
+		\includegraphics[width=0.9\textwidth]{how-excitable1}
+	\end{subfigure}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[ ]{ }
-	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+	\caption[Exponential integrate and fire ]{Exponential integrate and fire: $f(V)=-a(V-V_0) + \exp\big[\frac{V-V_{th}}{\Delta}\big]$}
+	\includegraphics[width=0.9\textwidth]{exponential-integrate-and-fire}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[ ]{ }
-	\includegraphics[width=0.9\textwidth]{where-to-from-here}
-\end{figure}
-
-\begin{figure}[H]
-	\caption[ ]{ }
-	\includegraphics[width=0.9\textwidth]{where-to-from-here}
-\end{figure}
-
-\begin{figure}[H]
-	\caption[ ]{ }
-	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+	\caption[The $\theta$ neuron]{The $\theta$ neuron: $\frac{d\theta}{dt}=1-\cos\theta + (1+\cos\theta)l(t)$}
+	\includegraphics[width=0.9\textwidth]{theta-neuron}
 \end{figure}
 
 \begin{figure}[H]
