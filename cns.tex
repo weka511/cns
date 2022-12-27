@@ -1015,13 +1015,21 @@ Make sure we have covered
 	\includegraphics[width=0.9\textwidth]{equilibrium-potential}
 \end{figure}
 
-Equilibrium is determined by the Nernst potential:
+Equilibrium is determined by the Nernst potential\cite{enwiki:1121504046}:
 \begin{align*}
-	E =& \frac{k_B T}{zq}\ln \frac{[inside]}{[outside]} \text{, so \eqref{eq:1st:neuron:eq} becomes}\\
-	C\frac{dV}{dt} =& -\frac{(-V-V_{rest})}{R} + I_{ext} \text{, or}\\
+	E =& \frac{k_B T}{zq}\ln \frac{[inside]}{[outside]} \text{, where}\\
+	k_B=& Boltzmann's constant\\
+	T=& \text{ Temperature}\\
+	q=& \text{ the ionic charge}\\
+	z=&	\text{ the number of charges in the ion}
+\end{align*}
+
+Whence \eqref{eq:1st:neuron:eq} becomes
+\begin{align*}
+		C\frac{dV}{dt} =& -\frac{(-V-V_{rest})}{R} + I_{ext} \text{, or}\\
 	\tau \frac{dV}{dt} =& -V + V_\infty \text{, where}\\
 	\tau =& R C \text{, and} \\
-	V_\infty \text{ represents the steady state}
+	V_\infty =& \text{ represents the steady state}
 \end{align*}
 
 \begin{figure}[H]
@@ -1083,7 +1091,7 @@ We will focus on voltage sensitivity, and will consider the current through one 
 	\includegraphics[width=0.6\textwidth]{ion-channel-as-molecular-machine}
 	\end{center}
 \end{figure}
-Stats transitions occur at voltage dependent rates.
+State transitions occur at voltage dependent rates.
 \begin{align*}
 	\frac{dn}{dt} =& \alpha_n(V)(1-n) - \beta(V)n \numberthis \label{eq:n}\\
 	\tau_n(V) \frac{dn}{dt} =&n_\infty(V)-n\text{, where}\\
@@ -1141,7 +1149,91 @@ Equations \eqref{eq:hodgkin:huxley}, \eqref{eq:n}, \eqref{eq:m}, and \eqref{eq:h
 
 
 \subsection{Simplified Model Neurons}\label{sec:simplified:model_neurons}
-TBP
+Can we build a simpler model that captures the relevant dynamics?
+
+\begin{figure}[H]
+	\caption[The electrical personalities of neurons]{The electrical personalities of neurons.}
+	\begin{subfigure}[t]{0.9\textwidth}
+		\caption{On the top, you see cortical neuron early in development.}
+		\includegraphics[width=0.9\textwidth]{electrical-personalities1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.9\textwidth}
+		\caption{Here we have thalamic neurons that have been recorded under different depolarizations. You can see a very characteristic bursting pattern, where a bunch of spikes are generated in a clump. And at a different depolarization, those bursts almost disappear, and you get single spikes, more like, more like in	the case of the cortical neuron.}
+	\includegraphics[width=0.9\textwidth]{electrical-personalities2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.9\textwidth}
+		\caption{Here's a motor neuron. You see very regular firing. Motor neurons tend to fire very regularly, and the noise leads only to small deviations in the regular timing of spikes.}
+		\includegraphics[width=0.9\textwidth]{electrical-personalities3}
+	\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Neuron, what are you trying to tell us?]{Neuron, what are you trying to tell us? So, we see that neurons can have a wide range of firing patterns, which come about partly because of the nature of their dynamics, and partly because of the nature of their inputs. Let's look at some potential examples of firing patterns.}
+	\begin{subfigure}[b]{\textwidth}
+		\caption{Imagine that a neuron fired regularly
+			like this.}
+		\includegraphics[width=0.9\textwidth]{what1}
+	\end{subfigure}
+	\begin{subfigure}[b]{\textwidth}
+		\caption{ And to a second input, it also fires
+			regularly, but with a different spiking interval.
+			So one might feel comfortable thinking about this neuron's behavior as
+			expressing a rate code. The spike frequency signals the input.}
+		\includegraphics[width=0.9\textwidth]{what2}
+	\end{subfigure}
+	\begin{subfigure}[b]{\textwidth}
+	\caption{What, though, if we now had this case? Here, the mean frequency is the same, but now the firing times of spikes are shifted slightly.
+		So, we might imagine that these little changes in local frequency and code
+		stimulus information, may be like frequency modulator or FM signals.}
+	\includegraphics[width=0.9\textwidth]{what3}
+\end{subfigure}
+	\begin{subfigure}[b]{\textwidth}
+	\caption{In the next case here, the main firing rate might still be important.
+		But there's so much variability in timing that, that suggests that precise spiked times might mean something distinct about the input.}
+	\includegraphics[width=0.9\textwidth]{what4}
+\end{subfigure}
+	\begin{subfigure}[b]{\textwidth}
+	\caption{What about this final case? Here now you see that there are perhaps
+		two distinct symbols in the code. This looks like the bursting that we saw
+		in this thalamic neuron, are these single spikes signalling something different 	than these, than these groups of spikes, or these bursts.}
+	\includegraphics[width=0.9\textwidth]{what5}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[ ]{ }
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[ ]{ }
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[ ]{ }
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[ ]{ }
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[ ]{ }
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[ ]{ }
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[ ]{ }
+	\includegraphics[width=0.9\textwidth]{where-to-from-here}
+\end{figure}
 
 \subsection{A Forest of Dendrites}\label{sec:a:forest:of:neurons}
 TBP
