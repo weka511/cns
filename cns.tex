@@ -1311,74 +1311,71 @@ tremendous impact on the information that is integrated and representated by the
 receiving neurons
 
 \begin{figure}[H]
-	\caption[The theoretical basis for understanding voltage propagation]{The theoretical basis for understanding voltage propagation in dendrites and axons is cable theory. The voltage, V, is now a function of both space and time; $r_m$ is the resistance across the membrane, and $r_i$ the axial resistance along a short section of the cylinder.}
+	\caption[The theoretical basis for understanding voltage propagation]{The theoretical basis for understanding voltage propagation in dendrites and axons is cable theory. The voltage, V, is now a function of both space and time; $r_m$ is the resistance across the membrane, and $r_i$ the axial resistance along a short section of the cylinder\cite{Johnston1994}}
 	\includegraphics[width=0.8\textwidth]{cable-theory}
 \end{figure}
 
 \begin{align*}
 	\frac{1}{r_i}\frac{\partial^2V_m(x,t)}{\partial x^2} =& c_m \frac{\partial V}{\partial t} + \frac{V_m}{r_m}\text{, or} \\
 	\lambda^2\frac{\partial^2V_m(x,t)}{\partial x^2} =& \tau_m \frac{\partial V}{\partial t} + V_m \text{, where}\\
-	\tau_m =& r_m c_m \text{, and}\\
-	\lambda =& \sqrt{\frac{r_m}{r_i}}
+	\tau_m =& r_m c_m \text{, time constant, and}\\
+	\lambda =& \sqrt{\frac{r_m}{r_i}} \text{, space constant.}
 \end{align*}
 
 
 \begin{figure}[H]
-	\caption[potential-decay-space?]{potential-decay-space?}
+	\caption[How does voltage decay over space and time?]{How does voltage decay over space and time? We assume an infinite cable, with constant current at $x=0$. Potential decays over a scale comparable to the space constant: $V(x)\propto \exp(-\frac{x}{\lambda})$.}
 	\includegraphics[width=0.8\textwidth]{potential-decay-space}
 \end{figure}
 
 
 \begin{figure}[H]
-	\caption[voltage-decay-space-time]{voltage-decay-space-time}
+	\caption[How does pulse decay over space and time?]{How does pulse decay over space and time? Assume an infinite cable, with a current pulse at $t=0, x=0$: potential peaks later, and at lower values, for points further away from the input.}
 	\includegraphics[width=0.8\textwidth]{voltage-decay-space-time}
 \end{figure}
 
+The general solution is:
+\begin{align*}
+	V(x,t) \propto \sqrt{\frac{\tau}{4 \pi \lambda^2 t}} \exp \big[\underbrace{-\frac{t}{\tau}}_\text{Exponential decay} -\underbrace{\frac{\tau x^2}{4 \lambda^2 t}}_\text{Diffusive spread}\big]
+\end{align*}
+
+In theory we can use the Green's function to compute the response to any input, but the geometry can become very complicated, and many dendrites are active, i.e. they have ion channels. The path forward is to divide the dendritic arbor into compartments.
 
 \begin{figure}[H]
-	\caption[general-solution]{general-solution}
-	\includegraphics[width=0.8\textwidth]{general-solution}
-\end{figure}
-
-
-\begin{figure}[H]
-	\caption[Do dendrites feel what is going on in soma?]{Do dendrites feel what is going on in soma?}
-	\includegraphics[width=0.8\textwidth]{do-dendrites-feel-what-is-going-on-in-soma}
-\end{figure}
-
-
-\begin{figure}[H]
-	\caption[compartmental-models]{compartmental-models}
+	\caption[Compartmental models.]{Compartmental models. Each compartment is one $\frac{dV}{dt}$ equation, usually with no dependence on $x$.}
 	\includegraphics[width=0.8\textwidth]{compartmental-models}
 \end{figure}
 
 
 \begin{figure}[H]
-	\caption[rall model]{rall model}
+	\caption[Rall model for passive dendrites]{Rall model for passive dendrites. If \eqref{eq:rall} is satisfied, impedances match and can replace each pair of branches with a single cable segment with equivalent surface area and electrotonic length.} 
 	\includegraphics[width=0.8\textwidth]{rall-model}
 \end{figure}
-
+It turns out that the condition on diameters is often correct for real networks.
+\begin{align*}
+	d_{11}^2 + 	d_{12}^2 =& 	d_{1}^2 \numberthis \label{eq:rall}
+\end{align*}
 
 \begin{figure}[H]
-	\caption[full-model]{full-model}
+	\caption[Now including active properties (channels).]{Now including active properties (channels). The Rall model down not handle ion channels: furthermore the density of ion channels often varies along dendrites.}
 	\includegraphics[width=0.8\textwidth]{full-model}
 \end{figure}
 
 
 \begin{figure}[H]
-	\caption[what-do-dendrites-add]{what-do-dendrites-add?}
+	\caption[What do dendrites add to neural computation?\cite{london2005dendritic}]{What do dendrites add to neural computation? In the hippocampus, dendrites perform preprocessing so that all signals reaching the soma have a similar shape, no matter where the originated (somatic scaling).}
 	\includegraphics[width=0.8\textwidth]{what-do-dendrites-add}
 \end{figure}
 
 
 \begin{figure}[H]
-	\caption[delay-sound?]{delay-sound}
+	\caption[Delay lines in sound localization]{Delay lines in sound localization}
 	\includegraphics[width=0.8\textwidth]{delay-sound}
 \end{figure}
 
 
 \begin{figure}[H]
-	\caption[detection-selectivity]{detection-selectivity}
+	\caption[Direction selectivity in the retina]{Direction selectivity in the retina}
 	\includegraphics[width=0.8\textwidth]{detection-selectivity}
 \end{figure}
 
