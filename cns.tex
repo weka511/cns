@@ -1142,12 +1142,12 @@ Equations \eqref{eq:hodgkin:huxley}, \eqref{eq:n}, \eqref{eq:m}, and \eqref{eq:h
 \end{figure}
 
 \begin{figure}[H]
-	\caption[Where to from here? Simplification or Realism?]{Where to from here? We can simplify, Section \ref{sec:simplified:model_neurons} or complexify, Section \ref{sec:a:forest:of:neurons}}
+	\caption[Where to from here? Simplification or Realism?]{Where to from here? We can simplify, Section \ref{sec:simplified:model_neurons}, or complexify, Section \ref{sec:a:forest:of:neurons}}\label{fig:where:to_from:here}
 	\includegraphics[width=0.9\textwidth]{where-to-from-here}
 \end{figure}
 
 \subsection{Simplified Model Neurons}\label{sec:simplified:model_neurons}
-Can we build a simpler model that captures the relevant dynamics?
+This section aims to explore the right hand branch of Figure \ref{fig:where:to_from:here}: can we build a simpler model that captures the relevant dynamics?
 
 \begin{figure}[H]
 	\caption[The electrical personalities of neurons]{The electrical personalities of neurons.}
@@ -1286,10 +1286,34 @@ Figure \ref{fig:simple:model} depicts the  Simple Model \cite{izhikevich2003simp
 \end{figure}
 
 
-
-
 \subsection{A Forest of Dendrites}\label{sec:a:forest:of:neurons}
-TBP
+This section returns to the left hand branch of Figure \ref{fig:where:to_from:here}.
+\begin{figure}[H]
+	\caption[Neurons have complicated spatial structures]{Neurons have complicated spatial structures: what is the appropriate
+		level of description of a single neuron that's necessary to understand brain
+		operation? Voltage decays with distance in passive membranes.}
+	\includegraphics[width=0.8\textwidth]{neurons-have-complicated-spatial-structures}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Do dendrites feel what is going on in soma?]{Do dendrites feel what is going on in soma?}
+	\includegraphics[width=0.8\textwidth]{do-dendrites-feel-what-is-going-on-in-soma}
+\end{figure}
+
+ Furthermore, how thin the dendrite is
+affects how big a voltage change you could make with a given amount of current
+input. The thinner the dendrite the larger the
+voltage change but generally the further away the the more that input gets
+filtered and attenuated. This tells us the inputs that come along
+different parts of the dendrite can have very different effects and very different
+influence on firing at the soma. As you can image this can have a
+tremendous impact on the information that is integrated and representated by the
+receiving neurons
+
+\begin{figure}[H]
+	\caption[The theoretical basis for understanding voltage propagation]{The theoretical basis for understanding voltage propagation in dendrites and axons is cable theory, which was developed by Kelvin in quite a 	different context. The voltage, V, is now a function of both space and time, which means that we're now dealing with partial, rather than ordinary differential equations. $r_m$ is the resistance across the membrane, and $r_i$ the axial resistance along a short section of the cylinder.}
+	\includegraphics[width=0.8\textwidth]{cable-theory}
+\end{figure}
 
 \section{Computing with Networks}\label{sec:week6}
 
