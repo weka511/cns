@@ -18,3 +18,5 @@ week4|tuning.pickle|Data file for assignment
 week5|intfire.py|Questions 16 & 17
 &nbsp;|intfire_noise.py|Question 18
 &nbsp;|membrane.py|Questions 11-15
+&nbsp;|quiz16.py|Question 16
+&nbsp;|quiz17.py|Question 17
