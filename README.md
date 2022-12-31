@@ -20,3 +20,4 @@ week5|intfire.py|Questions 16 & 17
 &nbsp;|membrane.py|Questions 11-15
 &nbsp;|quiz16.py|Question 16
 &nbsp;|quiz17.py|Question 17
+week6|alpha_neuron.py|Questions 6,7, & 8
