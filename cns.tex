@@ -32,8 +32,6 @@
 
 \begin{document}
 	
-
-
 \newacronym{gls:EEG}{EEG\glsadd{gls:eeg}}{\Gls{gls:eeg}}
 
 \newacronym{gls:EPSP}{EPSP}{Excitatory Post Synaptic Potential}
@@ -50,14 +48,26 @@
 
 \newacronym{gls:STDP}{STDP}{Spike-Timing Dependent Plasticity}
 
+\newglossaryentry{gls:depolarization}{
+	name={depolarization},
+	description={positive change in voltage}}
 
 \newglossaryentry{gls:eeg}{
 	name={Electroencephalography},
 	description={a method to record an electrogram of the spontaneous electrical activity of the brain. The biosignals detected by EEG have been shown to represent the postsynaptic potentials of pyramidal neurons in the neocortex and allocortex.[1] It is typically non-invasive, with the EEG electrodes placed along the scalp (commonly called "scalp EEG") using the International 10-20 system, or variations of it. Electrocorticography, involving surgical placement of electrodes, is sometimes called "intracranial EEG". Clinical interpretation of EEG recordings is most often performed by visual inspection of the tracing or quantitative EEG analysis.\cite{enwiki:1128901597}}}
 
+\newglossaryentry{gls:electrotonic}{
+	name={electrotonic},
+	description={of, relating to, or being the spread of electrical activity through living tissue or cells in the absence of repeated action potentials\cite{webster2022electrotonic}}}
+
+
 \newglossaryentry{gls:fmri}{
 	name={Functional magnetic resonance imaging},
 	description={Functional magnetic resonance imaging or functional MRI (fMRI) measures brain activity by detecting changes associated with blood flow. This technique relies on the fact that cerebral blood flow and neuronal activation are coupled. When an area of the brain is in use, blood flow to that region also increases\cite{enwiki:1124875371}}}
+
+\newglossaryentry{gls:hyperpolarization}{
+	name={hyperpolarization},
+	description={negative change in voltage}}
 
 \newglossaryentry{gls:ltd}{
 	name={Long Term Depression},
@@ -321,12 +331,12 @@ How can the electrical potential be changed in local regions of a neuron?
 \begin{itemize}
 	\item Inputs from other neurons $\rightarrow$ 	chemically-gated channels (at
 	``synapse'') open  $\rightarrow$ Changes in local membrane potential
-	\item This in turn causes opening/closing 	of voltage-gated channels in 	dendrites, body, and axon, resulting 	in depolarization (positive change 	in voltage) or hyperpolarization	(negative change in voltage)
-	\item Strong enough depolarization	causes a spike or “action potential”
+	\item This in turn causes opening/closing 	of voltage-gated channels in 	dendrites, body, and axon, resulting in \gls{gls:depolarization} (\glsdesc{gls:depolarization}) or \gls{gls:hyperpolarization}	(\glsdesc{gls:hyperpolarization})
+	\item Strong enough \gls{gls:depolarization}	causes a spike or “action potential”
 \end{itemize}
 
 \begin{figure}[H]
-	\caption[The Output of a Neuron: Action Potential (Spike)]{The Output of a Neuron: Action Potential (Spike). Voltage-gated channels cause action potentials (spikes) Strong depolarization opens $Na^+$ channels, causing rapid $Na^+$ influx and more channels to open, until they inactivate; $K^+$ outflux restores membrane potential. The shape of the action potential is stereotypical, so no information is propagated by the shape.}
+	\caption[The Output of a Neuron: Action Potential (Spike)]{The Output of a Neuron: Action Potential (Spike). Voltage-gated channels cause action potentials (spikes) Strong \gls{gls:depolarization} opens $Na^+$ channels, causing rapid $Na^+$ influx and more channels to open, until they inactivate; $K^+$ outflux restores membrane potential. The shape of the action potential is stereotypical, so no information is propagated by the shape.}
 	\includegraphics[width=0.7\textwidth]{action-potential}
 \end{figure}
 
@@ -372,7 +382,7 @@ Why two mechanisms? Why would we evolve slow chemical synapses in addition to fa
 
 \begin{figure}[H]
 	\caption[An Excitatory Synapse]{An Excitatory Synapse. Input spike  $\rightarrow$
-		Neurotransmitter 	release (e.g., Glutamate)  $\rightarrow$ Binds to ion channel receptors $\rightarrow$ Ion channels open $\rightarrow$ $Na^+$ influx  $\rightarrow$ 	Depolarization due to \gls{gls:EPSP}}
+		Neurotransmitter 	release (e.g., Glutamate)  $\rightarrow$ Binds to ion channel receptors $\rightarrow$ Ion channels open $\rightarrow$ $Na^+$ influx  $\rightarrow$ 	\Gls{gls:depolarization} due to \gls{gls:EPSP}}
 	\includegraphics[width=0.9\textwidth]{synapse4}
 \end{figure}
 
@@ -428,9 +438,12 @@ Why two mechanisms? Why would we evolve slow chemical synapses in addition to fa
 		\includegraphics[width=\textwidth]{Cerebrum}
 	\end{subfigure}
 \end{figure}
+
 \section{What do Neurons Encode?}\label{sec:week2}
+
 \subsection{What is the Neural Code}
 During this course, we will talk about:
+
 \begin{itemize}
 	\item techniques for recording from the brain--Figure \ref{fig:recording};
 	\item  tools for discovering how the brain represents information;
@@ -769,7 +782,7 @@ We can model spikes that may or may not occur with a series of time bins, each o
 \section{Extracting Information from Neurons}\label{sec:week3}
 
 \subsection{Neural Decoding and Signal Detection Theory}
-
+See \cite{britten1992analysis}
 \begin{figure}[H]
 		\caption[Value of threshold that maximizes probability of correct call]{This value of threshold maximizes probability of calling correctly.
 			$p[+]p[r\ge z\vert +] + p[-] (1-p[r\ge z\vert -])$}
@@ -1156,7 +1169,7 @@ This section aims to explore the right hand branch of Figure \ref{fig:where:to_f
 		\includegraphics[width=0.9\textwidth]{electrical-personalities1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.9\textwidth}
-		\caption{Here we have thalamic neurons that have been recorded under different depolarizations. You can see a very characteristic bursting pattern, where a bunch of spikes are generated in a clump. And at a different depolarization, those bursts almost disappear, and you get single spikes, more like, more like in	the case of the cortical neuron.}
+		\caption{Here we have thalamic neurons that have been recorded under different \glspl{gls:depolarization}. You can see a very characteristic bursting pattern, where a bunch of spikes are generated in a clump. And at a different \gls{gls:depolarization}, those bursts almost disappear, and you get single spikes, more like, more like in	the case of the cortical neuron.}
 	\includegraphics[width=0.9\textwidth]{electrical-personalities2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.9\textwidth}
@@ -1348,7 +1361,7 @@ In theory we can use the Green's function to compute the response to any input, 
 
 
 \begin{figure}[H]
-	\caption[Rall model for passive dendrites]{Rall model for passive dendrites. If \eqref{eq:rall} is satisfied, impedances match and can replace each pair of branches with a single cable segment with equivalent surface area and electrotonic length.} 
+	\caption[Rall model for passive dendrites]{Rall model for passive dendrites. If \eqref{eq:rall} is satisfied, impedances match and can replace each pair of branches with a single cable segment with equivalent surface area and \gls{gls:electrotonic}  length.} 
 	\includegraphics[width=0.8\textwidth]{rall-model}
 \end{figure}
 It turns out that the condition on diameters is often correct for real networks.

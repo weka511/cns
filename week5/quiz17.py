@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from intfire import intfire
 from matplotlib.pyplot import plot, show, title
 
@@ -9,5 +11,5 @@ for i in range(500):
     Rates.append(n_spikes/tstop)
 
 plot(Rates)
-print (max(Rates))
+title (f'{max(Rates)}/msec, or {int(1000*max(Rates))} Hertz')
 show()

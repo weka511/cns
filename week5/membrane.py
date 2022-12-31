@@ -45,20 +45,20 @@ for t in np.arange(h, tstop, h):
 
    # Verify membrane time constant
    if (not tau and (V > 0.6321*V_inf)):
-     tau = t
-     print('tau = %.3f ms' % tau)
-     print('(Experimental)')
+      tau = t
+      print('tau = %.3f ms' % tau)
+      print('(Experimental)')
 
 
    # Stop current injection
    if t >= 0.6*tstop:
-     I = 0
+      I = 0
 
    V_trace += [V]
    if t % 10 == 0:
-       plt.plot(np.arange(0,t+h, h), V_trace, color='r')
-       plt.xlim(0, tstop)
-       plt.ylim(0, V_inf)
-       plt.draw()
+      plt.plot(np.arange(0,t+h, h), V_trace, color='r')
+      plt.xlim(0, tstop)
+      plt.ylim(0, V_inf)
+      plt.draw()
 
 plt.show()

@@ -31,13 +31,13 @@ def intfire(I       = 1 ,
        V_th    spike threshold
    '''
    V        = 0
-   ref      = 0 # absolute refractory period counter
+   ref      = 0   # absolute refractory period counter
    V_trace  = []  # voltage trace for plotting
-
    n_spikes = 0
+
    for t in range(tstop):
       if not ref:
-            V = V - (V/(R*C)) + (I/C)
+            V = V - (V/(R*C)) + (I/C)  # RC is time constant: nF * Mohms, si I think time is milliseconds
       else:
             ref -= 1
             V    = 0.2 * V_th # reset voltage
