@@ -360,7 +360,7 @@ How can the electrical potential be changed in local regions of a neuron?
 
 \subsection{Making Connections - Synapses}
 \begin{figure}[H]
-	\caption[Enter the Synapse]{What happens to the spike 	(action potential) when	it reaches the 	end of an axon?	Enter the Synapse}
+	\caption[Enter the Synapse]{What happens to the spike (action potential) when	it reaches the 	end of an axon?	Enter the Synapse}\label{fig:enter:the:synapse}
 	\includegraphics[width=0.9\textwidth]{enter-synapse}
 \end{figure}
 
@@ -1394,9 +1394,60 @@ It turns out that the condition on diameters is often correct for real networks.
 
 
 \section{Computing with Networks}\label{sec:week6}
+Highlights of our journey thus far
+\begin{itemize}
+	\item Neuroscience Review
+	\begin{itemize}
+		\item Neurons, synapses, and brain regions
+	\end{itemize}
+	\item Neural Encoding
+	\begin{itemize}
+		\item What makes a neuron fire? (STA, covariance analysis)
+		\item Poisson model of spiking
+	\end{itemize}
+	\item Neural Decoding and Information Theory
+	\begin{itemize}
+		\item Stimulus discrimination and signal detection
+		\item Population decoding and Bayesian estimation
+		\item Information and neural coding principles
+	\end{itemize}
+	\item Single Neuron Models
+	\begin{itemize}
+		\item RC circuit model of membrane
+		\item Hodgkin-Huxley and compartmental models
+		\item Integrate-and-fire and simplified neuron models
+	\end{itemize}
+\end{itemize}
+
+This leads to the question: how do neurons connect to form networks? The use synapses--see Figure \ref{fig:enter:the:synapse} and the next Section.
 
 \subsection{Making Connections between Neurons}
-TBP
+
+\begin{figure}[H]
+	\caption[What do synapses do?]{[What do synapses do? The spike causes some chemicals to be introduced into the synaptic cleft; these are going to bind with some receptors, which will increase or decrease postsynaptic membrane potential.}
+	\includegraphics[width=0.8\textwidth]{what-do-synspses-do}
+\end{figure}
+
+\begin{itemize}
+	\item An excitatory synapse
+	\begin{itemize}
+		\item Input spike 
+		\item Neurotransmitter release 	(e.g., Glutamate) 
+		\item Binds to receptors
+		\item Ion channels open
+		\item positive ions (e.g. $Na^+$) enter cell
+		\item Depolarization (increases local membrane potential)
+	\end{itemize}
+	\item An inhibitory synapse
+	\begin{itemize}
+		\item Input spike
+		\item Neurotransmitter 	release (e.g., GABA)
+		\item  Binds to receptors
+		\item  Ion channels open
+		\item  positive ions (e.g.,	$K^+$) leave cell 
+		\item 	Hyperpolarization 	(decreases local membrane potential)
+	\end{itemize}
+\end{itemize}
 
 \subsection{Introduction to Network Models}
 TBP
