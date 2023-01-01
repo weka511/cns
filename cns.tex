@@ -1128,8 +1128,8 @@ State transitions occur at voltage dependent rates.
 \end{align*}
 
 \begin{figure}[H]
-	\caption[Putting it together]{Putting it together}
-	\includegraphics[width=0.9\textwidth]{putting-it-together}
+	\caption{The Hodgkin-Huxley model}\label{fig:hodgkin-huxley}
+	\includegraphics[width=0.9\textwidth]{hodgkin-huxley}
 \end{figure}
 
 \begin{align*}
@@ -1424,7 +1424,7 @@ This leads to the question: how do neurons connect to form networks? The use syn
 \subsection{Making Connections between Neurons}
 
 \begin{figure}[H]
-	\caption[What do synapses do?]{[What do synapses do? The spike causes some chemicals to be introduced into the synaptic cleft; these are going to bind with some receptors, which will increase or decrease postsynaptic membrane potential.}
+	\caption[What do synapses do?]{What do synapses do? The spike causes some chemicals to be introduced into the synaptic cleft; these are going to bind with some receptors, which will increase or decrease postsynaptic membrane potential.}
 	\includegraphics[width=0.8\textwidth]{what-do-synspses-do}
 \end{figure}
 
@@ -1444,10 +1444,102 @@ This leads to the question: how do neurons connect to form networks? The use syn
 		\item Neurotransmitter 	release (e.g., GABA)
 		\item  Binds to receptors
 		\item  Ion channels open
-		\item  positive ions (e.g.,	$K^+$) leave cell 
+		\item  negative ions (e.g. $Cl^-$ ) enter cell, or positive ions (e.g.,$K^+$) leave cell 
 		\item 	Hyperpolarization 	(decreases local membrane potential)
 	\end{itemize}
 \end{itemize}
+
+
+
+\begin{figure}[H]
+	\caption[Construct a computational model of the effects of a synapse.]{How do we construct a computational model of the effects of a synapse on the membrane potential?}
+	\includegraphics[width=0.8\textwidth]{want-computational-model}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Recall the RC circuit model of the cell]{Recall the RC circuit model of the cell. \cite{dayan2005theoretical}}
+	\begin{subfigure}[t]{0.6\textwidth}
+		\caption{We model the membrane as a resistance and a capacitor}
+		\includegraphics[width=\textwidth]{rc-circuit-model}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth} 
+		\caption{We inject a current $I_e$: \eqref{eq:rc:equivalent} tells us thatthe voltage converges to the steady state $V_{SS}=E_L+I_eR_m$. If we then turn of the current, the voltage returns to $E_L$}
+		\includegraphics[width=0.9\textwidth]{voltage-from-rc-model}
+	\end{subfigure}
+\end{figure}
+
+\begin{align*}
+	c_m  \approx& 10 \; nF/mm^2 \text{, membrane capacitance}\\
+	r_m \approx& 1 \; M \Omega \; mm^2 \text{, membrane resistance}\\
+	C_m =& c_m A \text{, where A is the area of the cross-section}\\
+	R_m =& \frac{r_M}{A} \text{. Using definition of capacitance:}\\
+	q =& C_m V \text{. Differentiating to get the current:}\\
+	c_m \frac{dV}{dt} =&-\frac{V-E_L}{r_m} + \frac{i_e}{A} \text{, or, equivalently}\\
+	\tau_m \frac{dV}{dt} =& -(V-E_L) + I_e r_m \text{, where} \numberthis \label{eq:rc:equivalent}\\
+	\tau_m =& r_m c_m = R_m c_m \text{, defines the time constant}
+\end{align*}
+
+\begin{figure}[H]
+	\caption[Modeling Synaptic Inputs]{Modeling Synaptic Inputs. Synapses release neurotransmitters that  ion channels to open and close, and that, in turn, causes the membrane potential to change. How do we model opening anc closing channels?}
+	\includegraphics[width=0.9\textwidth]{how-to-model-synapse}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Reprise the Hodgkin-Huxley model]{Let's reprise the Hodgkin-Huxley model, and ask whether we can model the channels similarly for synapses.}
+	\includegraphics[width=0.9\textwidth]{hodgkin-huxley-reprise}
+\end{figure}
+
+\begin{align*}
+	\tau_m \frac{dV}{dt} =& -i_m r_m + I_e R_m\\
+	i_m =& \frac{1}{r_m} (V-E_L) + g_{K,max} n^4 (V-E_K) + g_{Na,max}m^3 h (V-E_{Na})\\
+	E_L =& -54 mV,\; E_K = -77mV,\; E_{Na} = + 50mV
+\end{align*}
+
+\begin{figure}[H]
+	\caption[Modeling synapse using synaptic conductance]{Modeling synapse using synaptic conductance.}
+	\includegraphics[width=0.9\textwidth]{hh-synapse}
+\end{figure}
+
+\begin{align*}
+	\tau_m \frac{dV}{dt} =& -[(V-E_L)+g_s(V-E_S)r_m] + I_e R_m \text{, where}\\
+	g_s =& \text{ synaptic conductance}\\
+	e_s =& \text{ equilibrium voltage of synapse.}
+\end{align*}
+We write:
+\begin{align*}
+		g_s =& g_{s,max}P_{rel}P_{s} \text{, where}\\
+		P_{rel}=& \text{Probability of transmitter release given an input spike}\\
+		P_{s}=& \text{Probability of postsynaptic channel opening given release}
+\end{align*}
+
+Let's construct a basic model.
+\begin{itemize}
+	\item Assume $P_{rel}=1$
+	\item Model the effect of a single spike on $P_s$
+	\item Kinetic model
+\end{itemize}
+
+\begin{align*}
+	P(Closed\rightarrow Open)=&\alpha_s\\
+	P(Open\rightarrow Closed)=&\beta_s\\
+	\frac{dP_s}{dt}=&\alpha_s(1-P_s)-\beta_s P_s
+\end{align*}
+
+\begin{figure}[H]
+	\caption{What does $P_s$ look like over time, given a spike?}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{Exponential function gives a reasonable fit for some synapses, e.g. AMPA, $GABA_A$}
+		\includegraphics[width=0.9\textwidth]{PS1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{NMDA}
+		\includegraphics[width=0.9\textwidth]{PS2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.9\textwidth}
+		\caption{Others can be fit using Alpha function: $\alpha(t)=\frac{t}{\tau_{peak}} exp\big(1-\frac{t}{\tau_{peak}}\big)$}
+		\includegraphics[width=0.9\textwidth]{PS3}
+	\end{subfigure}
+\end{figure}
 
 \subsection{Introduction to Network Models}
 TBP
