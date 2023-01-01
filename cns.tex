@@ -1528,17 +1528,45 @@ Let's construct a basic model.
 \begin{figure}[H]
 	\caption{What does $P_s$ look like over time, given a spike?}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\caption{Exponential function gives a reasonable fit for some synapses, e.g. AMPA, $GABA_A$}
+		\caption{Exponential function gives a reasonable fit for some synapses, e.g. AMPA, but not $GABA_A$.}
 		\includegraphics[width=0.9\textwidth]{PS1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\caption{NMDA}
+		\caption{... or NMDA}
 		\includegraphics[width=0.9\textwidth]{PS2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.9\textwidth}
-		\caption{Others can be fit using Alpha function: $\alpha(t)=\frac{t}{\tau_{peak}} exp\big(1-\frac{t}{\tau_{peak}}\big)$}
+		\caption{$GABA_A$ and NMDA can be fit using Alpha function: $\alpha(t)=\frac{t}{\tau_{peak}} exp\big(1-\frac{t}{\tau_{peak}}\big)$}
 		\includegraphics[width=0.9\textwidth]{PS3}
 	\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[What if we have more than one spike?]{What if we have more than one spike? The Linear Filter Model of a Synapse is useful.}
+		\includegraphics[width=0.9\textwidth]{LinearFilter}
+	\end{center}
+\end{figure}
+
+We characterize the spikes by the response function $\rho_i$
+\begin{align*}
+	\rho_b(t) =& \sum_{i} \delta(t-t_i) \text{, we want the synaptic conductance at $b$}\\
+	g_b(t) =& g_{b,max}\sum_{t_i<t} K(t-t_i) \text{, K() is the filter for synapse $b$}\\
+	=& g_{b,max}\int_{-\infty}^{t} K(t-\tau) \rho_b(\tau) d\tau
+\end{align*}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Network of Integrate and Fire]{Network of Integrate and Fire. }
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Excitatory synapses, Alpha function: Alternate firing}
+			\includegraphics[width=0.9\textwidth]{net-excitory}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Inhibitory synapses, Alpha function: Synchronized firing}
+			\includegraphics[width=0.9\textwidth]{net-inhibitory}
+		\end{subfigure}
+	\end{center}
 \end{figure}
 
 \subsection{Introduction to Network Models}
