@@ -1610,10 +1610,46 @@ Total synaptic current is given by:
 \begin{align*}
 	I_s(t) =& \sum_{b=1}^{n} I_b(t)\\
 	=&  \sum_{b=1}^{n} w_b \int_{-\infty}^{t} K(t-\tau) \rho_b(\tau) d\tau \text{, from Figure \ref{fig:from-single-synapse-to-multiple}}\\
-	\approx & \sum_{b=1}^{n} w_b \int_{-\infty}^{t} K(t-\tau) u_b(\tau) d\tau \text{, from Figure \ref{fig:from-spiking-to-firing}}
+	\approx & \sum_{b=1}^{n} w_b \int_{-\infty}^{t} K(t-\tau) u_b(\tau) d\tau \text{, from Figure \ref{fig:from-spiking-to-firing}} \numberthis \label{eq:total:synaptic:current}
 \end{align*}
 
-We have replaced the spike train $\rho_i(t)$ with the firing rate $u_i(t)$.
+We have replaced the spike train $\rho_i(t)$ with the firing rate $u_i(t)$. This could fail if there are correlations between the input neurons, or when there is synchrony, but in many cases the replacment is OK.
+
+Now suppose thate we can write:
+\begin{align*}
+	K(t) =& \frac{1}{\tau_s} \exp \big(-\frac{t}{\tau_s}\big)\text{. Differentiating \eqref{eq:total:synaptic:current}:}\\
+	\tau_s \frac{dI_s}{dt} =& -I_s + \sum_b w_b u_b\\
+	=&  -I_s +\vec{w} \cdot \vec{u}
+\end{align*}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Firing rate based network model.}\label{fig:firing-rate-based-network-model}
+		\includegraphics[width=0.9\textwidth]{firing-rate-based-network-model}
+	\end{center}
+\end{figure}
+
+\begin{align*}
+	\tau_r \frac{dv}{dt} =& -v + F(I_s(t)) \numberthis \label{eq:fig:firing-rate-based-network-model1} \\ 
+	\tau_s \frac{dI_s}{dt} =&  -I_s +\vec{w} \cdot \vec{u}
+\end{align*}
+
+If $\tau_s \ll \tau_r$ \eqref{eq:fig:firing-rate-based-network-model1} becomes:
+\begin{align*}
+	\tau_r \frac{dv}{dt} =& -v + F(\vec{w} \cdot \vec{u})
+\end{align*}
+
+If $\tau_r \ll \tau_s$ \eqref{eq:fig:firing-rate-based-network-model1} becomes:
+\begin{align*}
+	v =&  F(I_s(t))
+\end{align*}
+
+Finally, the steady state case is:
+\begin{align*}
+	v_{SS} =& F(\vec{w} \cdot \vec{u}) \text{, which is used with Artificial Neural Networks}
+\end{align*}
+
+
 \subsection{Recurrent Networks}
 TBP
 
