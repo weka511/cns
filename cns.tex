@@ -1649,6 +1649,30 @@ Finally, the steady state case is:
 	v_{SS} =& F(\vec{w} \cdot \vec{u}) \text{, which is used with Artificial Neural Networks}
 \end{align*}
 
+\begin{figure}[H]
+	\begin{center}
+		\caption{Multiple Outputs}
+		\includegraphics[width=0.9\textwidth]{multiple-outputs}
+	\end{center}
+\end{figure}
+
+\begin{align*}
+	\tau\frac{d\vec{v}}{dt} =& -\vec{v} + F(W \vec{u}) \text{, where}\\
+	W_{ij} =& \text{ synaptic weight from neuron $j$ to neuron $i$.}
+\end{align*}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Feedforward vs recurrent networks}
+		\includegraphics[width=0.9\textwidth]{feedforward-vs-recurrent}
+	\end{center}
+\end{figure}
+
+\begin{align*}
+	\tau\frac{d\vec{v}}{dt} =& -\vec{v} + F(W \vec{u} + \underbrace{M \vec{v}}_\text{$M=0$ for feedforward})
+\end{align*}
+
+V1 calculates derivatives.
 
 \subsection{Recurrent Networks}
 TBP
