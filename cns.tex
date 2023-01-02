@@ -1543,7 +1543,7 @@ Let's construct a basic model.
 
 \begin{figure}[H]
 	\begin{center}
-		\caption[What if we have more than one spike?]{What if we have more than one spike? The Linear Filter Model of a Synapse is useful.}
+		\caption[What if we have more than one spike?]{What if we haveel more than one spike? The Linear Filter Model of a Synapse is useful.}\label{fig:LinearFilter}
 		\includegraphics[width=0.9\textwidth]{LinearFilter}
 	\end{center}
 \end{figure}
@@ -1552,7 +1552,7 @@ We characterize the spikes by the response function $\rho_i$
 \begin{align*}
 	\rho_b(t) =& \sum_{i} \delta(t-t_i) \text{, we want the synaptic conductance at $b$}\\
 	g_b(t) =& g_{b,max}\sum_{t_i<t} K(t-t_i) \text{, K() is the filter for synapse $b$}\\
-	=& g_{b,max}\int_{-\infty}^{t} K(t-\tau) \rho_b(\tau) d\tau
+	=& g_{b,max}\int_{-\infty}^{t} K(t-\tau) \rho_b(\tau) d\tau \numberthis \label{eq:LinearFilter}
 \end{align*}
 
 \begin{figure}[H]
@@ -1570,8 +1570,50 @@ We characterize the spikes by the response function $\rho_i$
 \end{figure}
 
 \subsection{Introduction to Network Models}
-TBP
 
+There  two options for modeling networks: 
+\begin{enumerate}
+	\item  Model networks using Spiking neurons
+	\begin{itemize}
+		\item Advantages: Model computation and learning based on:
+		\begin{itemize}
+			\item Spike Timing
+			\item Spike Correlations/Synchrony between neurons
+		\end{itemize}
+		\item Disadvantages: Computationally expensive
+	\end{itemize}
+	\item Use neurons with firing-rate outputs (real valued outputs)
+	\begin{itemize}
+		\item Advantages: Greater efficiency, scales well to large networks
+		\item Disadvantages: Ignores spike timing issues
+	\end{itemize}
+\end{enumerate}
+
+Question: How are these two approaches related?
+Recall the linear filter--Figure \ref{eq:LinearFilter} and \eqref{eq:LinearFilter}.
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Constructing a Model}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{From a single synapse to multiple synapses.}\label{fig:from-single-synapse-to-multiple}
+			\includegraphics[width=0.9\textwidth]{from-single-synapse-to-multiple}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{From spiking to firing.}\label{fig:from-spiking-to-firing}
+			\includegraphics[width=0.9\textwidth]{from-spiking-to-firing}
+		\end{subfigure}
+	\end{center}
+\end{figure}
+
+Total synaptic current is given by:
+\begin{align*}
+	I_s(t) =& \sum_{b=1}^{n} I_b(t)\\
+	=&  \sum_{b=1}^{n} w_b \int_{-\infty}^{t} K(t-\tau) \rho_b(\tau) d\tau \text{, from Figure \ref{fig:from-single-synapse-to-multiple}}\\
+	\approx & \sum_{b=1}^{n} w_b \int_{-\infty}^{t} K(t-\tau) u_b(\tau) d\tau \text{, from Figure \ref{fig:from-spiking-to-firing}}
+\end{align*}
+
+We have replaced the spike train $\rho_i(t)$ with the firing rate $u_i(t)$.
 \subsection{Recurrent Networks}
 TBP
 
