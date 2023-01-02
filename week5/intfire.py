@@ -17,7 +17,8 @@ def intfire(I       = 1 ,
             R       = 40,
             tstop   = 200,
             abs_ref = 5,
-            V_th    = 10):
+            V_th    = 10,
+            V_max   = 50):
    '''
    I & F implementation dV/dt = - V/RC + I/C
    Using h = 1 ms step size, Euler method
@@ -29,6 +30,7 @@ def intfire(I       = 1 ,
        tstop   trial duration
        abs_ref absolute refractory period
        V_th    spike threshold
+       V_max   spike voltage
    '''
    V        = 0
    ref      = 0   # absolute refractory period counter
@@ -36,17 +38,19 @@ def intfire(I       = 1 ,
    n_spikes = 0
 
    for t in range(tstop):
-      if not ref:
-            V = V - (V/(R*C)) + (I/C)  # RC is time constant: nF * Mohms, si I think time is milliseconds
+      if ref==0:
+            V = V - (V/(R*C)) + (I/C)  # RC is time constant: nF * Mohms, so time is milliseconds
       else:
             ref -= 1
             V    = 0.2 * V_th # reset voltage
 
       if V > V_th:
-         V         = 50 # emit spike
+         V         = V_max # emit spike
          ref       = abs_ref # set refractory counter
          n_spikes += 1
+
       V_trace += [V]
+
    return n_spikes,V_trace
 
 if __name__=='__main__':
