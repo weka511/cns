@@ -39,6 +39,8 @@
 
 \newacronym{gls:fMRI}{fMRI\glsadd{gls:fmri}}{\Gls{gls:fmri}}
 
+\newacronym{gls:LGN}{LGN}{lateral geniculate nucleus }
+
 \newacronym{gls:LTD}{LTD\glsadd{gls:ltd}}{\Gls{gls:ltd}}
 
 \newacronym{gls:LTP}{LTP\glsadd{gls:ltp}}{\Gls{gls:ltp}}
@@ -198,9 +200,7 @@ operation of neurons and networks in the brain
 \end{figure}
 
 \begin{figure}[H]
-	\caption[Model suggested by Hubel \& Wiesel in the 	1960s]{Model suggested by 	Hubel \& Wiesel in the 	1960s: V1 RFs are 	created from converging
-		LGN inputs. Center-surround LGN RFs are displaced along
-		preferred orientation of V1 cell This simple model is still controversial!}
+	\caption[Model suggested by Hubel \& Wiesel in the 	1960s]{Model suggested by 	Hubel \& Wiesel in the 	1960s: V1 RFs are created from converging 	\gls{gls:LGN} inputs. Center-surround \gls{gls:LGN} \glspl{gls:rf} are displaced along preferred orientation of V1 cell This simple model is still controversial!}
 	\includegraphics[width=0.9\textwidth]{mech-rf-v1}
 \end{figure}
 
@@ -455,32 +455,38 @@ During this course, we will talk about:
 \end{itemize}
 
 \begin{figure}[H]
-	\caption[Recording from the Brain]{Recording from the Brain. (\subref{fig:rb1}) \& (\subref{fig:rb2}) \gls{gls:fMRI}: resolution $1\;mm^3$; response is averaged over many neurons, and is slow. (\subref{fig:rb3}) \gls{gls:EEG}: response is averaged over many neurons; EEG is faster than fMRI, but noisy. (\subref{fig:rb4}) \& (\subref{fig:rb5}) Electrode Arrays: good if we have access to tissue directly} \label{fig:recording} (\subref{fig:rb6} Calcium Imaging. Cells have markers that change the colour of fluorescence as calcium levels change in response to neural activity.)
-	\begin{subfigure}[b]{0.3\textwidth}
+	\caption[Recording from the Brain]{Recording from the Brain. (\subref{fig:rb1}) \& (\subref{fig:rb2}) \gls{gls:fMRI}: resolution $1\;mm^3$; response is averaged over many neurons, and is slow. (\subref{fig:rb3}) \gls{gls:EEG}: response is averaged over many neurons; EEG is faster than fMRI, but noisy. (\subref{fig:rb4}) \& (\subref{fig:rb5}) Electrode Arrays: good if we have access to tissue directly\label{fig:recording} (\subref{fig:rb6}) \& (\subref{fig:rb7}) Calcium Imaging. Cells have markers that change the colour of fluorescence as calcium levels change in response to neural activity.} 
+	\begin{subfigure}[t]{0.45\textwidth}
 		\caption{}\label{fig:rb1}
 		\includegraphics[width=0.9\textwidth]{fMRI}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\caption{}\label{fig:rb2}
 		\includegraphics[width=0.9\textwidth]{fMRI2}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
+	\begin{subfigure}[t]{0.3\textwidth}
 		\caption{}\label{fig:rb3}
 		\includegraphics[width=0.9\textwidth]{EEG}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
+	\begin{subfigure}[t]{0.3\textwidth}
 		\caption{}\label{fig:rb4}
 		\includegraphics[width=0.9\textwidth]{electrode-arrays}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.3\textwidth}
+	\begin{subfigure}[t]{0.3\textwidth}
 		\caption{}\label{fig:rb5}
 		\includegraphics[width=0.9\textwidth]{electrode-arrays2}
 	\end{subfigure}
-	\begin{subfigure}[b]{\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\caption{}\label{fig:rb6}
-		\includegraphics[width=0.9\textwidth]{calcium-imaging}
+		\includegraphics[width=0.9\textwidth]{calcium-imaging1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{}\label{fig:rb7}
+		\includegraphics[width=0.9\textwidth]{calcium-imaging2}
 	\end{subfigure}
 \end{figure}
+
+
 
 \begin{figure}[H]
 	\begin{center}
@@ -1677,6 +1683,8 @@ V1 calculates derivatives.
 
 \subsection{Recurrent Networks}
 
+\subsubsection{Linear Recurrent Networks}
+
 \begin{figure}[H]
 	\begin{center}
 		\caption{What can a linear recurrent network do?}
@@ -1723,6 +1731,13 @@ How does $\vec{v}$ behave for different $M$? We will suppose that $M$ is symmetr
 		\vec{v}_{SS}\approx\frac{\vec{h}\cdot\vec{e}_1}{1-\lambda_1}vec{e}_1
 	\end{align*}
 \end{cor}
+
+\subsubsection{Nonlinear Recurrent Networks}
+
+\begin{align*}
+	\tau \frac{d\vec(v)}{dt} =& -\vec{u} +F(\vec{h} +m \vec{v} )\text{e.g. rectification non-linearity}\\
+	F(x)=&max(x,0)
+\end{align*}
 
 \section{Networks that Learn}\label{sec:week7}
 
