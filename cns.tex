@@ -20,6 +20,7 @@
 \newtheorem{defn}{Definition}
 \newtheorem{thm}{Theorem}
 \newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}{Corollary}
 \graphicspath{{figs/}}
 \widowpenalty10000
 \clubpenalty10000
@@ -1675,7 +1676,53 @@ Finally, the steady state case is:
 V1 calculates derivatives.
 
 \subsection{Recurrent Networks}
-TBP
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{What can a linear recurrent network do?}
+		\includegraphics[width=0.9\textwidth]{linear-recurrent-network}
+	\end{center}
+\end{figure}
+
+\begin{align*}
+	\tau \frac{d\vec(v)}{dt} =& -\vec{u} + W\vec{u} +m \vec{v}\\
+	=& -\vec{u} +\vec{h} +m \vec{v} \text{, say} \numberthis \label{eq:recurrent:network}
+\end{align*}
+
+How does $\vec{v}$ behave for different $M$? We will suppose that $M$ is symmetric $N\times N$, and use eigenvectors. Then $M$ has N orthonormal eigenvectors $\vec{e}_i$ and $N$ eigenvalues $\lambda_i$.
+\begin{align*}
+	M \vec{e}_i =& \lambda_i \vec{e}_i \text{. We can write}\\
+	\vec{v}(t) =& \sum_{i} c_i(t) \vec{e}_i \numberthis \label{eq:ev:expansion}
+\end{align*}
+
+\begin{thm}
+	The solution to \eqref{eq:recurrent:network} is given by \eqref{eq:ev:expansion}.
+	\begin{align*}
+			c_i(t) =& \frac{\vec{h}\cdot\vec{e}_i}{1-\lambda_i}\big[1-\exp\big(\frac{-t(1-\lambda_i)}{\tau}\big)\big] + c_i(0) \exp\big(\frac{-t(1-\lambda_i)}{\tau}\big)
+	\end{align*}
+\end{thm}
+
+\begin{proof}
+	TBP
+\end{proof}
+
+\begin{cor}
+	If any $\lambda_i>1$, network is unstable.
+\end{cor}
+
+\begin{cor}
+	If all $\lambda_i<1$, network converges to the steady state value:
+	\begin{align*}
+		\vec{v}_{SS}=&\sum_{i}\frac{\vec{h}\cdot\vec{e}_i}{1-\lambda_i}vec{e}_i
+	\end{align*}
+\end{cor}
+
+\begin{cor}
+	If all $\lambda_i<1$, and one of them, say $\lambda_1$ has the property $\lambda_i<\lambda_1$ for $i>1$
+	\begin{align*}
+		\vec{v}_{SS}\approx\frac{\vec{h}\cdot\vec{e}_1}{1-\lambda_1}vec{e}_1
+	\end{align*}
+\end{cor}
 
 \section{Networks that Learn}\label{sec:week7}
 
