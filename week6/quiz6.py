@@ -2,14 +2,12 @@
 
 from alpha_neuron      import generate_spikes
 from matplotlib.pyplot import plot, show
-from numpy             import arange, array
+from numpy             import array, linspace
 
-def count(t_peak):
-    t_trace,V_trace,spike_counter=generate_spikes(t_peak)
-    return spike_counter
 
-ts = arange(0.5,10.5,0.5)
-counts = array([count(t_peak) for t_peak in ts])
+
+ts     = linspace(0.5,10,num=20)
+counts = array([generate_spikes(t_peak)[2] for t_peak in ts])
 plot(ts,counts)
-plot(ts,ts)
+plot([ts[0],ts[-1]],[counts[0],counts[-1]])
 show()

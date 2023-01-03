@@ -54,7 +54,7 @@ tau_ad = 2
 # Initialize basic parameters
 E_leak  = -60 # mV, equilibrium potential
 E_syn   = 0 # Excitatory synapse (why is this excitatory?)
-g_syn   = 0 # Current syn conductance
+# g_syn   = 0 # Current syn conductance
 V_th    = -40 # spike threshold mV
 V_spike = 50 # spike value mV
 ref_max = 4/h # Starting value of ref period counter

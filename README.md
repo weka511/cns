@@ -22,3 +22,4 @@ week5|intfire.py|Questions 16 & 17
 &nbsp;|quiz17.py|Question 17
 week6|alpha_neuron.py|Questions 6,7, & 8
 &nbsp;|quiz6.py|Question 6
+&nbsp;|quiz9.py|Question 9
