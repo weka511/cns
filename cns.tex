@@ -2014,7 +2014,7 @@ If the noise is Gaussian white noise, the likelihood is given by:
 
 So minimizing the reconstruction error is the same as maximizing likelihood.
 
-We will assume that the causes are independent, for simplicity, so $P[\vec{v}]$ is product of probabilities of the originak causes.
+We will assume that the causes are independent, for simplicity, so $P[\vec{v}]$ is product of probabilities of the original causes.
 
 \begin{align*}
 	p[\vec{v]} =& \prod_{i} p[v_i]\\
@@ -2038,35 +2038,66 @@ For any input, we want only a few causes $v_i$ to be active
 
 \begin{itemize}
 	\item Find v and G that maximize posterior probability of causes
-	\item Equivalently, maximize log posterior
+	\begin{align*}
+		p[\vec{v}\vert\vec{u};G] =& Z p[\vec{u}\vert\vec{v};G] p[\vec{v};G] \text{, where $Z$ is the partition function}
+	\end{align*}
+	\item Equivalently, maximize log posterior, which entails minimizing the reconstruction error while maximizing the sparseness. 
+	\begin{align*}
+		F(\vec{v},G) =& \log p[\vec{u}\vert\vec{v};G] + \log p[\vec{v};G] + log Z\\
+		=& \underbrace{-\frac{1}{2} \lvert \lvert \vec{u} -\vec{v} \rvert \rvert^2}_\text{Reconstruction error} + \underbrace{\sum_i g_i(v_i)}_\text{sparseness constraint} + K
+	\end{align*}
 	\item Alternate between two steps
 	(similar to EM algorithm):
 	\begin{itemize}
-		\item 	Maximize F with respect to v, 	keeping G fixed
-		\item Maximize F with respect to G, given the v from above
+		\item 	Maximize F with respect to $\vec{v}$, 	keeping G fixed
+		\item Maximize F with respect to G, given the  $\vec{v}$ from above
 	\end{itemize}
 \end{itemize}
 
 
+\begin{figure}[H]
+	\begin{center}
+		\caption[One way to maximize F with respect to $\vec{v}$ is Gradient Ascent]{One way to maximize F with respect to $\vec{v}$ is gradient ascent $\frac{d\vec{v}}{dt} \propto \frac{\partial F}{\partial\vec{v}}$, which moves $\vec{v}$ closer to optimum value.}
+		\includegraphics[width=\textwidth]{gradient-ascent}
+	\end{center}
+\end{figure}
+
+\begin{align*}
+	\frac{d\vec{v}}{dt} \propto& G^T(\vec{u} -G \vec{v}) + \nabla g\\
+	\tau \frac{d\vec{v}}{dt} =& G^T\big(\underbrace{\vec{u} -\overbrace{G \vec{v}}^\text{Prediction}}_\text{Error}\big) + \underbrace{\nabla g}_\text{Sparseness constraint}\numberthis\label{eq:maximizeF}
+\end{align*}
+
+We can implement this equation as specifying the firing rate dynamics of a recurrent network.
 
 \begin{figure}[H]
 	\begin{center}
-		\caption{Examples of sparse priors}
+		\caption[Recurrent network implementation of sparse coding\eqref{eq:maximizeF}]{Recurrent network implementation of sparse coding\eqref{eq:maximizeF}. Network makes a prediction, then calculates an error, which it uses to adjust weights.}
 		\includegraphics[width=\textwidth]{recurrent-sparse}
 	\end{center}
 \end{figure}
 
+We can learn $G$ by applying gradient ascent a second time.
 
+\begin{align*}
+	\frac{dG}{dt} \propto& \frac{dF}{dG}\\
+	=& \big(\vec{u}-G\vec{v}\big) \vec{v}^T\\
+	\tau_G \frac{dG}{dt} =& \big(\vec{u}-G\vec{v}\big) \vec{v}^T \text{. Hebbian, similar to Oja's rule!}
+\end{align*}
+
+If $\tau_G>\tau$, $\vec{v}$ will converge faster than $G$, so we can recognize the object $\vec{v}$, then update weights.
+
+If network is similar to Oja's rule, why doesn't it just compute eigenvectors? Because of thr sparseness constraint.
 \begin{figure}[H]
 	\begin{center}
-		\caption[Learning G for Natural Images]{Learning G for Natural Images\cite{olshausen1997sparse}}
+		\caption[Learning G for Natural Images]{Learning G for Natural Images. Each square is a column $g_i$ of G (obtained by collapsing rows of the square into a vector).	The $g_i$  look like local edge or bar features similar to receptive fields in primary visual cortex (V1)\cite{olshausen1997sparse}.}
 		\includegraphics[width=\textwidth]{learning-G-natural}
 	\end{center}
 \end{figure}
 
+We can interpret this as the brain optimizing its \glspl{gls:rf} to code for natural images in an efficient manner (interpretive model).
 \begin{figure}[H]
 	\begin{center}
-		\caption[Sparse Coding Network is a special case of Predictive Coding Networks]{Sparse Coding Network is a special case of Predictive Coding Networks\cite{rao1999optimal,rao1999predictive}}
+		\caption[Sparse Coding Network is a special case of Predictive Coding Networks]{Sparse Coding Network is a special case of Predictive Coding Networks. The recurrent weights allow for time dependent input, and the sensory error gain allows for attention\cite{rao1999optimal,rao1999predictive}.}
 		\includegraphics[width=\textwidth]{sparse-coding-predictive-coding}
 	\end{center}
 \end{figure}
@@ -2075,7 +2106,7 @@ For any input, we want only a few causes $v_i$ to be active
 	\begin{center}
 		\caption[Predictive Coding Model of
 		the Visual Cortex]{Predictive Coding Model of
-			the Visual Cortex\cite{rao1999predictive,gilbert2013top}}
+			the Visual Cortex\cite{rao1999predictive,gilbert2013top}.  }
 		\includegraphics[width=\textwidth]{predictive-coding-visual-cortex}
 	\end{center}
 \end{figure}
