@@ -1924,16 +1924,16 @@ In Figure \ref{fig:hebb-pca}, Hebbian learning reduces the dimensionality of the
 
 We use the Expectation Maximization Algorithm, iterating the two following steps until convergence:
 \begin{enumerate}
-	\item E-step: compute posterior distribution of $\nu$, e.g. cluster assignments.
+	\item E-step: compute posterior distribution of $v$, e.g. cluster assignments.
 	\begin{align*}
-		p(\nu\vert u;G)=&\frac{p(u\vert \vu ;G) p(\nu;G)}{p(u;G)}\\
-		=&\frac{N(\vec{u};\vec{\mu_\nu},\sigma_\nu I).\gamma_\nu}{\sum_\nu N(\vec{u};\vec{\mu_\nu},\sigma_\nu I).\gamma_\nu}
+		p(v\vert u;G)=&\frac{p(u\vert \vu ;G) p(v;G)}{p(u;G)}\\
+		=&\frac{N(\vec{u};\vec{\mu_v},\sigma_v I).\gamma_v}{\sum_v N(\vec{u};\vec{\mu_v},\sigma_v I).\gamma_v}
 	\end{align*}
 	\item M-step: change parameters G using results from E-step.
 	\begin{align*}
-		\vec{\mu_\nu} =&\frac{\sum_u P[\nu\vert \vec{u};G]\vec{u}}{\sum_u P[\nu\vert \vec{u};G]}\\
-		\vec{\sigma_\nu} =&\frac{\sum_u P[\nu\vert \vec{u};G]\lvert \vec{u}-\vec{\mu_\nu}\rvert^2 }{\sum_u P[\nu\vert \vec{u};G]}\\
-		\vec{\gamma_\nu} =&\frac{\sum_u P[\nu\vert \vec{u};G]}{N_u}
+		\vec{\mu_v} =&\frac{\sum_u P[v\vert \vec{u};G]\vec{u}}{\sum_u P[v\vert \vec{u};G]}\\
+		\vec{\sigma_v} =&\frac{\sum_u P[v\vert \vec{u};G]\lvert \vec{u}-\vec{\mu_v}\rvert^2 }{\sum_u P[v\vert \vec{u};G]}\\
+		\vec{\gamma_v} =&\frac{\sum_u P[v\vert \vec{u};G]}{N_u}
 	\end{align*}
 \end{enumerate}
 
@@ -1984,11 +1984,101 @@ Returning to Figure \ref{fig:suppose-data-are-natural-images}, we ask:
 
 We can expand in principal components
 \begin{align*}
-	\vec{u} =& \sum_{i=1}^{N} \vec{e_i} \nu_i \\
-	=& \sum_{i=1}^{M} \vec{e_i} \nu_i + noise \text{, where $M\ll N$}
+	\vec{u} =& \sum_{i=1}^{N} \vec{e_i} v_i \\
+	=& \sum_{i=1}^{M} \vec{e_i} v_i + noise \text{, where $M\ll N$}
 \end{align*}
 
 Eigenvector representation is good for compression but not so good if you want to extract the local components (or parts) of an image (e.g., parts of a face, local edges in a scene, etc.)
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Can we salvage the idea of a linear model for images?}
+		\includegraphics[width=\textwidth]{linear-model-images}
+	\end{center}
+\end{figure}
+
+\begin{align*}
+	\vec{u} =& \sum_{i=1}^{M} \vec{g}_i v_i + noise\\
+	=& G \vec{v} + noise
+\end{align*} 
+
+We will allow the number of features, $M$, to be larger than $N$, then number of pixels.
+
+If the noise is Gaussian white noise, the likelihood is given by:
+
+\begin{align*}
+	p[\vec{u}\vert \vec{v};G] =& Gaussian(u;Gv,I)\\
+	\propto exp\big(-\frac{\lvert\lvert \vec{u}-G \vec{v}\rvert rvert^2}{2}\big)\text{, whence}\\
+	\log p[\vec{u}\vert \vec{v};G] =& -\frac{\lvert\lvert \vec{u}-G \vec{v}\rvert rvert^2}{2} + C
+\end{align*}
+
+So minimizing the reconstruction error is the same as maximizing likelihood.
+
+We will assume that the causes are independent, for simplicity, so $P[\vec{v}]$ is product of probabilities of the originak causes.
+
+\begin{align*}
+	p[\vec{v]} =& \prod_{i} p[v_i]\\
+	\ln p[\vec{v]} =& \sum_{i} \log p[v_i]
+\end{align*}
+
+For any input, we want only a few causes $v_i$ to be active
+\begin{itemize}
+	\item v i = 0 most of the time but high for some inputs
+	\item Suggests sparse distribution for $p[v_i]$: peak at 0 but with heavy tail (also called super- Gaussian distribution)
+\end{itemize}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Examples of sparse priors}
+		\includegraphics[width=\textwidth]{sparse-priors}
+	\end{center}
+\end{figure}
+
+\subsubsection{Bayesian approach to finding v and learning G}
+
+\begin{itemize}
+	\item Find v and G that maximize posterior probability of causes
+	\item Equivalently, maximize log posterior
+	\item Alternate between two steps
+	(similar to EM algorithm):
+	\begin{itemize}
+		\item 	Maximize F with respect to v, 	keeping G fixed
+		\item Maximize F with respect to G, given the v from above
+	\end{itemize}
+\end{itemize}
+
+
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Examples of sparse priors}
+		\includegraphics[width=\textwidth]{recurrent-sparse}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Learning G for Natural Images]{Learning G for Natural Images\cite{olshausen1997sparse}}
+		\includegraphics[width=\textwidth]{learning-G-natural}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Sparse Coding Network is a special case of Predictive Coding Networks]{Sparse Coding Network is a special case of Predictive Coding Networks\cite{rao1999optimal,rao1999predictive}}
+		\includegraphics[width=\textwidth]{sparse-coding-predictive-coding}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Predictive Coding Model of
+		the Visual Cortex]{Predictive Coding Model of
+			the Visual Cortex\cite{rao1999predictive,gilbert2013top}}
+		\includegraphics[width=\textwidth]{predictive-coding-visual-cortex}
+	\end{center}
+\end{figure}
 
 \section{Learning from Supervision \& Rewards}\label{sec:week8}
 
