@@ -1944,8 +1944,51 @@ We use the Expectation Maximization Algorithm, iterating the two following steps
 	\end{center}
 \end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+		\caption{Suppose data are natural images}\label{fig:suppose-data-are-natural-images}
+		\includegraphics[width=\textwidth]{suppose-data-are-natural-images}
+	\end{center}
+\end{figure}
+
+\begin{itemize}
+	\item What kind of generative model would you use?
+	\item How do you learn the “causes” of such images
+\end{itemize}
+
 \subsection{Sparse Coding \& Predictive Coding}
-TBP
+
+Returning to Figure \ref{fig:suppose-data-are-natural-images}, we ask:
+\begin{itemize}
+	\item Can we learn a good representation of natural images?
+	\item What does the brain do?
+\end{itemize}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Eigenfaces]{Eigenfaces\cite{turk1991eigenfaces}}
+		\begin{subfigure}[t]{0.9\textwidth}
+			\caption{Face images}
+			\includegraphics[width=\textwidth]{eigenfaces1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.9\textwidth}
+			\caption{Eigenvectors of the input covariance matrix}
+			\includegraphics[width=\textwidth]{eigenfaces2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.9\textwidth}
+			\caption{A linear model of images using eigenvectors}
+			\includegraphics[width=\textwidth]{eigenfaces3}
+		\end{subfigure}
+	\end{center}
+\end{figure}
+
+We can expand in principal components
+\begin{align*}
+	\vec{u} =& \sum_{i=1}^{N} \vec{e_i} \nu_i \\
+	=& \sum_{i=1}^{M} \vec{e_i} \nu_i + noise \text{, where $M\ll N$}
+\end{align*}
+
+Eigenvector representation is good for compression but not so good if you want to extract the local components (or parts) of an image (e.g., parts of a face, local edges in a scene, etc.)
 
 \section{Learning from Supervision \& Rewards}\label{sec:week8}
 
