@@ -1850,33 +1850,99 @@ is stable
 \subsubsection{What does Hebbian Learning do?}
 
 \begin{figure}[H]
-	\begin{center}
-		\caption[Hebbian Learning implements Principal Component Analysis]{Hebbian Learning implements Principal Component Analysis\cite{dayan2005theoretical}. It learns a weight vector aligned with the principal eigenvector of input correlation/covariance matrix, i.e. the direction of maximum variance.}
-		\begin{subfigure}[b]{0.3\textwidth}
-			\caption{The filled circles show the inputs u = ( u 1 , u 2 ) used during a training period while a Hebbian plasticity rule was applied. After training, the vector of synaptic weights 	was aligned parallel to the solid line}
-			\includegraphics[width=0.9\textwidth]{hebb-pca1}
-		\end{subfigure}
-		\begin{subfigure}[b]{0.3\textwidth}
-			\caption{Correlation-based modification with nonzero mean input. Input vectors were generated as in A except that the distribution was shifted to produce an average value h u i = ( 2 , 2 ) . After a training period 	during which a Hebbian plasticity rule was applied, the synaptic weight vector 	was aligned parallel to the solid line}
-			\includegraphics[width=0.9\textwidth]{hebb-pca2}
-		\end{subfigure}
-		\begin{subfigure}[b]{0.3\textwidth}
-			\caption{ Covariance-based modification. Points
-				from the same distribution as in B were used while a covariance-based Hebbian
-				rule was applied. The weight vector becomes aligned parallel to the solid line.}
+	\caption[Hebbian Learning implements Principal Component Analysis]{Hebbian Learning implements Principal Component Analysis\cite{dayan2005theoretical}. It learns a weight vector aligned with the principal eigenvector of input correlation/covariance matrix, i.e. the direction of maximum variance. In each sub-figure, after training, the vector of synaptic weights was aligned parallel to the solid line}\label{fig:hebb-pca}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{The filled circles show the inputs u = ( u 1 , u 2 ) used during a training period while a Hebbian plasticity rule was applied.}\label{fig:hebb-pca1}
+		\includegraphics[width=\textwidth]{hebb-pca1}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{Input vectors were generated as in (\subref{fig:hebb-pca1}) except that the distribution was shifted to produce an average value $\langle u \rangle=(2, 2$).}\label{fig:hebb-pca2}
+		\includegraphics[width=0.9\textwidth]{hebb-pca2}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\begin{center}
+			\caption{Points from the same distribution as in (\subref{fig:hebb-pca2}) with a covariance-based Hebbian rule.}
 			\includegraphics[width=0.9\textwidth]{hebb-pca3}
-		\end{subfigure}
-	\end{center}
+		\end{center}
+	\end{subfigure}
 \end{figure}
 
+In Figure \ref{fig:hebb-pca}, Hebbian learning reduces the dimensionality of the data.
+
 \begin{figure}[H]
-	\caption{\gls{gls:PCA} does not correctly describe this data}
+	\caption[\gls{gls:PCA} does not correctly describe this data]{\gls{gls:PCA} does not correctly describe this data: we have lost the clustering!}
 	\includegraphics[width=\textwidth]{pca-does-not-correctly-describe-this-data}
 \end{figure}
 
 
 \subsection{Introduction to Unsupervised Learning}
-TBP
+
+\subsubsection{Can a network learn to represent clusters?}
+\begin{figure}[H]
+	\caption{Can a network learn to represent clusters?}
+	\includegraphics[width=\textwidth]{clustered-data}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Using neurons to represent clusters]{Using neurons to represent clusters. The $\vec{w}$ are the centres of the clusters. The most active neuron is the one whose centre is closest to an input.}
+	\includegraphics[width=\textwidth]{neurons-clusters}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Competitive Learning}
+		\includegraphics[width=\textwidth]{competitive-learning}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Competitive Learning and Self Organizing Maps]{Competitive Learning and Self Organizing Maps (a.k.a. Kohonen Maps).}
+		\begin{subfigure}[t]{0.9\textwidth}
+			\caption{Given an input, pick the winning neuron; update weights for that neuron and other neurons in the neighbourhood of the winner. The the primary visual cortex appears to use a similar  scheme--(\subref{fig:kohonen-maps-v1})}
+			\includegraphics[width=\textwidth]{kohonen-maps}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.9\textwidth}
+			\caption{Orientation preference map in the primary visual cortex (V1).}\label{fig:kohonen-maps-v1}
+			\includegraphics[width=0.6\textwidth]{kohonen-maps-v1}
+		\end{subfigure}
+	\end{center}
+\end{figure}
+
+\subsubsection{Is there a principled way of learning models of input data?}
+\begin{figure}[H]
+	\caption{Is there a principled way of learning models of input data?}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{Unsupervised Learning via a Generative Model}
+		\includegraphics[width=\textwidth]{unsupervised-learning-via-generative-model}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{Example: Gaussian Mixture Model}\label{fig:gmm}
+		\includegraphics[width=\textwidth]{unsupervised-learning-example}
+	\end{subfigure}
+\end{figure}
+
+We use the Expectation Maximization Algorithm, iterating the two following steps until convergence:
+\begin{enumerate}
+	\item E-step: compute posterior distribution of $\nu$, e.g. cluster assignments.
+	\begin{align*}
+		p(\nu\vert u;G)=&\frac{p(u\vert \vu ;G) p(\nu;G)}{p(u;G)}\\
+		=&\frac{N(\vec{u};\vec{\mu_\nu},\sigma_\nu I).\gamma_\nu}{\sum_\nu N(\vec{u};\vec{\mu_\nu},\sigma_\nu I).\gamma_\nu}
+	\end{align*}
+	\item M-step: change parameters G using results from E-step.
+	\begin{align*}
+		\vec{\mu_\nu} =&\frac{\sum_u P[\nu\vert \vec{u};G]\vec{u}}{\sum_u P[\nu\vert \vec{u};G]}\\
+		\vec{\sigma_\nu} =&\frac{\sum_u P[\nu\vert \vec{u};G]\lvert \vec{u}-\vec{\mu_\nu}\rvert^2 }{\sum_u P[\nu\vert \vec{u};G]}\\
+		\vec{\gamma_\nu} =&\frac{\sum_u P[\nu\vert \vec{u};G]}{N_u}
+	\end{align*}
+\end{enumerate}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{Expectation-Maximization--an example}
+		\includegraphics[width=\textwidth]{em-results}
+	\end{center}
+\end{figure}
 
 \subsection{Sparse Coding \& Predictive Coding}
 TBP
