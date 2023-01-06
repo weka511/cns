@@ -54,13 +54,18 @@
 
 \newacronym{gls:STDP}{STDP}{Spike-Timing Dependent Plasticity}
 
+\newglossaryentry{gls:covariance:matrix}{
+	name={covariance matrix},
+	description={a square matrix giving the covariance between each pair of elements of a given random vector. Any covariance matrix is symmetric and positive semi-definite and its main diagonal contains variances (i.e., the covariance of each element with itself)\cite{enwiki:1123552471}.$$C_{ij}=\mathbb{E}\big((X_i-\mathbb{E}(x_i))(X_j-\mathbb{E}(x_j))\big)$$}}
+
+
 \newglossaryentry{gls:depolarization}{
 	name={depolarization},
 	description={positive change in voltage}}
 
 \newglossaryentry{gls:eeg}{
 	name={Electroencephalography},
-	description={a method to record an electrogram of the spontaneous electrical activity of the brain. The biosignals detected by EEG have been shown to represent the postsynaptic potentials of pyramidal neurons in the neocortex and allocortex.[1] It is typically non-invasive, with the EEG electrodes placed along the scalp (commonly called "scalp EEG") using the International 10-20 system, or variations of it. Electrocorticography, involving surgical placement of electrodes, is sometimes called "intracranial EEG". Clinical interpretation of EEG recordings is most often performed by visual inspection of the tracing or quantitative EEG analysis.\cite{enwiki:1128901597}}}
+	description={a method to record an electrogram of the spontaneous electrical activity of the brain. The biosignals detected by EEG have been shown to represent the postsynaptic potentials of pyramidal neurons in the neocortex and allocortex. It is typically non-invasive, with the EEG electrodes placed along the scalp (commonly called "scalp EEG") using the International 10-20 system, or variations of it. Electrocorticography, involving surgical placement of electrodes, is sometimes called "intracranial EEG". Clinical interpretation of EEG recordings is most often performed by visual inspection of the tracing or quantitative EEG analysis.\cite{enwiki:1128901597}}}
 
 \newglossaryentry{gls:electrotonic}{
 	name={electrotonic},
@@ -1787,7 +1792,7 @@ The basic Hebb rule is:
 	\tau_w \frac{d\vec{w}}{dt} =& \langle \vec{u}\big(v-<v>\big) \rangle_u\\
 	=& \langle \vec{u}\big(\vec{u}^T-<\vec{u}>^T\big) \vec{w}\rangle_u\\
 	=& \Big( \langle \vec{u}^T \vec{u}\rangle - \langle \vec{u}^T \rangle \langle\vec{u}\rangle\Big)\vec{w} \\
-	=& C \vec{w} \text{, where $C$ is the Covariance Matrix}\\
+	=& C \vec{w} \text{, where $C$ is the \Gls{gls:covariance:matrix}}\\
 	C\triangleq& \Big( \langle \vec{u}^T \vec{u}\rangle - \langle \vec{u}^T \rangle \langle\vec{u}\rangle\Big)
 \end{align*}
 
