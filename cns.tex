@@ -110,8 +110,7 @@ My notes from Computational Neuroscience course\cite{coursera2017cns}, which pro
 \end{abstract}
 
 \tableofcontents
-\listoffigures
-\listoftables
+
 \section{Introduction and Basic Neurobiology}\label{sec:week1}
 
 \subsection{Course Introduction}
@@ -279,32 +278,38 @@ Originally there were two competing hypothesis:
 \end{itemize}
 
 \begin{figure}[H]
-	\caption[The idealized Neuron]{The idealized Neuron. The \gls{gls:EPSP}s are summed: if the sum reaches a threshold, we get an action potential, also known as a spike.}
-	\includegraphics[width=0.9\textwidth]{idealized-neuron}
-\end{figure}
-
-\begin{figure}[H]
-	\caption[What is a Neuron?]{What is a Neuron?}
-	\includegraphics[width=0.9\textwidth]{what-is-a-neuron}
+	\caption{The Electrical Personality of Neurons}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{The idealized Neuron. The \gls{gls:EPSP}s are summed: if the sum reaches a threshold, we get an action potential, also known as a spike.}
+		\includegraphics[width=\textwidth]{idealized-neuron}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\begin{center}
+			\caption{A neuron is a ``leaky bag of charged liquid''}\label{fig:what:is:a:neuron}
+			\includegraphics[width=\textwidth]{what-is-a-neuron}
+		\end{center}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\begin{center}
+			\caption{The Electrical Personality of a Neuron}\label{fig:what:is:a:neuron2}
+			\includegraphics[width=\textwidth]{what-is-a-neuron2}
+		\end{center}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{Ionic Channels: the Gate Keepers.  Ionic channels  are selective and	allow only specific ions to pass through}\label{fig:ionic-channel}
+		\includegraphics[width=\textwidth]{ionic-channel}
+	\end{subfigure}
 \end{figure}
 
 \begin{itemize}
-	\item  A ``leaky bag of charged liquid''
+	\item  A neuron is a ``leaky bag of charged liquid''--Figure \ref{fig:what:is:a:neuron}
 	\item Contents of the neuron enclosed within a cell membrane
 	\item Cell membrane is a lipid bilayer
 	\begin{itemize}
 		\item Bilayer is impermeable to charged ion species such as $Na^+$ , $Cl^-$, and $K^+$
-		\item Ionic channels embedded in 	membrane allow ions to flow in or out
+		\item Ionic channels embedded in membrane allow ions to flow in or out
 	\end{itemize}
-\end{itemize}
-
-\begin{figure}[H]
-	\caption[The Electrical Personality of a Neuron]{The Electrical Personality of a Neuron}
-	\includegraphics[width=0.9\textwidth]{what-is-a-neuron2}
-\end{figure}
-
-\begin{itemize}
-	\item Each neuron maintains a potential difference across its membrane;
+	\item Each neuron maintains a potential difference across its membrane--Figure \ref{fig:what:is:a:neuron2};
 	\item Inside is about –70 mV relative to outside;
 	\begin{itemize}
 		\item sodium and chloride higher outside
@@ -312,21 +317,11 @@ Originally there were two competing hypothesis:
 	\end{itemize}
 	\item Ionic pump maintains -70 mV difference by expelling [$Na^+$] 
 	and allowing [$K^+$] ions in. A lot of the energy that we consume is used to operate ionic pump.
-\end{itemize}
-
-How can the electrical potential be changed in local regions of a neuron?
-
-\begin{figure}[H]
-	\caption[Ionic Channels: the Gate Keepers]{Ionic Channels: the Gate Keepers.  Ionic channels  are selective and 	allow only specific ions to pass through}\label{fig:ionic-channel}
-	\includegraphics[width=0.9\textwidth]{ionic-channel}
-\end{figure}
-
-\begin{itemize}
 	\item Ionic channels in membranes are proteins that are selective and allow only specific ions to pass through--Figure \ref{fig:ionic-channel}
 	\item E.g. Pass $Na^+$ but not $K^+$ or $Cl^-$.
 	\item Ionic channels are gated
 	\begin{itemize}
-		\item 	Voltage-gated: Probability of opening depends on membrane voltage
+		\item Voltage-gated: Probability of opening depends on membrane voltage
 		\item Chemically-gated: Binding to a chemical causes channel to open--Figure \ref{fig:signalling}
 		\item Mechanically-gated: Sensitive to 	pressure or stretch
 	\end{itemize}
@@ -2097,7 +2092,7 @@ If network is similar to Oja's rule, why doesn't it just compute eigenvectors? B
 We can interpret this as the brain optimizing its \glspl{gls:rf} to code for natural images in an efficient manner (interpretive model).
 \begin{figure}[H]
 	\begin{center}
-		\caption[Sparse Coding Network is a special case of Predictive Coding Networks]{Sparse Coding Network is a special case of Predictive Coding Networks. The recurrent weights allow for time dependent input, and the sensory error gain allows for attention\cite{rao1999optimal,rao1999predictive}.}
+		\caption[Sparse Coding: a special case of Predictive Coding]{Sparse Coding Network is a special case of Predictive Coding Networks. The recurrent weights allow for time dependent input, and the sensory error gain allows for attention\cite{rao1999optimal,rao1999predictive}.}
 		\includegraphics[width=\textwidth]{sparse-coding-predictive-coding}
 	\end{center}
 \end{figure}
