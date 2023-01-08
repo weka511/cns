@@ -54,9 +54,20 @@
 
 \newacronym{gls:STDP}{STDP}{Spike-Timing Dependent Plasticity}
 
+\newglossaryentry{gls:correlation:matrix}{
+	name={correlation matrix},
+	description={The correlation matrix of $n$ random variables $\{X_i\}$ is the $n\times n$ matrix $Q$\cite{enwiki:1123244609}
+	\begin{align*}
+		q_{ij} =& \frac{cov(X_i,X_j)}{\sigma_{X_i}\sigma_{X_j}} \text{, or, using \eqref{eq:covariance:matrix}}\\
+		=& \frac{C_{i,j}}{\sigma_{X_i}\sigma_{X_j}}
+	\end{align*} }}
+
 \newglossaryentry{gls:covariance:matrix}{
 	name={covariance matrix},
-	description={A square matrix giving the covariance between each pair of elements of a given random vector. Any covariance matrix is symmetric and positive semi-definite and its main diagonal contains variances (i.e., the covariance of each element with itself)\cite{enwiki:1123552471}.$$C_{ij}=\mathbb{E}\big((X_i-\mathbb{E}(x_i))(X_j-\mathbb{E}(x_j))\big)$$}}
+	description={A square matrix giving the covariance between each pair of elements of a given random vector. Any covariance matrix is symmetric and positive semi-definite and its main diagonal contains variances (i.e., the covariance of each element with itself)\cite{enwiki:1123552471}.
+		\begin{align*}
+			C_{ij}=\mathbb{E}\big((X_i-\mathbb{E}(x_i))(X_j-\mathbb{E}(x_j))\big) \numberthis \label{eq:covariance:matrix}
+	\end{align*} }}
 
 
 \newglossaryentry{gls:depolarization}{
@@ -104,7 +115,7 @@
 }}
 
 \newglossaryentry{gls:rf}{
-	name={Receptive Field},
+	name={receptive field},
 	description={Specific properties of a sensory stimulus that generate a strong response from the cell\cite{coursera2017cns}}}
 
 
@@ -119,18 +130,8 @@ My notes from Computational Neuroscience course\cite{coursera2017cns}, which pro
 \section{Introduction and Basic Neurobiology}\label{sec:week1}
 
 \subsection{Course Introduction}
-\begin{figure}[H]
-	\caption{Our Universes}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\caption{According to Physicists}
-		\includegraphics[width=\textwidth]{universe1}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\caption{According to us}
-		\includegraphics[width=\textwidth]{universe2}
-	\end{subfigure}
-\end{figure}
-\subsubsection{Understanding the Brain using Computational Models}
+
+Understanding the Brain using Computational Models
 \begin{itemize}
 	\item Descriptive Models of the Brain
 	\begin{itemize}
@@ -152,20 +153,10 @@ My notes from Computational Neuroscience course\cite{coursera2017cns}, which pro
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{Course Goals: What you can expect to learn}
-At the end of the course, you will be able to:
-\begin{itemize}
-	\item  Quantitatively describe what a biological neuron or
-network of neurons is doing given experimental data
- \item Simulate on a computer the behavior of neurons and
-networks
- \item Formulate computational principles underlying the
-operation of neurons and networks in the brain
-\end{itemize}
-
 \subsection{Computational Neuroscience - Descriptive Models}
 
-\subsubsection{Receptive Fields}
+\subsubsection{\Glspl{gls:rf}}
+
 \begin{figure}[H]
 	\caption[Responses of a Neuron in an Intact Cat Brain]{Responses of a Neuron in an Intact Cat Brain\cite{hubel1965receptive}}
 	\includegraphics[width=\textwidth]{receptive-field-cat}
@@ -176,30 +167,30 @@ operation of neurons and networks in the brain
 	\includegraphics[width=\textwidth]{receptive-field-cat-bars}
 \end{figure}
 
-\subsubsection{Receptive Fields: a Descriptive Model}
+\subsubsection{\Glspl{gls:rf}: a Descriptive Model}
 
 \begin{figure}[H]
-	\caption{Receptive Fields in the Retina}
+	\caption{\Glspl{gls:rf} in the Retina}
 	\includegraphics[width=0.8\textwidth]{receptive-fields-in-the-retina}
 \end{figure}
 
 \begin{figure}[H]
-	\caption{Centre Surround Receptive Fields}
+	\caption{Centre Surround \Glspl{gls:rf}}
 	\includegraphics[width=0.8\textwidth]{center-surround}
 \end{figure}
 
 \begin{figure}[H]
-	\caption{Cortical Receptive Fields}
+	\caption{Cortical\Glspl{gls:rf}}
 	\includegraphics[width=\textwidth]{CorticalReceptive Fields}
 \end{figure}
 
 \begin{figure}[H]
-	\caption{Oriented receptive field of a neuron in primary visual cortex (V1)}
+	\caption{Oriented \gls{gls:rf} of a neuron in primary visual cortex (V1)}
 	\includegraphics[width=\textwidth]{orientation-preference}
 \end{figure}
 
 \begin{figure}[H]
-	\caption[How are these oriented receptive fields obtained?]{How are these oriented receptive fields obtained from center-surround receptive fields?}\label{fig:rf-shape}
+	\caption[How are these oriented \glspl{gls:rf} obtained?]{How are these \glspl{gls:rf} obtained from center-surround \glspl{gls:rf}?}\label{fig:rf-shape}
 	\includegraphics[width=\textwidth]{orientation-preference2}
 \end{figure}
 
@@ -207,7 +198,7 @@ operation of neurons and networks in the brain
 
 
 \begin{figure}[H]
-	\caption[Receptive Fields: a Mechanistic Model]{Receptive Fields: a Mechanistic Model}
+	\caption[\Glspl{gls:rf}: a Mechanistic Model]{\Glspl{gls:rf}: a Mechanistic Model}
 	\includegraphics[width=0.9\textwidth]{mech-rf}
 \end{figure}
 
@@ -216,12 +207,12 @@ operation of neurons and networks in the brain
 	\includegraphics[width=0.9\textwidth]{mech-rf-v1}
 \end{figure}
 
-\subsubsection{Receptive Fields: an Interpretive Model}
-Why are receptive fields in V1 shaped as in Figure \ref{fig:rf-shape}?
+\subsubsection{\Glspl{gls:rf}: an Interpretive Model}
+Why are \glspl{gls:rf} in V1 shaped as in Figure \ref{fig:rf-shape}?
 
 \begin{figure}[H]
 	\caption[Efficient Coding Hypothesis]{Efficient Coding Hypothesis: suppose the
-		goal is to represent images as faithfully and efficiently as possible using neurons with receptive fields $RF_1, RF_2$, etc}
+		goal is to represent images as faithfully and efficiently as possible using neurons with \glspl{gls:rf} $RF_1, RF_2$, etc}
 	\begin{subfigure}[t]{0.2\textwidth}
 		\caption{$RF_1$}
 		\includegraphics[width=0.7\textwidth]{rf1}
@@ -249,7 +240,7 @@ What are the $RF_i$ that minimize the total squared pixelwise errors between $I$
 
 \begin{figure}[H]
 	\begin{center}
-		\caption[Interpretive Model of Receptive Fields]{Interpretive Model of Receptive Fields: start out with random $RF_i$ and run your efficient coding algorithm on natural image patches}
+		\caption[Interpretive Model of \Glspl{gls:rf}]{Interpretive Model of \Glspl{gls:rf}: start out with random $RF_i$ and run your efficient coding algorithm on natural image patches}
 		\begin{subfigure}[t]{0.9\textwidth}
 			\begin{center}
 				\caption{Natural Images}
@@ -1776,7 +1767,7 @@ The basic Hebb rule is:
 	\tau_w \frac{d\vec{w}}{dt} =& \langle\vec{u} v\big>_u\\
 	 =& \langle\vec{u} \vec{u}^Tw\rangle_u\\
 	 =& \langle\vec{u} \vec{u}^T\rangle_u w\\
-	 =& Qw \text{, where $Q$ is the input correlation matrix}\\
+	 =& Qw \text{, where $Q$ is the input \gls{gls:correlation:matrix}}\\
 	 Q \triangleq& \langle\vec{u} \vec{u}^T\rangle_u
 \end{align*}
 
@@ -1840,7 +1831,7 @@ is stable
 	Differentiating \eqref{eq:oja}
 	\begin{align*}
 		\frac{d\lvert\lvert\vec{w}\rvert\rvert^2}{dt} =& 2 \vec{w} \frac{d\vec{w}}{dt}\\
-		=& \frac{2}{\tau_w} \vec{w}^T\big(vec{u}v - \alpha v^2 \vec{w}\big)\\
+		=& \frac{2}{\tau_w} \vec{w}^T\big(\vec{u}v - \alpha v^2 \vec{w}\big)\\
 		=& \frac{2}{\tau_w} \big( v^2 - \alpha v^2 \vec{w}^T\vec{w}\big)\\
 		=& \frac{2}{\tau_w} v^2 \big(1 - \alpha\lvert\lvert\vec{w}\rvert\rvert^2\big)\text{, which converges to a steady state}\\
 		\lvert\vec{w}\rvert =& \frac{1}{\alpha}
@@ -1893,11 +1884,17 @@ In Figure \ref{fig:hebb-pca}, Hebbian learning reduces the dimensionality of the
 		\includegraphics[width=\textwidth]{neurons-clusters2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\caption{Competitive Learning. Given a new input, pick the most active neuron, i.e. the one whose weights are closest to the input, and update weights. $\Delta \vec{w}=\epsilon(\vec{u_t}=\vec{w})$}
+		\caption{Competitive Learning. Given a new input, pick the most active neuron, i.e. the one whose weights are closest to the input, and update weights using \eqref{eq:competitive:learning}.}\label{fig:competitive:learning}
 		\includegraphics[width=\textwidth]{competitive-learning}
 	\end{subfigure}
 \end{figure}
 
+If Figure \ref{fig:competitive:learning} 
+\begin{align*}
+	\Delta \vec{w}=&\epsilon(\vec{u_t}=\vec{w}) \text{, where} \numberthis \label{eq:competitive:learning}\\
+	\epsilon=&\frac{1}{t} \text{, to use a running average of inputs, or}\\
+	\epsilon=&\text{ a small value, to adapt to new inputs for an indefinite period of time.}
+\end{align*}
 
 \begin{figure}[H]
 	\begin{center}

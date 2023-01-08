@@ -24,4 +24,5 @@ week6|alpha_neuron.py|Questions 6,7, & 8
 &nbsp;|quiz6.py|Question 6
 &nbsp;|quiz9.py|Question 9
 week7|c10p1.pickle|Data file for assignment
-&nbsp;|quiz7.py|Question 7
+&nbsp;|quiz1.py|Question 1
+&nbsp;|quiz7.py|Questions 5-9
