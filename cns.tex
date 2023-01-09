@@ -2115,6 +2115,7 @@ We can interpret this as the brain optimizing its \glspl{gls:rf} to code for nat
 \section{Learning from Supervision \& Rewards}\label{sec:week8}
 
 \subsection{Neurons as Classifiers and Supervised Learning}
+
 \begin{figure}[H]
 	\begin{center}
 		\caption{The perceptron: a simple classifier, inspired by a neuron}
@@ -2144,7 +2145,36 @@ The perceptron can perform linear classification. How do we learn weights and th
 	\Delta w_i =& \epsilon(v^d-v)u_i\\
 	\Delta \mu =& -\epsilon(v^d-v)
 \end{align*}
-Unfortunately, perceptrons can only handle linearly separable data. They cannot calculate the XOR function.
+Unfortunately, A perceptron can only handle linearly separable data; it cannot calculate the XOR function.
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[A multi-layer perceptron]{A multi-layer perceptron can handle data that isn't separable: her is one that can calculate XOR.}
+		\includegraphics[width=\textwidth]{mlp-xor}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Multi-layer perceptron with continuous output]{We can achieve continuous output by using a sigmoid}
+		\includegraphics[width=\textwidth]{continuous-sigmoid}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Learning the weights of an MLP]{Learning the weights of an MLP, given desired output $d$ (Supervised learning)}
+		\includegraphics[width=\textwidth]{learn-mlp}
+	\end{center}
+\end{figure}
+We want to minimize the error function
+\begin{align*}
+	E(W,w) =& \frac{1}{2}\sum_{i} (d_i-v_i)^2 \text{. Using gradient descent}\\
+	\delta W_{ij} =& - \epsilon \frac{\partial E}{\partial W_{ij}}\\
+	=&\epsilon (d_i-v_i)g^{\prime} (\sum_{j^{\prime}} W_{ij^{\prime}} x_{j^{\prime}}) x_j \text{, which is known as the ``Delta rule''}
+\end{align*}
+
+$\delta w_{ij}$ may be computed from the well-known back-propagation rule.
 
 \subsection{Reinforcement Learning: Predicting Rewards}
 TBP
