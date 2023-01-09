@@ -2115,7 +2115,36 @@ We can interpret this as the brain optimizing its \glspl{gls:rf} to code for nat
 \section{Learning from Supervision \& Rewards}\label{sec:week8}
 
 \subsection{Neurons as Classifiers and Supervised Learning}
-TBP
+\begin{figure}[H]
+	\begin{center}
+		\caption{The perceptron: a simple classifier, inspired by a neuron}
+		\includegraphics[width=\textwidth]{perceptron}
+	\end{center}
+\end{figure}
+
+The output is given by:
+\begin{align*}
+	v =& \Theta\big(\sum_i w_i u_i - \mu\big)\text{, where}\\
+	\Theta(x) \triangleq& \begin{cases}
+		+1, \text{if $x>0$}\\
+		-1, \text{if $x\le 0$}
+	\end{cases}
+\end{align*}
+What does a perceptron do? Let is set the expression to zero:
+\begin{align*}
+	\sum_i w_i u_i - \mu=&0
+\end{align*}
+This specifies a hyperplane.
+\begin{itemize}
+	\item All inputs on one side of hyperplane have output = +1 (“class 1”);
+	\item all inputs on other side have output = -1 (“class 2”)
+\end{itemize}
+The perceptron can perform linear classification. How do we learn weights and threshold? We adjust $\{w_i\}$ and $\mu$ according to output error $v^d-v$.
+\begin{align*}
+	\Delta w_i =& \epsilon(v^d-v)u_i\\
+	\Delta \mu =& -\epsilon(v^d-v)
+\end{align*}
+Unfortunately, perceptrons can only handle linearly separable data. They cannot calculate the XOR function.
 
 \subsection{Reinforcement Learning: Predicting Rewards}
 TBP
