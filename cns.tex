@@ -2207,7 +2207,7 @@ Problem: we don't have future rewards available! So we rewrite to get rid of fut
 \begin{align*}
 	\big[\sum_{\tau=0}^{T-t}r_{t+\tau}-v(t)\big]^2=&\big[r(t) + \sum_{\tau=0}^{T-t-1}r_{t+1+\tau}-v(t)\big]^2\\
 	\approx&\big[r(t)+v(t+1)-v(t)\big]^2\text{, minimize using gradient descent}\\
-	\Delta w(\tau)=& \epsilon \big[\overbrace{\underbrace{r(t) + v(t+1)}_\text{Expected future reward}-\underbrace{v(t)}_\text{Prediction}}^\delta \big]u(t-\tau)
+	\Delta w(\tau)=& \epsilon \big[\overbrace{\underbrace{r(t) + v(t+1)}_\text{Expected future reward}-\underbrace{v(t)}_\text{Prediction}}^\delta \big]u(t-\tau) \numberthis \label{eq:td:learn}
 \end{align*}
 This is known as Temporal Difference (TD) Learning.
 
@@ -2231,7 +2231,84 @@ This is known as Temporal Difference (TD) Learning.
 \end{figure}
 
 \subsection{Reinforcement Learning: Time for Action!}
-TBP
+
+\subsubsection{The Problem: Learn a state-to-action mapping or policy}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption{The Problem: Learn a state-to-action mapping or policy}		\includegraphics[width=\textwidth]{reward-action-problem}
+	\end{center}
+\end{figure}
+
+Learn a state-to-action mapping or policy:
+\begin{align*}
+	\pi(u) =& a \text{ which maximizes the expected total future reward}\\
+	\Big<&\sum_{\tau=0}^{T-t}r(t+\tau)\Big>_{trials}
+\end{align*}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Example: rat in a barn]{Example: rat in a barn. States = locations A, B, or C. Actions= L (go left) or R (go right)}
+		\includegraphics[width=\textwidth]{rat-barn-choices-rewards}
+	\end{center}
+\end{figure}
+
+For a random policy:
+\begin{align*}
+	v(B) =&\frac{1}{2}\times 0 + \frac{1}{2}\times 5 =& 2.5\\
+	v(C) =&\frac{1}{2}\times 2 + \frac{1}{2}\times 0 =& 1\\
+	v(A) =&\frac{1}{2}\times v(B) + \frac{1}{2}\times v(C) =& 1.75
+\end{align*}
+
+How does the rat learn values since it goes through states sequentially? We can learn the values using Temporal Difference Learning. We represent the value of each state by a weight, $w(u)$.
+\begin{align*}
+	w(u) \leftarrow w(u) + \epsilon \big(r(u)+v(u^{\prime})-v(u)\big)\text{, where $u^{\prime}$ is the new state}\\
+	(u,a)\rightarrow u^{\prime}	
+\end{align*}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Temporal Difference Learning values for random policy]{Temporal Difference Learning values for random policy. For $\epsilon=0.5$ we get fast learning, but a lot of jumps. Once we know the values,  can pick the action that leads to the higher valued state! Values act as surrogate immediate 	rewards $\implies$ Locally optimal choice leads to globally optimal 		policy for Markov environments (Related to Dynamic 	Programming)}
+		\includegraphics[width=\textwidth]{td-learning-values}
+	\end{center}
+\end{figure}
+
+\subsubsection{Putting it all together: Actor-Critic Learning}
+
+Let us see whether we can come up with an algorithm for learning optimal policies in Markov environments. We will have two separate components, the Actor, which selects the action and maintains the policy, and the Critic, which maintains value for each state.
+We iterate:
+\begin{itemize}
+	\item Critic Learning (``Policy Evaluation''). The value is given as in \eqref{eq:td:learn}
+	\begin{align*}
+		v(u) =& w(u)\\
+		w(u) \leftarrow w(u) + \epsilon \big(r(u)+v(u^{\prime})-v(u)\big)
+	\end{align*}
+	\item Actor Learning (``Policy Improvement''). The Actor selects action $a$ probabilistically, to address the explore/exploit dilemma
+	\begin{align*}
+		P(a;u) =& \frac{\exp \big(\beta Q_a(u)\big)}{\sum_{a^{\prime}}\exp \big(\beta Q_{a^{\prime}}(u)\big)}\text{. Then update Q for all actions}\\
+		Q_{a^{\prime}}(u)\leftarrow & Q_{a^{\prime}}(u) + \epsilon\big[r(u)+v(u^{\prime})-v(u)\big]\big[\delta_{a,a^{\prime}}-P(a^{\prime};u)\big]
+	\end{align*}
+\end{itemize}
+
+
+
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Actor-Critic in Barn Example]{Actor-Critic in Barn Example. After several trials algorithm converges to going left at location A. Notice that C is slow to converge, as algorithm is mostly visiting B.}
+		\includegraphics[width=\textwidth]{actor-critic-barn}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Possible Implementation of the Actor-Critic
+		Model in the Basal Ganglia]{Possible Implementation of the Actor-Critic
+			Model in the Basal Ganglia}
+		\includegraphics[width=\textwidth]{actor-critic-mapping-brain}
+	\end{center}
+\end{figure}
+
 
 \appendix
 
