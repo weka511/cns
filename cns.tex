@@ -2177,7 +2177,58 @@ We want to minimize the error function
 $\delta w_{ij}$ may be computed from the well-known back-propagation rule.
 
 \subsection{Reinforcement Learning: Predicting Rewards}
-TBP
+
+In contrast with supervised learning we have learning with rewards and punishments.
+\begin{figure}[H]
+	\begin{center}
+		\caption[Reinforcement Learning: rat in barn]{Reinforcement Learning: rat in barn. The agent, Mr. Rat, wants to maximize reward.}
+		\includegraphics[width=\textwidth]{rat-barn}
+	\end{center}
+\end{figure}
+
+\begin{itemize}
+	\item Classical Pavlovian conditioning, but...
+	\item How do we predict rewards dekivered some time after stimulus is delivered?
+	\begin{itemize}
+		\item Given: many trials, each of lenght $T$ steps
+		\item At time $0\le t\le T$ we have stimulus $u(t)$ and reward $r(t)$, which may be zero.
+		\item We want a neuron whose output $v(t)$ predicts the expected tptal future reward starting from time t.  
+	\end{itemize}
+\end{itemize}
+
+\begin{align*}
+	v(t) \approxeq& \Big<\sum_{\tau=0}^{T=t}r(t+\tau)\Big>_{Trials}\text{. Predict based on previous stimuli}\\
+	v(t) =& \sum_{\tau=0}^{t}w(\tau)u(t-\tau)\text{. Minimize error}\\
+	Error=&\big[\sum_{\tau=0}^{T-t}r_{t+\tau}-v(t)\big]^2
+\end{align*}
+
+Problem: we don't have future rewards available! So we rewrite to get rid of future terms.
+
+\begin{align*}
+	\big[\sum_{\tau=0}^{T-t}r_{t+\tau}-v(t)\big]^2=&\big[r(t) + \sum_{\tau=0}^{T-t-1}r_{t+1+\tau}-v(t)\big]^2\\
+	\approx&\big[r(t)+v(t+1)-v(t)\big]^2\text{, minimize using gradient descent}\\
+	\Delta w(\tau)=& \epsilon \big[\overbrace{\underbrace{r(t) + v(t+1)}_\text{Expected future reward}-\underbrace{v(t)}_\text{Prediction}}^\delta \big]u(t-\tau)
+\end{align*}
+This is known as Temporal Difference (TD) Learning.
+
+\begin{figure}[H]
+	\begin{center}
+		\caption[Temporal Difference (TD) Learning]{Temporal Difference (TD) Learning.}
+		\includegraphics[width=\textwidth]{td-learning}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\caption{Dopaminargenic cells in Ventral Tegmental Area.}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{Notice change when reward has been learned}
+		\includegraphics[width=\textwidth]{reward-primate}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{Effect of failing to deliver reward}
+		\includegraphics[width=\textwidth]{no-reward}
+	\end{subfigure}
+\end{figure}
 
 \subsection{Reinforcement Learning: Time for Action!}
 TBP
