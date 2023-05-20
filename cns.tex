@@ -54,6 +54,11 @@
 
 \newacronym{gls:STDP}{STDP}{Spike-Timing Dependent Plasticity}
 
+\newglossaryentry{gls:action:potential}{
+	name={action potential},
+	description={A rapid sequence of changes in the voltage across a membrane\cite{grider2022physiology}}
+}
+
 \newglossaryentry{gls:correlation:matrix}{
 	name={correlation matrix},
 	description={The correlation matrix of $n$ random variables $\{X_i\}$ is the $n\times n$ matrix $Q$\cite{enwiki:1123244609}
@@ -80,7 +85,7 @@
 
 \newglossaryentry{gls:electrotonic}{
 	name={electrotonic},
-	description={of, relating to, or being the spread of electrical activity through living tissue or cells in the absence of repeated action potentials\cite{webster2022electrotonic}}}
+	description={of, relating to, or being the spread of electrical activity through living tissue or cells in the absence of repeated \glspl{gls:action:potential}\cite{webster2022electrotonic}}}
 
 
 \newglossaryentry{gls:fmri}{
@@ -276,7 +281,7 @@ Originally there were two competing hypothesis:
 \begin{figure}[H]
 	\caption{The Electrical Personality of Neurons}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\caption{The idealized Neuron. The \gls{gls:EPSP}s are summed: if the sum reaches a threshold, we get an action potential, also known as a spike.}
+		\caption{The idealized Neuron. The \glspl{gls:EPSP} are summed: if the sum reaches a threshold, we get an \gls{gls:action:potential}, also known as a spike.}
 		\includegraphics[width=\textwidth]{idealized-neuron}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -332,11 +337,11 @@ Originally there were two competing hypothesis:
 	\item Inputs from other neurons $\rightarrow$ 	chemically-gated channels (at
 	``synapse'') open  $\rightarrow$ Changes in local membrane potential
 	\item This in turn causes opening/closing 	of voltage-gated channels in 	dendrites, body, and axon, resulting in \gls{gls:depolarization} (\glsdesc{gls:depolarization}) or \gls{gls:hyperpolarization}	(\glsdesc{gls:hyperpolarization})
-	\item Strong enough \gls{gls:depolarization}	causes a spike or “action potential”
+	\item Strong enough \gls{gls:depolarization} causes a spike or \gls{gls:action:potential}
 \end{itemize}
 
 \begin{figure}[H]
-	\caption[The Output of a Neuron: Action Potential (Spike)]{The Output of a Neuron: Action Potential (Spike). Voltage-gated channels cause action potentials (spikes) Strong \gls{gls:depolarization} opens $Na^+$ channels, causing rapid $Na^+$ influx and more channels to open, until they inactivate; $K^+$ outflux restores membrane potential. The shape of the action potential is stereotypical, so no information is propagated by the shape.}
+	\caption[The Output of a Neuron:\Gls{gls:action:potential} (Spike)]{The Output of a Neuron: \Gls{gls:action:potential} (Spike). Voltage-gated channels cause \glspl{gls:action:potential} (spikes) Strong \gls{gls:depolarization} opens $Na^+$ channels, causing rapid $Na^+$ influx and more channels to open, until they inactivate; $K^+$ outflux restores membrane potential. The shape of the \gls{gls:action:potential} is stereotypical, so no information is propagated by the shape.}
 	\includegraphics[width=0.7\textwidth]{action-potential}
 \end{figure}
 
@@ -500,18 +505,18 @@ During this course, we will talk about:
 	\begin{center}
 		\caption{What is the neural code?}
 		\begin{subfigure}[t]{0.45\textwidth}
-			\caption{Human eye, without output to optic nerve}
+			\caption{Human eye, with output to optic nerve}
 			\includegraphics[width=\textwidth]{human-eye}
 		\end{subfigure}
-		\begin{subfigure}[to]{0.45\textwidth}
-			\caption{Experiment. Play movie while section of retina is connected to electrode array--Figures \ref{fig:rb4} \& \ref{fig:rb5}}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Experiment. Play movie while section of retina is connected to electrode array--Figures \ref{fig:rb4} \& \ref{fig:rb5}}\label{fig:movie}
 			\includegraphics[width=\textwidth]{human-eye-experiment}
 		\end{subfigure}
-		\begin{subfigure}[to]{0.45\textwidth}
-			\caption{Repeat experiment: red dots represent firings (action potentials). Notice that many times the firings are in almost the same place.}
+		\begin{subfigure}[t]{0.45\textwidth}
+			\caption{Repeat experiment (\subref{fig:movie}): red dots represent firings (action potentials). Notice that many times the firings are in almost the same place.}
 			\includegraphics[width=\textwidth]{movie-firings}
 		\end{subfigure}
-		\begin{subfigure}[to]{0.45\textwidth}
+		\begin{subfigure}[t]{0.45\textwidth}
 			\caption{Look at 20 retinal ganglion cells. Each cell is reasonably consistent in time. Each cell is responsible for encoding some set of features, and different neurons encode different features. R \& P have some features in common.}\label{fig:movie-firings-20}
 			\includegraphics[width=\textwidth]{movie-firings-20}
 		\end{subfigure}
@@ -520,11 +525,11 @@ During this course, we will talk about:
 
 \begin{itemize}
 	\item Encoding: how does a stimulus cause a pattern of responses?
-	\item\begin{itemize}
+	\begin{itemize}
 		\item  Building quasi mechanistic models
 	\end{itemize}
 	\item Decoding: what do these responses tell us about the stimulus?
-	\item \begin{itemize}
+	\begin{itemize}
 		\item how can we reconstruct what the brain is doing?
 	\end{itemize}
 \end{itemize}
@@ -696,7 +701,7 @@ We select some subset of features that are relevant to a decision: $r(t)=g(f_1*s
 \end{figure}
 
 \begin{figure}[H]
-	\caption[Most faces can be reconstructed from a set of 7-8 eigenfaces]{Although it takes a lot of pixels to represent a face, there is a lot structure, and most faces can be reconstructed from a set of 7-8 principle components, known as ``eigenfaces''.}
+	\caption[Most faces can be reconstructed from a set of 7-8 eigenfaces]{Although it takes a lot of pixels to represent a face, there is a lot of structure, and most faces can be reconstructed from a set of 7-8 principle components, known as ``eigenfaces''.}
 	\includegraphics[width=0.9\textwidth]{eigenfaces}
 \end{figure}
 
@@ -1001,6 +1006,17 @@ Make sure we have covered
 
 
 \section{Computing in Carbon}\label{sec:week5}
+How does the brain instantiate the kinds of computations we have seen in previous sections?
+\begin{itemize}
+	\item Neuroelectronics
+	\begin{itemize}
+		\item membranes
+		\item ion channels
+		\item wiring
+	\end{itemize}
+	\item Simplified Neuron Models (the basic dynamics of neuronal excitability)
+	\item Neuronal Geometry (Dendrites and dendritic computing)
+\end{itemize}
 
 \subsection{Modeling Neurons}
 
@@ -1009,8 +1025,23 @@ Make sure we have covered
 	\includegraphics[width=0.9\textwidth]{equivalent-circuit-model}
 \end{figure}
 
+In Figure \ref{fig:review:circuit} we review circuit theory.
+
+\begin{itemize}
+	\item The potential drop along a wires is zero;
+	\item The current flowing into one element must issue the current flowing out;
+	\item At a junction, the total current is zero (Kirchhoff's law);
+	\item The potential changes by a fixed amount across a battery symbol;
+	\item The voltage across a resistor obeys Ohm's law, $V=IR$ or $I=Vg$.
+\end{itemize}
+
 \begin{figure}[H]
-	\caption[Membrane Patch]{Membrane Patch}
+	\caption[Review of Simple Circuit]{Review of Simple Circuit. If we regard the total current as flowing in through the top and out through the bottom, Kirchoff's Law requires that the sum of the currents in the two branches adds up to the total}\label{fig:review:circuit}
+	\includegraphics[width=0.9\textwidth]{ReviewSimpleCircuit}
+\end{figure}
+
+\begin{figure}[H]
+	\caption[Membrane Patch]{Membrane Patch after \cite{dayan2005theoretical}. The lipid bilayer is a good insulator, and the ion channels allows ions to pass selectively.}
 	\includegraphics[width=0.9\textwidth]{membrane-patch}
 \end{figure}
 
@@ -1022,49 +1053,46 @@ Make sure we have covered
 \begin{align*}
 	I_R + I_C + I_{ext} =& 0 \text{, Kirchhoff's Law}\\
 	V =& I_R R \text{, Ohm's Law}\\
-	I_C =& C \frac{dV}{dt} \text{, lipid bilayer asks as capacitor, plus allows a current to flow.}\\
+	I_C =& C \frac{dV}{dt} \text{, lipid bilayer acts as capacitor, plus allows a current to flow.}\\
 	F\frac{dV}{dt} =& -\frac{V}{R} + I_{ext} \numberthis \label{eq:1st:neuron:eq}
 \end{align*}
 
-\begin{figure}[H]
-	\caption[The Cell has a battery]{The Cell has a battery}
-	\includegraphics[width=0.9\textwidth]{cell-has-battery}
-\end{figure}
 
 \begin{figure}[H]
-	\caption[The cell's battery: the equilibrium potential]{The cell's battery: the equilibrium potential}
-	\includegraphics[width=0.9\textwidth]{equilibrium-potential}
+	\caption[The Cell has a battery]{Although \eqref{eq:1st:neuron:eq} may model a piece of membrane, it isn't really what is happening in the cell: the membrane encloses a solution whose concentrations of ions are different from those outside.}
+	\begin{subfigure}[b]{\textwidth}
+		\caption{The Cell has a battery}\label{fig:cell:battery}
+		\includegraphics[width=0.9\textwidth]{cell-has-battery}
+	\end{subfigure}
+	\begin{subfigure}[b]{\textwidth}
+		\caption{The equilibrium potential. There are two opposing forces at work: ions move down their concentration gradient, until opposed by electrostatic forces.}\label{fig:equilibrium-potential}
+		\includegraphics[width=0.9\textwidth]{equilibrium-potential}
+	\end{subfigure}
 \end{figure}
 
-Equilibrium is determined by the Nernst potential\cite{enwiki:1121504046}:
+
+The Equilibrium of the osmotic and electrostatic forces in Figure \ref{fig:equilibrium-potential} is determined by the Nernst potential\cite{enwiki:1121504046}:
 \begin{align*}
 	E =& \frac{k_B T}{zq}\ln \frac{[inside]}{[outside]} \text{, where}\\
-	k_B=& Boltzmann's constant\\
+	[inside] =& \text{concentration of ions inside}\\
+	[outside] =& \text{concentration of ions outside}\\
+	k_B=& \text{Boltzmann's constant}\\
 	T=& \text{ Temperature}\\
 	q=& \text{ the ionic charge}\\
 	z=&	\text{ the number of charges in the ion}
 \end{align*}
 
-Whence \eqref{eq:1st:neuron:eq} becomes
+The voltage across the resistor is lessened by $V_{rest}$ in Figure \ref{fig:cell:battery}, so \eqref{eq:1st:neuron:eq} becomes
 \begin{align*}
 		C\frac{dV}{dt} =& -\frac{(-V-V_{rest})}{R} + I_{ext} \text{, or}\\
-	\tau \frac{dV}{dt} =& -V + V_\infty \text{, where}\\
+	\tau \frac{dV}{dt} =& -V + V_\infty \text{, where the time constant $\tau$ is given by}\\
 	\tau =& R C \text{, and} \\
 	V_\infty =& \text{ represents the steady state}
 \end{align*}
 
 \begin{figure}[H]
-	\caption[Example Solution]{Example Solution}
+	\caption[Example Solution for square wave $I_{ext}(t)$]{Example Solution for square wave $I_{ext}(t)$}
 	\includegraphics[width=0.9\textwidth]{neuron-solution}
-\end{figure}
-
-
-
-
-
-\begin{figure}[H]
-	\caption[Currents through Ion Channels]{Currents through Ion channels. }\label{eg:ion-channels}\label{fig:ion-channels}
-	\includegraphics[width=0.9\textwidth]{ion-channels}
 \end{figure}
 
 Figure \ref{eg:ion-channels} depicts ion channels. There are different types: \begin{itemize}
@@ -1074,6 +1102,12 @@ Figure \ref{eg:ion-channels} depicts ion channels. There are different types: \b
 	\item mechanosensitive;
 	\item heat sensitive.
 \end{itemize}
+
+\begin{figure}[H]
+	\caption[Currents through Ion Channels]{Currents through Ion channels. }\label{eg:ion-channels}\label{fig:ion-channels}
+	\includegraphics[width=0.9\textwidth]{ion-channels}
+\end{figure}
+
 We will focus on voltage sensitivity, and will consider the current through one channel, $I=Vg$, where $g=\frac{1}{R}$ is the conductance of the channel. Different ion channels have different conductances; a given conductance tends to move the membrane potential towards the equilibrium potential for that ion.
 \begin{table}[H]
 	\begin{center}
@@ -1094,7 +1128,7 @@ We will focus on voltage sensitivity, and will consider the current through one 
 
 
 \begin{figure}[H]
-	\caption[What makes a neuron compute?]{What makes a neuron compute? So far everything we have seen is linear. But this figure shows that something else is happening...Excitability}
+	\caption[What makes a neuron compute?]{What makes a neuron compute? So far everything we have seen is linear. The figure shows that most curves are just expandd or contracted versions of each other. But sometimes something else is happening...Excitability}
 	\includegraphics[width=0.9\textwidth]{what-makes-neuron-compute}
 \end{figure}
 
