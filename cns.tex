@@ -1137,36 +1137,57 @@ We will focus on voltage sensitivity, and will consider the current through one 
 
 \begin{figure}[H]
 	\caption[Excitability arises from non-linearity]{Excitability arises from non-linearity. The equivalent circuit depicts the sodium and potassium currents, together with $g_L$, the \emph{leakage current} through the bilayer. If all conductances were constant we'd still have a linear response; the conductances depend on the voltage, however, which gives rise to non-linearity}
-	\includegraphics[width=0.9\textwidth]{excitability-arises-from-non-linearity}
+	\includegraphics[width=0.7\textwidth]{excitability-arises-from-non-linearity}
 \end{figure}
 
 \begin{figure}[H]
 	\begin{center}
-		\caption[The ion channel is an elaborate molecular machine]{The ion channel is an elaborate molecular machine. It contains a gate that prevents ions from entering, which is controlled by a sensor. The sensor for the potassium subchannel contains 4 subunits, so the probability of it being open is $P_k \propto n^4$ (The lower panel in Figure \ref{fig:ion-channels} depicts the flow when all 4 gates are open, vs the flow when at least one is closed). This probability increases when depolarized.}
-	\includegraphics[width=0.6\textwidth]{ion-channel-as-molecular-machine}
+		\caption[The ion channel is an elaborate molecular machine]{The ion channel is an elaborate molecular machine. It contains a gate that prevents ions from entering, which is controlled by a sensor. The gate for the potassium subchannel contains 4 subunits, so the probability of it being open is $P_k \propto n^4$ (The lower panel in Figure \ref{fig:ion-channels} depicts the flow when all 4 gates are open, vs the flow when at least one is closed). This probability increases when depolarized.}
+	\includegraphics[width=0.5\textwidth]{ion-channel-as-molecular-machine}
 	\end{center}
 \end{figure}
-State transitions occur at voltage dependent rates.
+State transitions occur at voltage dependent rates. Letting
 \begin{align*}
-	\frac{dn}{dt} =& \alpha_n(V)(1-n) - \beta(V)n \numberthis \label{eq:n}\\
+	\alpha_n(V) =& p[C \rightarrow P]\\
+	\beta_n(V) =& p[O \rightarrow C] \text{ we have}\\
+	\frac{dn}{dt} =& \alpha_n(V)(1-n) - \beta(V)n  \numberthis \label{eq:n}
+\end{align*}
+We can rewrite using time constant $\tau$.
+\begin{align*}
 	\tau_n(V) \frac{dn}{dt} =&n_\infty(V)-n\text{, where}\\
 	\tau_n(V) =& \frac{1}{\alpha_n(V) + \beta_n(V)}\\
 	n_\infty(V) =&  \frac{\alpha_n(V)}{\alpha_n(V) + \beta_n(V)}
 \end{align*}
 
-
 \begin{figure}[H]
 	\begin{center}
-		\caption[The sodium channel]{The sodium channel has 3 subunits, similar to those for potassium, plus an inactivation gate that can block the channel when open. $P_{Na}\propto m^3 h$. Voltage increases $m$ and decreases $h$, so there is a voltage window in which sodium is able to flow: sodium is transient or self limiting. This is one of the mechanisms that switches off the spike.}
-	\includegraphics[width=0.6\textwidth]{na-channel}
+		\caption[The sodium channel]{The sodium channel}
+		\begin{subfigure}[t]{0.6\textwidth}
+			\caption{There are 3 subunits, similar to those for potassium, plus an inactivation gate that can block the channel when open.}
+			\includegraphics[width=0.6\textwidth]{na-channel1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.6\textwidth}
+			\caption{$P_{Na}\propto m^3 h$. Voltage increases $m$ and decreases $h$, so there is a voltage window in which sodium is able to flow.}
+			\includegraphics[width=0.6\textwidth]{na-channel2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.6\textwidth}
+			\caption{As soon as sodium starts to flow, it decreases $h$: sodium is transient or self limiting. This is one of the mechanisms that switches off the spike.}
+			\includegraphics[width=0.6\textwidth]{na-channel3}
+		\end{subfigure}
 	\end{center}
 \end{figure}
-
+\begin{itemize}
+	\item \gls{gls:depolarization} increases $m$--activation
+	\item \gls{gls:hyperpolarization} increases $h$--deactivation 
+\end{itemize}
 \begin{align*}
 	\frac{dm}{dt} =& \alpha_m(V)(1-m) - \beta(V)m \numberthis \label{eq:m}\\
-	\frac{dh}{dt} =& \alpha_h(V)(1-h) - \beta(V)h\numberthis \label{eq:h} \\
-	g_k(V) =& \bar{g_k} n^4\\
-	g_{Na}(V)=& \bar{g_{Na}}m^3h
+	\frac{dh}{dt} =& \alpha_h(V)(1-h) - \beta(V)h\numberthis \label{eq:h} 
+\end{align*}
+We can use these $n$, $m$, and $h$ to determine the voltage dependent conductances
+\begin{align*}
+	g_k(V) =& \bar{g}_k n^4\\
+	g_{Na}(V)=& \bar{g}_{Na} m^3h
 \end{align*}
 
 \begin{figure}[H]
