@@ -1135,6 +1135,7 @@ We will focus on voltage sensitivity, and will consider the current through one 
 
 \subsection{Spikes}
 
+\subsubsection{Ion Channels}
 \begin{figure}[H]
 	\caption[Excitability arises from non-linearity]{Excitability arises from non-linearity. The equivalent circuit depicts the sodium and potassium currents, together with $g_L$, the \emph{leakage current} through the bilayer. If all conductances were constant we'd still have a linear response; the conductances depend on the voltage, however, which gives rise to non-linearity}
 	\includegraphics[width=0.7\textwidth]{excitability-arises-from-non-linearity}
@@ -1186,36 +1187,49 @@ We can rewrite using time constant $\tau$.
 \end{align*}
 We can use these $n$, $m$, and $h$ to determine the voltage dependent conductances
 \begin{align*}
-	g_k(V) =& \bar{g}_k n^4\\
-	g_{Na}(V)=& \bar{g}_{Na} m^3h
+	g_k(V) =& \bar{g}_k n^4 \numberthis \label{eq:gK}\\
+	g_{Na}(V)=& \bar{g}_{Na} m^3h \numberthis \label{eq:gNa}
 \end{align*}
 
+\subsubsection{The Hodgkin-Huxley model}
 \begin{figure}[H]
 	\caption{The Hodgkin-Huxley model}\label{fig:hodgkin-huxley}
 	\includegraphics[width=0.9\textwidth]{hodgkin-huxley}
 \end{figure}
 
+The voltage across the membrane changes as the result of changes in the external driving current, and also because the opening are closing probabilities cause the conductances to vary.
+Using Ohm's Law
 \begin{align*}
-	V =& IR\\
-	C_m\frac{dV}{dt}=&-\sum_{i}g_i(V-E_i) + I_e\numberthis\label{eq:hodgkin:huxley:precursor}\\
+	V =& IR \text{, and Kirchhoff's Law}\\
+	\underbrace{C_m\frac{dV}{dt}}_\text{Capacitative current}=&-\underbrace{\sum_{i}g_i(V-E_i)}_\text{ionic currents} + \underbrace{I_e}_\text{external current}\numberthis\label{eq:hodgkin:huxley:precursor}
+\end{align*}
+Equations \eqref{eq:hodgkin:huxley:precursor} is known as the Hodgkin-Huxley equation\cite{hodgkin1952currents}. Substituting \eqref{eq:gK} and \eqref{eq:gNa}:
+
+\begin{align*}
 	-C_m\frac{dV}{dt}=&g_L(V-E_L)+\bar{g_k}n^4(V-E_K)+\bar{g_{Na}}m^3h(V-E_{Na})-I_e\numberthis\label{eq:hodgkin:huxley}
 \end{align*}
-Equations \eqref{eq:hodgkin:huxley}, \eqref{eq:n}, \eqref{eq:m}, and \eqref{eq:h} are known as the Hodgkin-Huxley equations \cite{hodgkin1952currents}.
-
+We use \eqref{eq:n}, \eqref{eq:m}, and \eqref{eq:h} to produce Figure \ref{fig:dynamics:act:inact}.
 \begin{figure}[H]
-	\caption[Dynamics of Activation Inactivation]{Dynamics of Activation Inactivation. The right hand curves shows how quickly each variable responds to a change in voltage.}
-	\includegraphics[width=0.9\textwidth]{dynamics-activation-inactivation}
+	\caption[Dynamics of Activation Inactivation]{Dynamics of Activation Inactivation. Panel (\subref{fig:dynamics:act:inact2}) is based on using $\tau_n(V) \frac{dn}{dt} = n_\infty(V)-n$}\label{fig:dynamics:act:inact}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{Where each variable is going}\label{fig:dynamics:act:inact2}
+		\includegraphics[width=\textwidth]{dynamics-activation-inactivation1}
+	\end{subfigure}	
+	\begin{subfigure}[t]{0.45\textwidth}
+		\caption{How quickly each variable responds to a change in voltage.}\label{fig:dynamics:act:inact2}
+		\includegraphics[width=\textwidth]{dynamics-activation-inactivation2}
+	\end{subfigure}
 \end{figure}
 
-\begin{figure}[H]
-	\caption[What makes a neuron compute?]{What makes a neuron compute? So far everything we have seen is linear. But this figure shows that something else is happening...}
-	\includegraphics[width=0.9\textwidth]{what-makes-neuron-compute}
-\end{figure}
+Recall that $n$ governs the opening of the potassium channel, and $m$ and $h$ have to be large to open the sodium channel. From \ref{fig:dynamics:act:inact2} we see that the probability of the Potassium channel opening increases with voltage, but the probability of the sodium channel opening first increases $m^3$ then decreases $h$, since $n$ is a sigmoid.
+
+If we change $V$, the steady state changes, and Figure \ref{fig:dynamics:act:inact2} tells us how quickly the variables change to the new steady state. Since $\tau_m$ has the smallest value, $m$ will react fastest.
 
 \begin{figure}[H]
-	\caption[Anatomy of a Spike]{Anatomy of a Spike}
+	\caption[Anatomy of a Spike]{Anatomy of a Spike. notice the resting potentials in the top top left sub-panel. The potassium channel tries to move the potential to $E_K$, and the sodium channel to $E_{Na}$. Imagine that the neuron is sitting at about -60mV, and an input comes along that depolarizes the membrane. Since $m$ has the shortest time constant, it will adjust to the new voltage first. The sodium channel opens, and moves the equilibrium towards $E_{Na}$, creating a positive feedback. Next $h$ starts to decrease, which tends to close the sodium channel, and finally $n$ starts to open the potassium channel.}
 	\includegraphics[width=0.9\textwidth]{anatomy-of-a-spike}
 \end{figure}
+
 
 \begin{figure}[H]
 	\caption[Where to from here? Simplification or Realism?]{Where to from here? We can simplify, Section \ref{sec:simplified:model_neurons}, or complexify, Section \ref{sec:a:forest:of:neurons}}\label{fig:where:to_from:here}
