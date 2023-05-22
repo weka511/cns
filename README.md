@@ -8,6 +8,9 @@ Folder|Name|Description
 &nbsp;|cns.bib|Bibliography
 &nbsp;|cns.wpr|Wing project
 &nbsp;|cns.tex|My notes
+&nbsp;|hh.py|Code for Hodgkin Huxley model
+&nbsp;|template.py|Template for new code
+figs|&nbsp;|Figures for document
 week2|c1p8.pickle|Data file for assignment
 &nbsp;|compute_sta.py|Compute spike triggered average
 &nbsp;|quiz2.py|Plot spike triggered average
