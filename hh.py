@@ -31,32 +31,25 @@ import numpy as np
 
 # Local application/library specific imports.
 
-def euler(func, y0, t):
-    y  = np.zeros((np.size(t)))
-    y[0] = y0
+def alpha_n(V,a=0.01,b=10,c=10):
+    return a*(V+b)/(np.exp((V+b)/c)-1)
 
-    for i in range(0,np.size(t) - 1):
-        dt  = t[i + 1] - t[i]
-        y[i + 1] = y[i] + dt*func(y[i], t[i])
+def beta_n(V,a=0.125,b=80):
+    return a*np.exp(V/b)
 
-    return y
+def alpha_m(V):
+    return alpha_n(V,a=0.1,b=25)
 
-def alpha(V,a=0.01,b=10,c=10):
-    return 0.01*(b-V)/(np.exp((b-V)/c)-1)
-
-def beta(V,a=0.125,b=80):
-    return a*np.exp(-V/b)
-
-def func(y,t,V=-50,alpha = alpha,beta = beta):
-    return alpha(V)*(1-y) - beta(V)*y
-
-
+def beta_m(V):
+    return beta_n(V,a=4,b=10)
 
 def alpha_h(V):
     return 0.07*np.exp(-V/20)
 
 def beta_h(V):
-    return 1/(np.exp((30-V)/10)+1)
+    return 1/(np.exp((V+30)/10)+1)
+
+
 
 if __name__=='__main__':
     parser = ArgumentParser(__doc__)
@@ -64,22 +57,19 @@ if __name__=='__main__':
     parser.add_argument('--figs', default='./figs',                   help = 'Location for storing plot files')
     args = parser.parse_args()
 
-    tInitial = 0
-    tFinal = 10
-    Nt = 5000
-    tArray = np.linspace(tInitial, tFinal, Nt)
-    n0 = 1.0
-    ns = euler(func, n0, tArray)
-    m0 = 1.0
-    ms = euler(lambda y,t: func(y,t,alpha=lambda V:alpha(V,a=0.1,b=25),beta=lambda V:beta(V,a=4,b=18)),m0,tArray)
-    h0 = 1.0
-    hs = euler(lambda y,t: func(y,t,alpha=alpha_h,beta=beta_h),h0,tArray)
-    fig = figure()
-    ax  = fig.add_subplot(1,1,1)
-    ax.plot(ns,label='n')
-    ax.plot(ms,label='m')
-    ax.plot(hs,label='h')
-    ax.legend()
+    fig = figure(figsize=(12,12))
+    ax1  = fig.add_subplot(2,1,1)
+    V1 = np.linspace(-110,60,20)
+    ax1.plot(V1,alpha_n(V1),label=r'$\alpha_n$')
+    ax1.plot(V1,beta_n(V1),label=r'$\beta_n$')
+    ax1.legend()
+    ax2  = fig.add_subplot(2,1,2)
+    V2 = np.linspace(-110,+10,20)
+    ax2.plot(V2,alpha_m(V2),label=r'$\alpha_m$')
+    ax2.plot(V2,beta_m(V2),label=r'$\beta_m$')
+    ax2.plot(V2,alpha_h(V2),label=r'$\alpha_h$')
+    ax2.plot(V2,beta_h(V2),label=r'$\beta_h$')
+    ax2.legend()
     fig.savefig(join(args.figs,Path(__file__).stem))
     if args.show:
         show()
